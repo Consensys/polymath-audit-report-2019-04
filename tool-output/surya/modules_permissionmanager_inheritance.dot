@@ -1,0 +1,33 @@
+digraph G {
+  graph [ ratio = "auto", page = "40" ];
+  "GeneralPermissionManager";
+  "GeneralPermissionManagerStorage";
+  "IPermissionManager";
+  "Module";
+  "GeneralPermissionManagerFactory";
+  "UpgradableModuleFactory";
+  "GeneralPermissionManagerProxy";
+  "ModuleStorage";
+  "Pausable";
+  "ReentrancyGuard";
+  "OwnedUpgradeabilityProxy";
+  "GeneralPermissionManager" -> "GeneralPermissionManagerStorage";
+  "GeneralPermissionManager" -> "IPermissionManager";
+  "GeneralPermissionManager" -> "Module";
+  "GeneralPermissionManagerFactory" -> "UpgradableModuleFactory";
+  "GeneralPermissionManagerProxy" -> "GeneralPermissionManagerStorage";
+  "GeneralPermissionManagerProxy" -> "ModuleStorage";
+  "GeneralPermissionManagerProxy" -> "Pausable";
+  "GeneralPermissionManagerProxy" -> "ReentrancyGuard";
+  "GeneralPermissionManagerProxy" -> "OwnedUpgradeabilityProxy";
+  "GeneralPermissionManager" -> "GeneralPermissionManagerStorage";
+  "GeneralPermissionManager" -> "IPermissionManager";
+  "GeneralPermissionManager" -> "Module";
+  "GeneralPermissionManagerFactory" -> "UpgradableModuleFactory";
+  "GeneralPermissionManagerProxy" -> "GeneralPermissionManagerStorage";
+  "GeneralPermissionManagerProxy" -> "ModuleStorage";
+  "GeneralPermissionManagerProxy" -> "Pausable";
+  "GeneralPermissionManagerProxy" -> "ReentrancyGuard";
+  "GeneralPermissionManagerProxy" -> "OwnedUpgradeabilityProxy";
+}
+

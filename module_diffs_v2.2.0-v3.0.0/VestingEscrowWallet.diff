@@ -1,0 +1,211 @@
+diff --git a/contracts/modules/Wallet/VestingEscrowWallet.sol b/contracts/modules/Experimental/Wallet/VestingEscrowWallet.sol
+index 3fe28d1e..420198de 100644
+--- a/contracts/modules/Wallet/VestingEscrowWallet.sol
++++ b/contracts/modules/Experimental/Wallet/VestingEscrowWallet.sol
+@@ -1,15 +1,17 @@
+-pragma solidity 0.5.8;
++pragma solidity ^0.4.24;
+ 
+ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+-import "./Wallet.sol";
+-import "./VestingEscrowWalletStorage.sol";
++import "../../../storage/VestingEscrowWalletStorage.sol";
++import "./IWallet.sol";
+ 
+ /**
+  * @title Wallet for core vesting escrow functionality
+  */
+-contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
++contract VestingEscrowWallet is VestingEscrowWalletStorage, IWallet {
+     using SafeMath for uint256;
+ 
++    bytes32 public constant ADMIN = "ADMIN";
++
+     // States used to represent the status of the schedule
+     enum State {CREATED, STARTED, COMPLETED}
+ 
+@@ -65,19 +67,16 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+      * @param _treasuryWallet Address of the treasury wallet
+      */
+     function configure(address _treasuryWallet) public onlyFactory {
+-        _setWallet(_treasuryWallet);
++        require(_treasuryWallet != address(0), "Invalid address");
++        treasuryWallet = _treasuryWallet;
+     }
+ 
+     /**
+      * @notice Used to change the treasury wallet address
+      * @param _newTreasuryWallet Address of the treasury wallet
+      */
+-    function changeTreasuryWallet(address _newTreasuryWallet) public {
+-        _onlySecurityTokenOwner();
+-        _setWallet(_newTreasuryWallet);
+-    }
+-
+-    function _setWallet(address _newTreasuryWallet) internal {
++    function changeTreasuryWallet(address _newTreasuryWallet) public onlyOwner {
++        require(_newTreasuryWallet != address(0));
+         emit TreasuryWalletChanged(_newTreasuryWallet, treasuryWallet);
+         treasuryWallet = _newTreasuryWallet;
+     }
+@@ -93,8 +92,8 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+     function _depositTokens(uint256 _numberOfTokens) internal {
+         require(_numberOfTokens > 0, "Should be > 0");
+         require(
+-            securityToken.transferFrom(msg.sender, address(this), _numberOfTokens),
+-            "Failed transferFrom"
++            ISecurityToken(securityToken).transferFrom(msg.sender, address(this), _numberOfTokens),
++            "Failed transferFrom due to insufficent Allowance provided"
+         );
+         unassignedTokens = unassignedTokens.add(_numberOfTokens);
+         emit DepositTokens(_numberOfTokens, msg.sender);
+@@ -104,31 +103,19 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+      * @notice Sends unassigned tokens to the treasury wallet
+      * @param _amount Amount of tokens that should be send to the treasury wallet
+      */
+-    function sendToTreasury(uint256 _amount) public withPerm(OPERATOR) {
++    function sendToTreasury(uint256 _amount) public withPerm(ADMIN) {
+         require(_amount > 0, "Amount cannot be zero");
+         require(_amount <= unassignedTokens, "Amount is greater than unassigned tokens");
+         unassignedTokens = unassignedTokens - _amount;
+-        require(securityToken.transfer(getTreasuryWallet(), _amount), "Transfer failed");
++        require(ISecurityToken(securityToken).transfer(treasuryWallet, _amount), "Transfer failed");
+         emit SendToTreasury(_amount, msg.sender);
+     }
+ 
+-    /**
+-     * @notice Returns the treasury wallet address
+-     */
+-    function getTreasuryWallet() public view returns(address) {
+-        if (treasuryWallet == address(0)) {
+-            address wallet = IDataStore(getDataStore()).getAddress(TREASURY);
+-            require(wallet != address(0), "Invalid address");
+-            return wallet;
+-        } else
+-            return treasuryWallet;
+-    }
+-
+     /**
+      * @notice Pushes available tokens to the beneficiary's address
+      * @param _beneficiary Address of the beneficiary who will receive tokens
+      */
+-    function pushAvailableTokens(address _beneficiary) public withPerm(OPERATOR) {
++    function pushAvailableTokens(address _beneficiary) public withPerm(ADMIN) {
+         _sendTokens(_beneficiary);
+     }
+ 
+@@ -189,7 +176,7 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+      * @notice Gets the list of the template names those can be used for creating schedule
+      * @return bytes32 Array of all template names were created
+      */
+-    function getAllTemplateNames() external view returns(bytes32[] memory) {
++    function getAllTemplateNames() external view returns(bytes32[]) {
+         return templateNames;
+     }
+ 
+@@ -389,7 +376,7 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+      * @param _beneficiary Address of the beneficiary
+      * @return List of the template names that were used for schedule creation
+      */
+-    function getTemplateNames(address _beneficiary) external view returns(bytes32[] memory) {
++    function getTemplateNames(address _beneficiary) external view returns(bytes32[]) {
+         require(_beneficiary != address(0), "Invalid address");
+         return userToTemplates[_beneficiary];
+     }
+@@ -432,7 +419,7 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+      * @param _fromIndex Start index of array of beneficiary's addresses
+      * @param _toIndex End index of array of beneficiary's addresses
+      */
+-    function pushAvailableTokensMulti(uint256 _fromIndex, uint256 _toIndex) public withPerm(OPERATOR) {
++    function pushAvailableTokensMulti(uint256 _fromIndex, uint256 _toIndex) external withPerm(ADMIN) {
+         require(_toIndex < beneficiaries.length, "Array out of bound");
+         for (uint256 i = _fromIndex; i <= _toIndex; i++) {
+             if (schedules[beneficiaries[i]].length !=0)
+@@ -450,12 +437,12 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+      * @param _startTimes Array of the vesting start time
+      */
+     function addScheduleMulti(
+-        address[] memory _beneficiaries,
+-        bytes32[] memory _templateNames,
+-        uint256[] memory _numberOfTokens,
+-        uint256[] memory _durations,
+-        uint256[] memory _frequencies,
+-        uint256[] memory _startTimes
++        address[] _beneficiaries,
++        bytes32[] _templateNames,
++        uint256[] _numberOfTokens,
++        uint256[] _durations,
++        uint256[] _frequencies,
++        uint256[] _startTimes
+     )
+         public
+         withPerm(ADMIN)
+@@ -479,14 +466,7 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+      * @param _templateNames Array of the template names were used for schedule creation
+      * @param _startTimes Array of the vesting start time
+      */
+-    function addScheduleFromTemplateMulti(
+-        address[] memory _beneficiaries,
+-        bytes32[] memory _templateNames,
+-        uint256[] memory _startTimes
+-    )
+-        public
+-        withPerm(ADMIN)
+-    {
++    function addScheduleFromTemplateMulti(address[] _beneficiaries, bytes32[] _templateNames, uint256[] _startTimes) external withPerm(ADMIN) {
+         require(_beneficiaries.length == _templateNames.length && _beneficiaries.length == _startTimes.length, "Arrays sizes mismatch");
+         for (uint256 i = 0; i < _beneficiaries.length; i++) {
+             _addScheduleFromTemplate(_beneficiaries[i], _templateNames[i], _startTimes[i]);
+@@ -497,7 +477,7 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+      * @notice Used to bulk revoke vesting schedules for each of the beneficiaries
+      * @param _beneficiaries Array of the beneficiary's addresses
+      */
+-    function revokeSchedulesMulti(address[] memory _beneficiaries) public withPerm(ADMIN) {
++    function revokeSchedulesMulti(address[] _beneficiaries) public withPerm(ADMIN) {
+         for (uint256 i = 0; i < _beneficiaries.length; i++) {
+             _revokeAllSchedules(_beneficiaries[i]);
+         }
+@@ -510,9 +490,9 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+      * @param _startTimes Array of the vesting start time
+      */
+     function modifyScheduleMulti(
+-        address[] memory _beneficiaries,
+-        bytes32[] memory _templateNames,
+-        uint256[] memory _startTimes
++        address[] _beneficiaries,
++        bytes32[] _templateNames,
++        uint256[] _startTimes
+     )
+         public
+         withPerm(ADMIN)
+@@ -547,7 +527,7 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+         uint256 periodCount = _duration.div(_frequency);
+         require(_numberOfTokens % periodCount == 0);
+         uint256 amountPerPeriod = _numberOfTokens.div(periodCount);
+-        require(amountPerPeriod % securityToken.granularity() == 0, "Invalid granularity");
++        require(amountPerPeriod % ISecurityToken(securityToken).granularity() == 0, "Invalid granularity");
+     }
+ 
+     function _sendTokens(address _beneficiary) internal {
+@@ -560,7 +540,7 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+         uint256 amount = _getAvailableTokens(_beneficiary, _index);
+         if (amount > 0) {
+             schedules[_beneficiary][_index].claimedTokens = schedules[_beneficiary][_index].claimedTokens.add(amount);
+-            require(securityToken.transfer(_beneficiary, amount), "Transfer failed");
++            require(ISecurityToken(securityToken).transfer(_beneficiary, amount), "Transfer failed");
+             emit SendTokens(_beneficiary, amount);
+         }
+     }
+@@ -568,10 +548,9 @@ contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+     /**
+      * @notice Return the permissions flag that are associated with VestingEscrowWallet
+      */
+-    function getPermissions() public view returns(bytes32[] memory) {
+-        bytes32[] memory allPermissions = new bytes32[](2);
++    function getPermissions() public view returns(bytes32[]) {
++        bytes32[] memory allPermissions = new bytes32[](1);
+         allPermissions[0] = ADMIN;
+-        allPermissions[1] = OPERATOR;
+         return allPermissions;
+     }
+ 

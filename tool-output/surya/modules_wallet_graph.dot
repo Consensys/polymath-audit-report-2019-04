@@ -1,0 +1,332 @@
+digraph G {
+  graph [ ratio = "auto", page = "100", compound =true, bgcolor = "#2e3e56" ];
+  node [ style = "filled", fillcolor = "#edad56", color = "#edad56", penwidth =3 ];
+  edge [ color = "#fcfcfc", penwidth =2, fontname = "helvetica Neue Ultra Light" ];
+subgraph "clusterVestingEscrowWallet" {
+  graph [ label = "VestingEscrowWallet", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "VestingEscrowWallet.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.configure" [ label = "configure", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.changeTreasuryWallet" [ label = "changeTreasuryWallet", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet._setWallet" [ label = "_setWallet", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.depositTokens" [ label = "depositTokens", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet._depositTokens" [ label = "_depositTokens", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.sendToTreasury" [ label = "sendToTreasury", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.getTreasuryWallet" [ label = "getTreasuryWallet", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.pushAvailableTokens" [ label = "pushAvailableTokens", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.pullAvailableTokens" [ label = "pullAvailableTokens", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet.addTemplate" [ label = "addTemplate", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet._addTemplate" [ label = "_addTemplate", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.removeTemplate" [ label = "removeTemplate", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet.getTemplateCount" [ label = "getTemplateCount", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet.getAllTemplateNames" [ label = "getAllTemplateNames", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet.addSchedule" [ label = "addSchedule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet._addSchedule" [ label = "_addSchedule", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.addScheduleFromTemplate" [ label = "addScheduleFromTemplate", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet._addScheduleFromTemplate" [ label = "_addScheduleFromTemplate", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.modifySchedule" [ label = "modifySchedule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet._modifySchedule" [ label = "_modifySchedule", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.revokeSchedule" [ label = "revokeSchedule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet._deleteUserToTemplates" [ label = "_deleteUserToTemplates", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet._deleteTemplateToUsers" [ label = "_deleteTemplateToUsers", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.revokeAllSchedules" [ label = "revokeAllSchedules", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet._revokeAllSchedules" [ label = "_revokeAllSchedules", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.getSchedule" [ label = "getSchedule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet._getScheduleState" [ label = "_getScheduleState", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.getTemplateNames" [ label = "getTemplateNames", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet.getScheduleCount" [ label = "getScheduleCount", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWallet._getAvailableTokens" [ label = "_getAvailableTokens", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet._getReleasedTokens" [ label = "_getReleasedTokens", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.pushAvailableTokensMulti" [ label = "pushAvailableTokensMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.addScheduleMulti" [ label = "addScheduleMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.addScheduleFromTemplateMulti" [ label = "addScheduleFromTemplateMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.revokeSchedulesMulti" [ label = "revokeSchedulesMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet.modifyScheduleMulti" [ label = "modifyScheduleMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet._checkSchedule" [ label = "_checkSchedule", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet._isTemplateExists" [ label = "_isTemplateExists", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet._validateTemplate" [ label = "_validateTemplate", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet._sendTokens" [ label = "_sendTokens", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet._sendTokensPerSchedule" [ label = "_sendTokensPerSchedule", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VestingEscrowWallet.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWallet._onlySecurityTokenOwner" [ label = "_onlySecurityTokenOwner" ];
+  "VestingEscrowWallet.getDataStore" [ label = "getDataStore" ];
+}
+
+subgraph "clusterVestingEscrowWalletFactory" {
+  graph [ label = "VestingEscrowWalletFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "VestingEscrowWalletFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWalletFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VestingEscrowWalletFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterVestingEscrowWalletProxy" {
+  graph [ label = "VestingEscrowWalletProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "VestingEscrowWalletProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VestingEscrowWalletProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterVestingEscrowWalletStorage" {
+  graph [ label = "VestingEscrowWalletStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterWallet" {
+  graph [ label = "Wallet", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterISecurityToken" {
+  graph [ label = "ISecurityToken", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "ISecurityToken.transferFrom" [ label = "transferFrom" ];
+  "ISecurityToken.transfer" [ label = "transfer" ];
+  "ISecurityToken.granularity" [ label = "granularity" ];
+}
+
+subgraph "clusterunassignedTokens" {
+  graph [ label = "unassignedTokens", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "unassignedTokens.add" [ label = "add" ];
+  "unassignedTokens.sub" [ label = "sub" ];
+}
+
+subgraph "clusterIDataStore" {
+  graph [ label = "IDataStore", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IDataStore.getAddress" [ label = "getAddress" ];
+}
+
+subgraph "clusternumberOfTokens" {
+  graph [ label = "numberOfTokens", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "numberOfTokens.sub" [ label = "sub" ];
+}
+
+subgraph "clusterreleasedTokens" {
+  graph [ label = "releasedTokens", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "releasedTokens.sub" [ label = "sub" ];
+}
+
+subgraph "clusternow" {
+  graph [ label = "now", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "now.sub" [ label = "sub" ];
+}
+
+subgraph "cluster_duration" {
+  graph [ label = "_duration", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_duration.div" [ label = "div" ];
+}
+
+subgraph "cluster_numberOfTokens" {
+  graph [ label = "_numberOfTokens", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_numberOfTokens.div" [ label = "div" ];
+}
+
+subgraph "clusterVersionUtils" {
+  graph [ label = "VersionUtils", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "VersionUtils.pack" [ label = "pack" ];
+}
+
+subgraph "clusterIPolymathRegistry" {
+  graph [ label = "IPolymathRegistry", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IPolymathRegistry.getAddress" [ label = "getAddress" ];
+}
+
+  "VestingEscrowWallet.configure";
+  "VestingEscrowWallet._setWallet";
+  "VestingEscrowWallet.changeTreasuryWallet";
+  "VestingEscrowWallet._onlySecurityTokenOwner";
+  "VestingEscrowWallet.depositTokens";
+  "VestingEscrowWallet._depositTokens";
+  "ISecurityToken.transferFrom";
+  "unassignedTokens.add";
+  "VestingEscrowWallet.sendToTreasury";
+  "ISecurityToken.transfer";
+  "VestingEscrowWallet.getTreasuryWallet";
+  "IDataStore.getAddress";
+  "VestingEscrowWallet.getDataStore";
+  "VestingEscrowWallet.pushAvailableTokens";
+  "VestingEscrowWallet._sendTokens";
+  "VestingEscrowWallet.pullAvailableTokens";
+  "VestingEscrowWallet.addTemplate";
+  "VestingEscrowWallet._addTemplate";
+  "VestingEscrowWallet._isTemplateExists";
+  "VestingEscrowWallet._validateTemplate";
+  "VestingEscrowWallet.removeTemplate";
+  "VestingEscrowWallet.addSchedule";
+  "VestingEscrowWallet._addSchedule";
+  "VestingEscrowWallet._addScheduleFromTemplate";
+  "VestingEscrowWallet.addScheduleFromTemplate";
+  "numberOfTokens.sub";
+  "unassignedTokens.sub";
+  "VestingEscrowWallet.modifySchedule";
+  "VestingEscrowWallet._modifySchedule";
+  "VestingEscrowWallet._checkSchedule";
+  "VestingEscrowWallet.revokeSchedule";
+  "VestingEscrowWallet._sendTokensPerSchedule";
+  "VestingEscrowWallet._getReleasedTokens";
+  "VestingEscrowWallet._deleteUserToTemplates";
+  "VestingEscrowWallet._deleteTemplateToUsers";
+  "VestingEscrowWallet.revokeAllSchedules";
+  "VestingEscrowWallet._revokeAllSchedules";
+  "VestingEscrowWallet.getSchedule";
+  "VestingEscrowWallet._getScheduleState";
+  "VestingEscrowWallet._getAvailableTokens";
+  "releasedTokens.sub";
+  "now.sub";
+  "VestingEscrowWallet.pushAvailableTokensMulti";
+  "VestingEscrowWallet.addScheduleMulti";
+  "VestingEscrowWallet.addScheduleFromTemplateMulti";
+  "VestingEscrowWallet.revokeSchedulesMulti";
+  "VestingEscrowWallet.modifyScheduleMulti";
+  "_duration.div";
+  "_numberOfTokens.div";
+  "ISecurityToken.granularity";
+  "VestingEscrowWalletFactory.null";
+  "VersionUtils.pack";
+  "VestingEscrowWalletFactory.deploy";
+  "IPolymathRegistry.getAddress";
+  "VestingEscrowWalletFactory._initializeModule";
+  "VestingEscrowWalletProxy.null";
+  "VestingEscrowWalletProxy._upgradeTo";
+  "VestingEscrowWallet.configure" -> "VestingEscrowWallet._setWallet" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.changeTreasuryWallet" -> "VestingEscrowWallet._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.changeTreasuryWallet" -> "VestingEscrowWallet._setWallet" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.depositTokens" -> "VestingEscrowWallet._depositTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._depositTokens" -> "ISecurityToken.transferFrom" [ color = "white" ];
+  "VestingEscrowWallet._depositTokens" -> "unassignedTokens.add" [ color = "white" ];
+  "VestingEscrowWallet.sendToTreasury" -> "ISecurityToken.transfer" [ color = "white" ];
+  "VestingEscrowWallet.sendToTreasury" -> "VestingEscrowWallet.getTreasuryWallet" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.getTreasuryWallet" -> "IDataStore.getAddress" [ color = "white" ];
+  "VestingEscrowWallet.getTreasuryWallet" -> "VestingEscrowWallet.getDataStore" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.pushAvailableTokens" -> "VestingEscrowWallet._sendTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.pullAvailableTokens" -> "VestingEscrowWallet._sendTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addTemplate" -> "VestingEscrowWallet._addTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addTemplate" -> "VestingEscrowWallet._isTemplateExists" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addTemplate" -> "VestingEscrowWallet._validateTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.removeTemplate" -> "VestingEscrowWallet._isTemplateExists" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addSchedule" -> "VestingEscrowWallet._addSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addSchedule" -> "VestingEscrowWallet._addTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addSchedule" -> "VestingEscrowWallet._addScheduleFromTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addScheduleFromTemplate" -> "VestingEscrowWallet._addScheduleFromTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addScheduleFromTemplate" -> "VestingEscrowWallet._isTemplateExists" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addScheduleFromTemplate" -> "VestingEscrowWallet._depositTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addScheduleFromTemplate" -> "numberOfTokens.sub" [ color = "white" ];
+  "VestingEscrowWallet._addScheduleFromTemplate" -> "unassignedTokens.sub" [ color = "white" ];
+  "VestingEscrowWallet.modifySchedule" -> "VestingEscrowWallet._modifySchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._modifySchedule" -> "VestingEscrowWallet._checkSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._checkSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._sendTokensPerSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._getReleasedTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "unassignedTokens.add" [ color = "white" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._deleteUserToTemplates" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._deleteTemplateToUsers" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeAllSchedules" -> "VestingEscrowWallet._revokeAllSchedules" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._revokeAllSchedules" -> "VestingEscrowWallet._sendTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._revokeAllSchedules" -> "VestingEscrowWallet._getReleasedTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._revokeAllSchedules" -> "unassignedTokens.add" [ color = "white" ];
+  "VestingEscrowWallet._revokeAllSchedules" -> "VestingEscrowWallet._deleteTemplateToUsers" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.getSchedule" -> "VestingEscrowWallet._checkSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.getSchedule" -> "VestingEscrowWallet._getScheduleState" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._getScheduleState" -> "VestingEscrowWallet._checkSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._getAvailableTokens" -> "VestingEscrowWallet._getReleasedTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._getAvailableTokens" -> "releasedTokens.sub" [ color = "white" ];
+  "VestingEscrowWallet._getReleasedTokens" -> "now.sub" [ color = "white" ];
+  "VestingEscrowWallet.pushAvailableTokensMulti" -> "VestingEscrowWallet.pushAvailableTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addScheduleMulti" -> "VestingEscrowWallet._addSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addScheduleFromTemplateMulti" -> "VestingEscrowWallet._addScheduleFromTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedulesMulti" -> "VestingEscrowWallet._revokeAllSchedules" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.modifyScheduleMulti" -> "VestingEscrowWallet._modifySchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._validateTemplate" -> "_duration.div" [ color = "white" ];
+  "VestingEscrowWallet._validateTemplate" -> "_numberOfTokens.div" [ color = "white" ];
+  "VestingEscrowWallet._validateTemplate" -> "ISecurityToken.granularity" [ color = "white" ];
+  "VestingEscrowWallet._sendTokens" -> "VestingEscrowWallet._sendTokensPerSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._sendTokensPerSchedule" -> "VestingEscrowWallet._getAvailableTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._sendTokensPerSchedule" -> "ISecurityToken.transfer" [ color = "white" ];
+  "VestingEscrowWalletFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "VestingEscrowWalletFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "VestingEscrowWalletFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "VestingEscrowWalletFactory.deploy" -> "VestingEscrowWalletFactory._initializeModule" [ color = "#1bc6a6" ];
+  "VestingEscrowWalletProxy.null" -> "VestingEscrowWalletProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.configure" -> "VestingEscrowWallet._setWallet" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.changeTreasuryWallet" -> "VestingEscrowWallet._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.changeTreasuryWallet" -> "VestingEscrowWallet._setWallet" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.depositTokens" -> "VestingEscrowWallet._depositTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._depositTokens" -> "ISecurityToken.transferFrom" [ color = "white" ];
+  "VestingEscrowWallet._depositTokens" -> "unassignedTokens.add" [ color = "white" ];
+  "VestingEscrowWallet.sendToTreasury" -> "ISecurityToken.transfer" [ color = "white" ];
+  "VestingEscrowWallet.sendToTreasury" -> "VestingEscrowWallet.getTreasuryWallet" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.getTreasuryWallet" -> "IDataStore.getAddress" [ color = "white" ];
+  "VestingEscrowWallet.getTreasuryWallet" -> "VestingEscrowWallet.getDataStore" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.pushAvailableTokens" -> "VestingEscrowWallet._sendTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.pullAvailableTokens" -> "VestingEscrowWallet._sendTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addTemplate" -> "VestingEscrowWallet._addTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addTemplate" -> "VestingEscrowWallet._isTemplateExists" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addTemplate" -> "VestingEscrowWallet._validateTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.removeTemplate" -> "VestingEscrowWallet._isTemplateExists" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addSchedule" -> "VestingEscrowWallet._addSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addSchedule" -> "VestingEscrowWallet._addTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addSchedule" -> "VestingEscrowWallet._addScheduleFromTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addScheduleFromTemplate" -> "VestingEscrowWallet._addScheduleFromTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addScheduleFromTemplate" -> "VestingEscrowWallet._isTemplateExists" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addScheduleFromTemplate" -> "VestingEscrowWallet._depositTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._addScheduleFromTemplate" -> "numberOfTokens.sub" [ color = "white" ];
+  "VestingEscrowWallet._addScheduleFromTemplate" -> "unassignedTokens.sub" [ color = "white" ];
+  "VestingEscrowWallet.modifySchedule" -> "VestingEscrowWallet._modifySchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._modifySchedule" -> "VestingEscrowWallet._checkSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._checkSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._sendTokensPerSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._getReleasedTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "unassignedTokens.add" [ color = "white" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._deleteUserToTemplates" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedule" -> "VestingEscrowWallet._deleteTemplateToUsers" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeAllSchedules" -> "VestingEscrowWallet._revokeAllSchedules" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._revokeAllSchedules" -> "VestingEscrowWallet._sendTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._revokeAllSchedules" -> "VestingEscrowWallet._getReleasedTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._revokeAllSchedules" -> "unassignedTokens.add" [ color = "white" ];
+  "VestingEscrowWallet._revokeAllSchedules" -> "VestingEscrowWallet._deleteTemplateToUsers" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.getSchedule" -> "VestingEscrowWallet._checkSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.getSchedule" -> "VestingEscrowWallet._getScheduleState" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._getScheduleState" -> "VestingEscrowWallet._checkSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._getAvailableTokens" -> "VestingEscrowWallet._getReleasedTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._getAvailableTokens" -> "releasedTokens.sub" [ color = "white" ];
+  "VestingEscrowWallet._getReleasedTokens" -> "now.sub" [ color = "white" ];
+  "VestingEscrowWallet.pushAvailableTokensMulti" -> "VestingEscrowWallet.pushAvailableTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addScheduleMulti" -> "VestingEscrowWallet._addSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.addScheduleFromTemplateMulti" -> "VestingEscrowWallet._addScheduleFromTemplate" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.revokeSchedulesMulti" -> "VestingEscrowWallet._revokeAllSchedules" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet.modifyScheduleMulti" -> "VestingEscrowWallet._modifySchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._validateTemplate" -> "_duration.div" [ color = "white" ];
+  "VestingEscrowWallet._validateTemplate" -> "_numberOfTokens.div" [ color = "white" ];
+  "VestingEscrowWallet._validateTemplate" -> "ISecurityToken.granularity" [ color = "white" ];
+  "VestingEscrowWallet._sendTokens" -> "VestingEscrowWallet._sendTokensPerSchedule" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._sendTokensPerSchedule" -> "VestingEscrowWallet._getAvailableTokens" [ color = "#1bc6a6" ];
+  "VestingEscrowWallet._sendTokensPerSchedule" -> "ISecurityToken.transfer" [ color = "white" ];
+  "VestingEscrowWalletFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "VestingEscrowWalletFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "VestingEscrowWalletFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "VestingEscrowWalletFactory.deploy" -> "VestingEscrowWalletFactory._initializeModule" [ color = "#1bc6a6" ];
+  "VestingEscrowWalletProxy.null" -> "VestingEscrowWalletProxy._upgradeTo" [ color = "#1bc6a6" ];
+
+
+rankdir=LR
+node [shape=plaintext]
+subgraph cluster_01 {
+label = "Legend";
+key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td align="right" port="i1">Internal Call</td></tr>
+  <tr><td align="right" port="i2">External Call</td></tr>
+  <tr><td align="right" port="i3">Defined Contract</td></tr>
+  <tr><td align="right" port="i4">Undefined Contract</td></tr>
+  </table>>]
+key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i3" bgcolor="#445773">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i4">
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
+      <tr>
+       <td></td>
+      </tr>
+     </table>
+  </td></tr>
+  </table>>]
+key:i1:e -> key2:i1:w [color="#1bc6a6"]
+key:i2:e -> key2:i2:w [color="white"]
+}
+}
+

@@ -1,0 +1,618 @@
+digraph G {
+  graph [ ratio = "auto", page = "100", compound =true, bgcolor = "#2e3e56" ];
+  node [ style = "filled", fillcolor = "#edad56", color = "#edad56", penwidth =3 ];
+  edge [ color = "#fcfcfc", penwidth =2, fontname = "helvetica Neue Ultra Light" ];
+subgraph "clusterCappedSTO" {
+  graph [ label = "CappedSTO", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "CappedSTO.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTO.<Fallback>" [ label = "<Fallback>", color = "brown", fillcolor = "#ffbdb9" ];
+  "CappedSTO.configure" [ label = "configure", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTO.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTO.changeAllowBeneficialInvestments" [ label = "changeAllowBeneficialInvestments", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTO.buyTokens" [ label = "buyTokens" ];
+  "CappedSTO.buyTokensWithPoly" [ label = "buyTokensWithPoly", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTO.capReached" [ label = "capReached", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTO.getTokensSold" [ label = "getTokensSold", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "CappedSTO.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTO.getSTODetails" [ label = "getSTODetails", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTO._processTx" [ label = "_processTx" ];
+  "CappedSTO._preValidatePurchase" [ label = "_preValidatePurchase" ];
+  "CappedSTO._deliverTokens" [ label = "_deliverTokens", color = "#f2c383", fillcolor = "#f2c383" ];
+  "CappedSTO._processPurchase" [ label = "_processPurchase" ];
+  "CappedSTO._getTokenAmount" [ label = "_getTokenAmount" ];
+  "CappedSTO._forwardFunds" [ label = "_forwardFunds" ];
+  "CappedSTO._forwardPoly" [ label = "_forwardPoly" ];
+  "CappedSTO._setFundRaiseType" [ label = "_setFundRaiseType" ];
+  "CappedSTO._onlySecurityTokenOwner" [ label = "_onlySecurityTokenOwner" ];
+  "CappedSTO._canBuy" [ label = "_canBuy" ];
+}
+
+subgraph "clusterCappedSTOFactory" {
+  graph [ label = "CappedSTOFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "CappedSTOFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTOFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "CappedSTOFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterCappedSTOProxy" {
+  graph [ label = "CappedSTOProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "CappedSTOProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedSTOProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterCappedSTOStorage" {
+  graph [ label = "CappedSTOStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterPreSaleSTO" {
+  graph [ label = "PreSaleSTO", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PreSaleSTO.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PreSaleSTO.configure" [ label = "configure", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PreSaleSTO.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PreSaleSTO.getNumberInvestors" [ label = "getNumberInvestors", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PreSaleSTO.getTokensSold" [ label = "getTokensSold", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PreSaleSTO.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PreSaleSTO.allocateTokens" [ label = "allocateTokens", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PreSaleSTO.allocateTokensMulti" [ label = "allocateTokensMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PreSaleSTO._canBuy" [ label = "_canBuy" ];
+}
+
+subgraph "clusterPreSaleSTOFactory" {
+  graph [ label = "PreSaleSTOFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PreSaleSTOFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PreSaleSTOFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PreSaleSTOFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterPreSaleSTOProxy" {
+  graph [ label = "PreSaleSTOProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PreSaleSTOProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PreSaleSTOProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterPreSaleSTOStorage" {
+  graph [ label = "PreSaleSTOStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterSTO" {
+  graph [ label = "STO", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "STO.getRaised" [ label = "getRaised", color = "#FF9797", fillcolor = "#FF9797" ];
+  "STO.getTokensSold" [ label = "getTokensSold", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STO.pause" [ label = "pause", color = "#FF9797", fillcolor = "#FF9797" ];
+  "STO._setFundRaiseType" [ label = "_setFundRaiseType", color = "#f2c383", fillcolor = "#f2c383" ];
+  "STO._canBuy" [ label = "_canBuy", color = "#f2c383", fillcolor = "#f2c383" ];
+  "STO._getKey" [ label = "_getKey", color = "#f2c383", fillcolor = "#f2c383" ];
+  "STO.getDataStore" [ label = "getDataStore" ];
+}
+
+subgraph "clusterUSDTieredSTO" {
+  graph [ label = "USDTieredSTO", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "USDTieredSTO.validETH" [ label = "validETH", color = "#1bc6a6", shape =doubleoctagon ];
+  "USDTieredSTO.validPOLY" [ label = "validPOLY", color = "#1bc6a6", shape =doubleoctagon ];
+  "USDTieredSTO.validSC" [ label = "validSC", color = "#1bc6a6", shape =doubleoctagon ];
+  "USDTieredSTO.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "USDTieredSTO.configure" [ label = "configure", color = "#FF9797", fillcolor = "#FF9797" ];
+  "USDTieredSTO.modifyFunding" [ label = "modifyFunding", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.modifyLimits" [ label = "modifyLimits", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.modifyTiers" [ label = "modifyTiers", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.modifyTimes" [ label = "modifyTimes", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO._isSTOStarted" [ label = "_isSTOStarted" ];
+  "USDTieredSTO.modifyAddresses" [ label = "modifyAddresses", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO._modifyLimits" [ label = "_modifyLimits" ];
+  "USDTieredSTO._modifyTiers" [ label = "_modifyTiers" ];
+  "USDTieredSTO._modifyTimes" [ label = "_modifyTimes" ];
+  "USDTieredSTO._modifyAddresses" [ label = "_modifyAddresses" ];
+  "USDTieredSTO._modifyUSDTokens" [ label = "_modifyUSDTokens" ];
+  "USDTieredSTO.finalize" [ label = "finalize", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.changeNonAccreditedLimit" [ label = "changeNonAccreditedLimit", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.getAccreditedData" [ label = "getAccreditedData", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.changeAllowBeneficialInvestments" [ label = "changeAllowBeneficialInvestments", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.<Fallback>" [ label = "<Fallback>", color = "brown", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.buyWithETH" [ label = "buyWithETH", color = "brown", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.buyWithPOLY" [ label = "buyWithPOLY", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.buyWithUSD" [ label = "buyWithUSD", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.buyWithETHRateLimited" [ label = "buyWithETHRateLimited" ];
+  "USDTieredSTO.buyWithPOLYRateLimited" [ label = "buyWithPOLYRateLimited" ];
+  "USDTieredSTO.buyWithUSDRateLimited" [ label = "buyWithUSDRateLimited" ];
+  "USDTieredSTO._buyWithTokens" [ label = "_buyWithTokens" ];
+  "USDTieredSTO._getSpentvalues" [ label = "_getSpentvalues" ];
+  "USDTieredSTO._buyTokens" [ label = "_buyTokens" ];
+  "USDTieredSTO._buyTokensChecks" [ label = "_buyTokensChecks" ];
+  "USDTieredSTO._calculateTier" [ label = "_calculateTier" ];
+  "USDTieredSTO._purchaseTier" [ label = "_purchaseTier" ];
+  "USDTieredSTO._isAccredited" [ label = "_isAccredited" ];
+  "USDTieredSTO._getIsAccredited" [ label = "_getIsAccredited" ];
+  "USDTieredSTO.isOpen" [ label = "isOpen" ];
+  "USDTieredSTO.capReached" [ label = "capReached" ];
+  "USDTieredSTO.getRate" [ label = "getRate" ];
+  "USDTieredSTO.convertToUSD" [ label = "convertToUSD", color = "#FF9797", fillcolor = "#FF9797" ];
+  "USDTieredSTO.convertFromUSD" [ label = "convertFromUSD", color = "#FF9797", fillcolor = "#FF9797" ];
+  "USDTieredSTO.getTokensSold" [ label = "getTokensSold", color = "#FF9797", fillcolor = "#FF9797" ];
+  "USDTieredSTO.getTokensMinted" [ label = "getTokensMinted" ];
+  "USDTieredSTO.getTokensSoldFor" [ label = "getTokensSoldFor", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.getTokensMintedByTier" [ label = "getTokensMintedByTier", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.getTokensSoldByTier" [ label = "getTokensSoldByTier", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.getNumberOfTiers" [ label = "getNumberOfTiers", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.getUsdTokens" [ label = "getUsdTokens", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "USDTieredSTO.getSTODetails" [ label = "getSTODetails", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTO.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "USDTieredSTO._getOracle" [ label = "_getOracle" ];
+  "USDTieredSTO._setFundRaiseType" [ label = "_setFundRaiseType" ];
+  "USDTieredSTO._onlySecurityTokenOwner" [ label = "_onlySecurityTokenOwner" ];
+}
+
+subgraph "clusterUSDTieredSTOFactory" {
+  graph [ label = "USDTieredSTOFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "USDTieredSTOFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "USDTieredSTOFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "USDTieredSTOFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterUSDTieredSTOProxy" {
+  graph [ label = "USDTieredSTOProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "USDTieredSTOProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "USDTieredSTOProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterUSDTieredSTOStorage" {
+  graph [ label = "USDTieredSTOStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterweiAmount" {
+  graph [ label = "weiAmount", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "weiAmount.sub" [ label = "sub" ];
+}
+
+subgraph "cluster_investedPOLY" {
+  graph [ label = "_investedPOLY", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_investedPOLY.sub" [ label = "sub" ];
+}
+
+subgraph "cluster_investedAmount" {
+  graph [ label = "_investedAmount", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_investedAmount.sub" [ label = "sub" ];
+  "_investedAmount.mul" [ label = "mul" ];
+}
+
+subgraph "clustertotalTokensSold" {
+  graph [ label = "totalTokensSold", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "totalTokensSold.add" [ label = "add" ];
+}
+
+subgraph "clusterISecurityToken" {
+  graph [ label = "ISecurityToken", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "ISecurityToken.issue" [ label = "issue" ];
+  "ISecurityToken.granularity" [ label = "granularity" ];
+  "ISecurityToken.polymathRegistry" [ label = "polymathRegistry" ];
+}
+
+subgraph "clustertokens" {
+  graph [ label = "tokens", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "tokens.div" [ label = "div" ];
+  "tokens.mul" [ label = "mul" ];
+}
+
+subgraph "clustercap" {
+  graph [ label = "cap", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "cap.sub" [ label = "sub" ];
+}
+
+subgraph "clusterwallet" {
+  graph [ label = "wallet", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "wallet.transfer" [ label = "transfer" ];
+}
+
+subgraph "clusterpolyToken" {
+  graph [ label = "polyToken", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "polyToken.transferFrom" [ label = "transferFrom" ];
+}
+
+subgraph "clusterVersionUtils" {
+  graph [ label = "VersionUtils", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "VersionUtils.pack" [ label = "pack" ];
+}
+
+subgraph "clusterIPolymathRegistry" {
+  graph [ label = "IPolymathRegistry", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IPolymathRegistry.getAddress" [ label = "getAddress" ];
+}
+
+subgraph "clusterinvestorCount" {
+  graph [ label = "investorCount", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "investorCount.add" [ label = "add" ];
+}
+
+subgraph "clusterModule" {
+  graph [ label = "Module", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "Module.pause" [ label = "pause" ];
+}
+
+subgraph "clusterIDataStore" {
+  graph [ label = "IDataStore", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IDataStore.getUint256" [ label = "getUint256" ];
+  "IDataStore.getAddress" [ label = "getAddress" ];
+  "IDataStore.getAddressArray" [ label = "getAddressArray" ];
+}
+
+subgraph "clustertempReturned" {
+  graph [ label = "tempReturned", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "tempReturned.add" [ label = "add" ];
+  "tempReturned.div" [ label = "div" ];
+  "tempReturned.mul" [ label = "mul" ];
+}
+
+subgraph "clustertempSold" {
+  graph [ label = "tempSold", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "tempSold.add" [ label = "add" ];
+}
+
+subgraph "clusterIERC20" {
+  graph [ label = "IERC20", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IERC20.transferFrom" [ label = "transferFrom" ];
+}
+
+subgraph "clusterDecimalMath" {
+  graph [ label = "DecimalMath", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "DecimalMath.mul" [ label = "mul" ];
+  "DecimalMath.div" [ label = "div" ];
+}
+
+subgraph "clusterallowedUSD" {
+  graph [ label = "allowedUSD", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "allowedUSD.sub" [ label = "sub" ];
+}
+
+subgraph "clusterspentUSD" {
+  graph [ label = "spentUSD", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "spentUSD.add" [ label = "add" ];
+}
+
+subgraph "clusterfundsRaisedUSD" {
+  graph [ label = "fundsRaisedUSD", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "fundsRaisedUSD.add" [ label = "add" ];
+}
+
+subgraph "clusterinvestedUSD" {
+  graph [ label = "investedUSD", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "investedUSD.add" [ label = "add" ];
+  "investedUSD.sub" [ label = "sub" ];
+}
+
+subgraph "clusterinvestorLimitUSD" {
+  graph [ label = "investorLimitUSD", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "investorLimitUSD.sub" [ label = "sub" ];
+}
+
+subgraph "cluster_tierRemaining" {
+  graph [ label = "_tierRemaining", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_tierRemaining.div" [ label = "div" ];
+}
+
+subgraph "clusterpurchasedTokens" {
+  graph [ label = "purchasedTokens", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "purchasedTokens.div" [ label = "div" ];
+  "purchasedTokens.mul" [ label = "mul" ];
+}
+
+subgraph "clusterIOracle" {
+  graph [ label = "IOracle", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IOracle.getPrice" [ label = "getPrice" ];
+}
+
+subgraph "clustertokensMinted" {
+  graph [ label = "tokensMinted", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "tokensMinted.add" [ label = "add" ];
+}
+
+subgraph "clustertokensSold" {
+  graph [ label = "tokensSold", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "tokensSold.add" [ label = "add" ];
+}
+
+  "CappedSTO.";
+  "CappedSTO.buyTokens";
+  "CappedSTO.configure";
+  "CappedSTO._setFundRaiseType";
+  "CappedSTO.changeAllowBeneficialInvestments";
+  "CappedSTO._onlySecurityTokenOwner";
+  "CappedSTO._processTx";
+  "weiAmount.sub";
+  "CappedSTO._forwardFunds";
+  "CappedSTO.buyTokensWithPoly";
+  "CappedSTO._forwardPoly";
+  "_investedPOLY.sub";
+  "CappedSTO._preValidatePurchase";
+  "CappedSTO._getTokenAmount";
+  "_investedAmount.sub";
+  "totalTokensSold.add";
+  "CappedSTO._processPurchase";
+  "CappedSTO._canBuy";
+  "CappedSTO._deliverTokens";
+  "ISecurityToken.issue";
+  "_investedAmount.mul";
+  "tokens.div";
+  "cap.sub";
+  "ISecurityToken.granularity";
+  "tokens.mul";
+  "wallet.transfer";
+  "polyToken.transferFrom";
+  "CappedSTOFactory.null";
+  "VersionUtils.pack";
+  "CappedSTOFactory.deploy";
+  "IPolymathRegistry.getAddress";
+  "CappedSTOFactory._initializeModule";
+  "CappedSTOProxy.null";
+  "CappedSTOProxy._upgradeTo";
+  "PreSaleSTO.allocateTokens";
+  "PreSaleSTO._canBuy";
+  "investorCount.add";
+  "PreSaleSTO.allocateTokensMulti";
+  "PreSaleSTOFactory.null";
+  "PreSaleSTOFactory.deploy";
+  "PreSaleSTOFactory._initializeModule";
+  "PreSaleSTOProxy.null";
+  "PreSaleSTOProxy._upgradeTo";
+  "STO.pause";
+  "Module.pause";
+  "STO._canBuy";
+  "STO.getDataStore";
+  "IDataStore.getUint256";
+  "STO._getKey";
+  "USDTieredSTO.validETH";
+  "USDTieredSTO._getOracle";
+  "USDTieredSTO.validPOLY";
+  "USDTieredSTO.configure";
+  "USDTieredSTO._modifyTimes";
+  "USDTieredSTO._modifyTiers";
+  "USDTieredSTO._setFundRaiseType";
+  "USDTieredSTO._modifyAddresses";
+  "USDTieredSTO._modifyLimits";
+  "USDTieredSTO.modifyFunding";
+  "USDTieredSTO._onlySecurityTokenOwner";
+  "USDTieredSTO._isSTOStarted";
+  "USDTieredSTO.modifyLimits";
+  "USDTieredSTO.modifyTiers";
+  "USDTieredSTO.modifyTimes";
+  "USDTieredSTO.modifyAddresses";
+  "USDTieredSTO._modifyUSDTokens";
+  "USDTieredSTO.finalize";
+  "tempReturned.add";
+  "tempSold.add";
+  "IDataStore.getAddress";
+  "tempReturned.div";
+  "tempReturned.mul";
+  "USDTieredSTO.changeNonAccreditedLimit";
+  "USDTieredSTO.getAccreditedData";
+  "IDataStore.getAddressArray";
+  "USDTieredSTO._getIsAccredited";
+  "USDTieredSTO.changeAllowBeneficialInvestments";
+  "USDTieredSTO.";
+  "USDTieredSTO.buyWithETHRateLimited";
+  "USDTieredSTO.buyWithETH";
+  "USDTieredSTO.buyWithPOLY";
+  "USDTieredSTO.buyWithPOLYRateLimited";
+  "USDTieredSTO.buyWithUSD";
+  "USDTieredSTO.buyWithUSDRateLimited";
+  "USDTieredSTO._getSpentvalues";
+  "USDTieredSTO.getTokensMinted";
+  "USDTieredSTO._buyWithTokens";
+  "IERC20.transferFrom";
+  "USDTieredSTO.getRate";
+  "USDTieredSTO._buyTokens";
+  "DecimalMath.mul";
+  "USDTieredSTO._buyTokensChecks";
+  "USDTieredSTO._calculateTier";
+  "allowedUSD.sub";
+  "spentUSD.add";
+  "fundsRaisedUSD.add";
+  "DecimalMath.div";
+  "USDTieredSTO.isOpen";
+  "investedUSD.add";
+  "USDTieredSTO._isAccredited";
+  "investorLimitUSD.sub";
+  "USDTieredSTO._purchaseTier";
+  "investedUSD.sub";
+  "_tierRemaining.div";
+  "purchasedTokens.div";
+  "purchasedTokens.mul";
+  "USDTieredSTO.capReached";
+  "IOracle.getPrice";
+  "USDTieredSTO.convertToUSD";
+  "USDTieredSTO.convertFromUSD";
+  "USDTieredSTO.getTokensSold";
+  "tokensMinted.add";
+  "USDTieredSTO.getTokensSoldFor";
+  "tokensSold.add";
+  "USDTieredSTO.getTokensSoldByTier";
+  "USDTieredSTO.getSTODetails";
+  "ISecurityToken.polymathRegistry";
+  "USDTieredSTOFactory.null";
+  "USDTieredSTOFactory.deploy";
+  "USDTieredSTOFactory._initializeModule";
+  "USDTieredSTOProxy.null";
+  "USDTieredSTOProxy._upgradeTo";
+  "CappedSTO." -> "CappedSTO.buyTokens" [ color = "#1bc6a6" ];
+  "CappedSTO.configure" -> "CappedSTO._setFundRaiseType" [ color = "#1bc6a6" ];
+  "CappedSTO.changeAllowBeneficialInvestments" -> "CappedSTO._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "CappedSTO.buyTokens" -> "CappedSTO._processTx" [ color = "#1bc6a6" ];
+  "CappedSTO.buyTokens" -> "weiAmount.sub" [ color = "white" ];
+  "CappedSTO.buyTokens" -> "CappedSTO._forwardFunds" [ color = "#1bc6a6" ];
+  "CappedSTO.buyTokensWithPoly" -> "CappedSTO._processTx" [ color = "#1bc6a6" ];
+  "CappedSTO.buyTokensWithPoly" -> "CappedSTO._forwardPoly" [ color = "#1bc6a6" ];
+  "CappedSTO.buyTokensWithPoly" -> "_investedPOLY.sub" [ color = "white" ];
+  "CappedSTO._processTx" -> "CappedSTO._preValidatePurchase" [ color = "#1bc6a6" ];
+  "CappedSTO._processTx" -> "CappedSTO._getTokenAmount" [ color = "#1bc6a6" ];
+  "CappedSTO._processTx" -> "_investedAmount.sub" [ color = "white" ];
+  "CappedSTO._processTx" -> "totalTokensSold.add" [ color = "white" ];
+  "CappedSTO._processTx" -> "CappedSTO._processPurchase" [ color = "#1bc6a6" ];
+  "CappedSTO._preValidatePurchase" -> "CappedSTO._canBuy" [ color = "#1bc6a6" ];
+  "CappedSTO._deliverTokens" -> "ISecurityToken.issue" [ color = "white" ];
+  "CappedSTO._processPurchase" -> "CappedSTO._deliverTokens" [ color = "#1bc6a6" ];
+  "CappedSTO._getTokenAmount" -> "_investedAmount.mul" [ color = "white" ];
+  "CappedSTO._getTokenAmount" -> "tokens.div" [ color = "white" ];
+  "CappedSTO._getTokenAmount" -> "totalTokensSold.add" [ color = "white" ];
+  "CappedSTO._getTokenAmount" -> "cap.sub" [ color = "white" ];
+  "CappedSTO._getTokenAmount" -> "ISecurityToken.granularity" [ color = "white" ];
+  "CappedSTO._getTokenAmount" -> "tokens.div" [ color = "white" ];
+  "CappedSTO._getTokenAmount" -> "tokens.mul" [ color = "white" ];
+  "CappedSTO._getTokenAmount" -> "_investedAmount.sub" [ color = "white" ];
+  "CappedSTO._getTokenAmount" -> "tokens.mul" [ color = "white" ];
+  "CappedSTO._forwardFunds" -> "wallet.transfer" [ color = "white" ];
+  "CappedSTO._forwardPoly" -> "polyToken.transferFrom" [ color = "white" ];
+  "CappedSTOFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "CappedSTOFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "CappedSTOFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "CappedSTOFactory.deploy" -> "CappedSTOFactory._initializeModule" [ color = "#1bc6a6" ];
+  "CappedSTOProxy.null" -> "CappedSTOProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "PreSaleSTO.allocateTokens" -> "PreSaleSTO._canBuy" [ color = "#1bc6a6" ];
+  "PreSaleSTO.allocateTokens" -> "ISecurityToken.issue" [ color = "white" ];
+  "PreSaleSTO.allocateTokens" -> "investorCount.add" [ color = "white" ];
+  "PreSaleSTO.allocateTokens" -> "totalTokensSold.add" [ color = "white" ];
+  "PreSaleSTO.allocateTokensMulti" -> "PreSaleSTO.allocateTokens" [ color = "#1bc6a6" ];
+  "PreSaleSTOFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "PreSaleSTOFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "PreSaleSTOFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "PreSaleSTOFactory.deploy" -> "PreSaleSTOFactory._initializeModule" [ color = "#1bc6a6" ];
+  "PreSaleSTOProxy.null" -> "PreSaleSTOProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "STO.pause" -> "Module.pause" [ color = "white" ];
+  "STO._canBuy" -> "STO.getDataStore" [ color = "#1bc6a6" ];
+  "STO._canBuy" -> "IDataStore.getUint256" [ color = "white" ];
+  "STO._canBuy" -> "STO._getKey" [ color = "#1bc6a6" ];
+  "USDTieredSTO.validETH" -> "USDTieredSTO._getOracle" [ color = "#1bc6a6" ];
+  "USDTieredSTO.validPOLY" -> "USDTieredSTO._getOracle" [ color = "#1bc6a6" ];
+  "USDTieredSTO.configure" -> "USDTieredSTO._modifyTimes" [ color = "#1bc6a6" ];
+  "USDTieredSTO.configure" -> "USDTieredSTO._modifyTiers" [ color = "#1bc6a6" ];
+  "USDTieredSTO.configure" -> "USDTieredSTO._setFundRaiseType" [ color = "#1bc6a6" ];
+  "USDTieredSTO.configure" -> "USDTieredSTO._modifyAddresses" [ color = "#1bc6a6" ];
+  "USDTieredSTO.configure" -> "USDTieredSTO._modifyLimits" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyFunding" -> "USDTieredSTO._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyFunding" -> "USDTieredSTO._isSTOStarted" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyFunding" -> "USDTieredSTO._setFundRaiseType" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyLimits" -> "USDTieredSTO._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyLimits" -> "USDTieredSTO._isSTOStarted" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyLimits" -> "USDTieredSTO._modifyLimits" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyTiers" -> "USDTieredSTO._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyTiers" -> "USDTieredSTO._isSTOStarted" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyTiers" -> "USDTieredSTO._modifyTiers" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyTimes" -> "USDTieredSTO._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyTimes" -> "USDTieredSTO._isSTOStarted" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyTimes" -> "USDTieredSTO._modifyTimes" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyAddresses" -> "USDTieredSTO._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "USDTieredSTO.modifyAddresses" -> "USDTieredSTO._modifyAddresses" [ color = "#1bc6a6" ];
+  "USDTieredSTO._modifyAddresses" -> "USDTieredSTO._modifyUSDTokens" [ color = "#1bc6a6" ];
+  "USDTieredSTO.finalize" -> "USDTieredSTO._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "USDTieredSTO.finalize" -> "tempReturned.add" [ color = "white" ];
+  "USDTieredSTO.finalize" -> "tempSold.add" [ color = "white" ];
+  "USDTieredSTO.finalize" -> "IDataStore.getAddress" [ color = "white" ];
+  "USDTieredSTO.finalize" -> "STO.getDataStore" [ color = "#1bc6a6" ];
+  "USDTieredSTO.finalize" -> "ISecurityToken.granularity" [ color = "white" ];
+  "USDTieredSTO.finalize" -> "tempReturned.div" [ color = "white" ];
+  "USDTieredSTO.finalize" -> "tempReturned.mul" [ color = "white" ];
+  "USDTieredSTO.finalize" -> "ISecurityToken.issue" [ color = "white" ];
+  "USDTieredSTO.changeNonAccreditedLimit" -> "USDTieredSTO._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "USDTieredSTO.getAccreditedData" -> "STO.getDataStore" [ color = "#1bc6a6" ];
+  "USDTieredSTO.getAccreditedData" -> "IDataStore.getAddressArray" [ color = "white" ];
+  "USDTieredSTO.getAccreditedData" -> "USDTieredSTO._getIsAccredited" [ color = "#1bc6a6" ];
+  "USDTieredSTO.changeAllowBeneficialInvestments" -> "USDTieredSTO._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "USDTieredSTO." -> "USDTieredSTO.buyWithETHRateLimited" [ color = "#1bc6a6" ];
+  "USDTieredSTO.buyWithETH" -> "USDTieredSTO.buyWithETHRateLimited" [ color = "#1bc6a6" ];
+  "USDTieredSTO.buyWithPOLY" -> "USDTieredSTO.buyWithPOLYRateLimited" [ color = "#1bc6a6" ];
+  "USDTieredSTO.buyWithUSD" -> "USDTieredSTO.buyWithUSDRateLimited" [ color = "#1bc6a6" ];
+  "USDTieredSTO.buyWithETHRateLimited" -> "USDTieredSTO._getSpentvalues" [ color = "#1bc6a6" ];
+  "USDTieredSTO.buyWithETHRateLimited" -> "wallet.transfer" [ color = "white" ];
+  "USDTieredSTO.buyWithETHRateLimited" -> "USDTieredSTO.getTokensMinted" [ color = "#1bc6a6" ];
+  "USDTieredSTO.buyWithPOLYRateLimited" -> "USDTieredSTO._buyWithTokens" [ color = "#1bc6a6" ];
+  "USDTieredSTO.buyWithUSDRateLimited" -> "USDTieredSTO._buyWithTokens" [ color = "#1bc6a6" ];
+  "USDTieredSTO._buyWithTokens" -> "USDTieredSTO._getSpentvalues" [ color = "#1bc6a6" ];
+  "USDTieredSTO._buyWithTokens" -> "IERC20.transferFrom" [ color = "white" ];
+  "USDTieredSTO._buyWithTokens" -> "USDTieredSTO.getTokensMinted" [ color = "#1bc6a6" ];
+  "USDTieredSTO._getSpentvalues" -> "USDTieredSTO.getTokensMinted" [ color = "#1bc6a6" ];
+  "USDTieredSTO._getSpentvalues" -> "USDTieredSTO.getRate" [ color = "#1bc6a6" ];
+  "USDTieredSTO._getSpentvalues" -> "USDTieredSTO._buyTokens" [ color = "#1bc6a6" ];
+  "USDTieredSTO._getSpentvalues" -> "USDTieredSTO.getTokensMinted" [ color = "#1bc6a6" ];
+  "USDTieredSTO._buyTokens" -> "STO._canBuy" [ color = "#1bc6a6" ];
+  "USDTieredSTO._buyTokens" -> "DecimalMath.mul" [ color = "white" ];
+  "USDTieredSTO._buyTokens" -> "USDTieredSTO._buyTokensChecks" [ color = "#1bc6a6" ];
+  "USDTieredSTO._buyTokens" -> "USDTieredSTO._calculateTier" [ color = "#1bc6a6" ];
+  "USDTieredSTO._buyTokens" -> "allowedUSD.sub" [ color = "white" ];
+  "USDTieredSTO._buyTokens" -> "spentUSD.add" [ color = "white" ];
+  "USDTieredSTO._buyTokens" -> "fundsRaisedUSD.add" [ color = "white" ];
+  "USDTieredSTO._buyTokens" -> "DecimalMath.div" [ color = "white" ];
+  "USDTieredSTO._buyTokensChecks" -> "USDTieredSTO.isOpen" [ color = "#1bc6a6" ];
+  "USDTieredSTO._buyTokensChecks" -> "investedUSD.add" [ color = "white" ];
+  "USDTieredSTO._buyTokensChecks" -> "USDTieredSTO._isAccredited" [ color = "#1bc6a6" ];
+  "USDTieredSTO._buyTokensChecks" -> "investedUSD.add" [ color = "white" ];
+  "USDTieredSTO._buyTokensChecks" -> "investorLimitUSD.sub" [ color = "white" ];
+  "USDTieredSTO._calculateTier" -> "USDTieredSTO._purchaseTier" [ color = "#1bc6a6" ];
+  "USDTieredSTO._calculateTier" -> "USDTieredSTO._purchaseTier" [ color = "#1bc6a6" ];
+  "USDTieredSTO._calculateTier" -> "investedUSD.sub" [ color = "white" ];
+  "USDTieredSTO._calculateTier" -> "USDTieredSTO._purchaseTier" [ color = "#1bc6a6" ];
+  "USDTieredSTO._calculateTier" -> "spentUSD.add" [ color = "white" ];
+  "USDTieredSTO._purchaseTier" -> "DecimalMath.div" [ color = "white" ];
+  "USDTieredSTO._purchaseTier" -> "ISecurityToken.granularity" [ color = "white" ];
+  "USDTieredSTO._purchaseTier" -> "_tierRemaining.div" [ color = "white" ];
+  "USDTieredSTO._purchaseTier" -> "purchasedTokens.div" [ color = "white" ];
+  "USDTieredSTO._purchaseTier" -> "purchasedTokens.mul" [ color = "white" ];
+  "USDTieredSTO._purchaseTier" -> "DecimalMath.mul" [ color = "white" ];
+  "USDTieredSTO._purchaseTier" -> "ISecurityToken.issue" [ color = "white" ];
+  "USDTieredSTO._isAccredited" -> "STO.getDataStore" [ color = "#1bc6a6" ];
+  "USDTieredSTO._isAccredited" -> "USDTieredSTO._getIsAccredited" [ color = "#1bc6a6" ];
+  "USDTieredSTO._getIsAccredited" -> "IDataStore.getUint256" [ color = "white" ];
+  "USDTieredSTO._getIsAccredited" -> "STO._getKey" [ color = "#1bc6a6" ];
+  "USDTieredSTO.isOpen" -> "USDTieredSTO.capReached" [ color = "#1bc6a6" ];
+  "USDTieredSTO.getRate" -> "IOracle.getPrice" [ color = "white" ];
+  "USDTieredSTO.getRate" -> "USDTieredSTO._getOracle" [ color = "#1bc6a6" ];
+  "USDTieredSTO.getRate" -> "IOracle.getPrice" [ color = "white" ];
+  "USDTieredSTO.getRate" -> "USDTieredSTO._getOracle" [ color = "#1bc6a6" ];
+  "USDTieredSTO.convertToUSD" -> "DecimalMath.mul" [ color = "white" ];
+  "USDTieredSTO.convertToUSD" -> "USDTieredSTO.getRate" [ color = "#1bc6a6" ];
+  "USDTieredSTO.convertFromUSD" -> "DecimalMath.div" [ color = "white" ];
+  "USDTieredSTO.convertFromUSD" -> "USDTieredSTO.getRate" [ color = "#1bc6a6" ];
+  "USDTieredSTO.getTokensSold" -> "USDTieredSTO.getTokensMinted" [ color = "#1bc6a6" ];
+  "USDTieredSTO.getTokensMinted" -> "tokensMinted.add" [ color = "white" ];
+  "USDTieredSTO.getTokensSoldFor" -> "tokensSold.add" [ color = "white" ];
+  "USDTieredSTO.getTokensSoldByTier" -> "tokensSold.add" [ color = "white" ];
+  "USDTieredSTO.getTokensSoldByTier" -> "tokensSold.add" [ color = "white" ];
+  "USDTieredSTO.getTokensSoldByTier" -> "tokensSold.add" [ color = "white" ];
+  "USDTieredSTO.getSTODetails" -> "USDTieredSTO.getTokensSold" [ color = "#1bc6a6" ];
+  "USDTieredSTO._getOracle" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "USDTieredSTO._getOracle" -> "ISecurityToken.polymathRegistry" [ color = "white" ];
+  "USDTieredSTOFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "USDTieredSTOFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "USDTieredSTOFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "USDTieredSTOFactory.deploy" -> "USDTieredSTOFactory._initializeModule" [ color = "#1bc6a6" ];
+  "USDTieredSTOProxy.null" -> "USDTieredSTOProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "STO.pause" -> "Module.pause" [ color = "white" ];
+  "STO._canBuy" -> "STO.getDataStore" [ color = "#1bc6a6" ];
+  "STO._canBuy" -> "IDataStore.getUint256" [ color = "white" ];
+  "STO._canBuy" -> "STO._getKey" [ color = "#1bc6a6" ];
+
+
+rankdir=LR
+node [shape=plaintext]
+subgraph cluster_01 {
+label = "Legend";
+key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td align="right" port="i1">Internal Call</td></tr>
+  <tr><td align="right" port="i2">External Call</td></tr>
+  <tr><td align="right" port="i3">Defined Contract</td></tr>
+  <tr><td align="right" port="i4">Undefined Contract</td></tr>
+  </table>>]
+key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i3" bgcolor="#445773">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i4">
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
+      <tr>
+       <td></td>
+      </tr>
+     </table>
+  </td></tr>
+  </table>>]
+key:i1:e -> key2:i1:w [color="#1bc6a6"]
+key:i2:e -> key2:i2:w [color="white"]
+}
+}
+

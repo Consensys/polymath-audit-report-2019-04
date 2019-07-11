@@ -1,0 +1,997 @@
+digraph G {
+  graph [ ratio = "auto", page = "100", compound =true, bgcolor = "#2e3e56" ];
+  node [ style = "filled", fillcolor = "#edad56", color = "#edad56", penwidth =3 ];
+  edge [ color = "#fcfcfc", penwidth =2, fontname = "helvetica Neue Ultra Light" ];
+subgraph "clusterSecurityTokenRegistry" {
+  graph [ label = "SecurityTokenRegistry", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "SecurityTokenRegistry.onlyOwner" [ label = "onlyOwner", color = "#1bc6a6", shape =doubleoctagon ];
+  "SecurityTokenRegistry.whenNotPausedOrOwner" [ label = "whenNotPausedOrOwner", color = "#1bc6a6", shape =doubleoctagon ];
+  "SecurityTokenRegistry._whenNotPausedOrOwner" [ label = "_whenNotPausedOrOwner" ];
+  "SecurityTokenRegistry.whenNotPaused" [ label = "whenNotPaused", color = "#1bc6a6", shape =doubleoctagon ];
+  "SecurityTokenRegistry.whenPaused" [ label = "whenPaused", color = "#1bc6a6", shape =doubleoctagon ];
+  "SecurityTokenRegistry.initialize" [ label = "initialize", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry.updateFromRegistry" [ label = "updateFromRegistry", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityTokenRegistry._updateFromRegistry" [ label = "_updateFromRegistry" ];
+  "SecurityTokenRegistry._takeFee" [ label = "_takeFee", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityTokenRegistry.getFees" [ label = "getFees" ];
+  "SecurityTokenRegistry.getSecurityTokenLaunchFee" [ label = "getSecurityTokenLaunchFee", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry.getTickerRegistrationFee" [ label = "getTickerRegistrationFee", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry.setGetterRegistry" [ label = "setGetterRegistry", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._implementation" [ label = "_implementation", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityTokenRegistry.registerTicker" [ label = "registerTicker", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._addTicker" [ label = "_addTicker" ];
+  "SecurityTokenRegistry.modifyTicker" [ label = "modifyTicker", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._modifyTicker" [ label = "_modifyTicker" ];
+  "SecurityTokenRegistry._tickerOwner" [ label = "_tickerOwner" ];
+  "SecurityTokenRegistry.removeTicker" [ label = "removeTicker", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._tickerAvailable" [ label = "_tickerAvailable" ];
+  "SecurityTokenRegistry._tickerStatus" [ label = "_tickerStatus" ];
+  "SecurityTokenRegistry._setTickerOwnership" [ label = "_setTickerOwnership" ];
+  "SecurityTokenRegistry._storeTickerDetails" [ label = "_storeTickerDetails" ];
+  "SecurityTokenRegistry.transferTickerOwnership" [ label = "transferTickerOwnership", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" [ label = "_deleteTickerOwnership" ];
+  "SecurityTokenRegistry.changeExpiryLimit" [ label = "changeExpiryLimit", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry.generateSecurityToken" [ label = "generateSecurityToken", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" [ label = "generateNewSecurityToken" ];
+  "SecurityTokenRegistry.refreshSecurityToken" [ label = "refreshSecurityToken", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._deployToken" [ label = "_deployToken" ];
+  "SecurityTokenRegistry.modifySecurityToken" [ label = "modifySecurityToken", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._storeSecurityTokenData" [ label = "_storeSecurityTokenData" ];
+  "SecurityTokenRegistry.isSecurityToken" [ label = "isSecurityToken", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityTokenRegistry.transferOwnership" [ label = "transferOwnership", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry.pause" [ label = "pause", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityTokenRegistry.unpause" [ label = "unpause", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityTokenRegistry.changeTickerRegistrationFee" [ label = "changeTickerRegistrationFee", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._changeTickerRegistrationFee" [ label = "_changeTickerRegistrationFee" ];
+  "SecurityTokenRegistry.changeSecurityLaunchFee" [ label = "changeSecurityLaunchFee", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._changeSecurityLaunchFee" [ label = "_changeSecurityLaunchFee" ];
+  "SecurityTokenRegistry.changeFeesAmountAndCurrency" [ label = "changeFeesAmountAndCurrency", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry.reclaimERC20" [ label = "reclaimERC20", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry.setProtocolFactory" [ label = "setProtocolFactory", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._setProtocolFactory" [ label = "_setProtocolFactory" ];
+  "SecurityTokenRegistry.removeProtocolFactory" [ label = "removeProtocolFactory", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry.setLatestVersion" [ label = "setLatestVersion", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry._setLatestVersion" [ label = "_setLatestVersion" ];
+  "SecurityTokenRegistry.updatePolyTokenAddress" [ label = "updatePolyTokenAddress", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityTokenRegistry.isPaused" [ label = "isPaused" ];
+  "SecurityTokenRegistry.owner" [ label = "owner" ];
+  "SecurityTokenRegistry.getBoolValue" [ label = "getBoolValue" ];
+  "SecurityTokenRegistry.set" [ label = "set" ];
+  "SecurityTokenRegistry.getAddressValue" [ label = "getAddressValue" ];
+  "SecurityTokenRegistry.getUintValue" [ label = "getUintValue" ];
+  "SecurityTokenRegistry.getArrayBytes32" [ label = "getArrayBytes32" ];
+  "SecurityTokenRegistry.pushArray" [ label = "pushArray" ];
+  "SecurityTokenRegistry.deleteArrayBytes32" [ label = "deleteArrayBytes32" ];
+  "SecurityTokenRegistry.getStringValue" [ label = "getStringValue" ];
+}
+
+subgraph "clusterOZStorage" {
+  graph [ label = "OZStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "OZStorage.totalSupply" [ label = "totalSupply", color = "#f2c383", fillcolor = "#f2c383" ];
+  "OZStorage.balanceOf" [ label = "balanceOf", color = "#f2c383", fillcolor = "#f2c383" ];
+}
+
+subgraph "clusterSTFactory" {
+  graph [ label = "STFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "STFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ISTFactory.deployToken" [ label = "deployToken", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STFactory._deploy" [ label = "_deploy" ];
+  "STFactory.setLogicContract" [ label = "setLogicContract", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STFactory.upgradeToken" [ label = "upgradeToken", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STFactory.updateDefaultTransferManager" [ label = "updateDefaultTransferManager", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STFactory.updateDefaultDataStore" [ label = "updateDefaultDataStore", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+}
+
+subgraph "clusterSTGetter" {
+  graph [ label = "STGetter", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "STGetter.isIssuable" [ label = "isIssuable", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getCheckpointTimes" [ label = "getCheckpointTimes", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getInvestorCount" [ label = "getInvestorCount", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getInvestors" [ label = "getInvestors", color = "#FF9797", fillcolor = "#FF9797" ];
+  "STGetter.getInvestorsAt" [ label = "getInvestorsAt", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getInvestorsSubsetAt" [ label = "getInvestorsSubsetAt", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getModule" [ label = "getModule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getModulesByName" [ label = "getModulesByName", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getModulesByType" [ label = "getModulesByType", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getTreasuryWallet" [ label = "getTreasuryWallet", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.balanceOfAt" [ label = "balanceOfAt" ];
+  "STGetter.totalSupplyAt" [ label = "totalSupplyAt", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.iterateInvestors" [ label = "iterateInvestors", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.checkPermission" [ label = "checkPermission", color = "#FF9797", fillcolor = "#FF9797" ];
+  "STGetter.isOperator" [ label = "isOperator", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.isOperatorForPartition" [ label = "isOperatorForPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.partitionsOf" [ label = "partitionsOf", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter._appendPartition" [ label = "_appendPartition" ];
+  "STGetter.getVersion" [ label = "getVersion", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getDocument" [ label = "getDocument", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.getAllDocuments" [ label = "getAllDocuments", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "STGetter.balanceOf" [ label = "balanceOf" ];
+}
+
+subgraph "clusterSecurityToken" {
+  graph [ label = "SecurityToken", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "SecurityToken.initialize" [ label = "initialize", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken.isModule" [ label = "isModule" ];
+  "SecurityToken._onlyModuleOrOwner" [ label = "_onlyModuleOrOwner", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityToken._isValidPartition" [ label = "_isValidPartition" ];
+  "SecurityToken._isValidOperator" [ label = "_isValidOperator", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityToken._zeroAddressCheck" [ label = "_zeroAddressCheck" ];
+  "SecurityToken._isValidTransfer" [ label = "_isValidTransfer" ];
+  "SecurityToken._isValidRedeem" [ label = "_isValidRedeem" ];
+  "SecurityToken._isSignedByOwner" [ label = "_isSignedByOwner" ];
+  "SecurityToken._isIssuanceAllowed" [ label = "_isIssuanceAllowed" ];
+  "SecurityToken._onlyController" [ label = "_onlyController", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityToken._isAuthorised" [ label = "_isAuthorised" ];
+  "SecurityToken._onlyOwner" [ label = "_onlyOwner", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityToken._onlyModule" [ label = "_onlyModule", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityToken.onlyTokenFactory" [ label = "onlyTokenFactory", color = "#1bc6a6", shape =doubleoctagon ];
+  "SecurityToken.checkGranularity" [ label = "checkGranularity", color = "#1bc6a6", shape =doubleoctagon ];
+  "SecurityToken.addModuleWithLabel" [ label = "addModuleWithLabel", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken._addModuleData" [ label = "_addModuleData" ];
+  "SecurityToken.addModule" [ label = "addModule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.archiveModule" [ label = "archiveModule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.upgradeModule" [ label = "upgradeModule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.upgradeToken" [ label = "upgradeToken", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.unarchiveModule" [ label = "unarchiveModule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.removeModule" [ label = "removeModule", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.withdrawERC20" [ label = "withdrawERC20", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.changeModuleBudget" [ label = "changeModuleBudget", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.updateTokenDetails" [ label = "updateTokenDetails", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.changeGranularity" [ label = "changeGranularity", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.changeDataStore" [ label = "changeDataStore", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.changeName" [ label = "changeName", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.changeTreasuryWallet" [ label = "changeTreasuryWallet", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken._adjustInvestorCount" [ label = "_adjustInvestorCount", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityToken.freezeTransfers" [ label = "freezeTransfers", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.unfreezeTransfers" [ label = "unfreezeTransfers", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken._adjustBalanceCheckpoints" [ label = "_adjustBalanceCheckpoints", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityToken.transfer" [ label = "transfer", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken.transferWithData" [ label = "transferWithData" ];
+  "SecurityToken._transferWithData" [ label = "_transferWithData" ];
+  "SecurityToken.transferFrom" [ label = "transferFrom", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken.transferFromWithData" [ label = "transferFromWithData" ];
+  "SecurityToken.balanceOfByPartition" [ label = "balanceOfByPartition", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken._balanceOfByPartition" [ label = "_balanceOfByPartition" ];
+  "SecurityToken.transferByPartition" [ label = "transferByPartition", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken._transferByPartition" [ label = "_transferByPartition" ];
+  "SecurityToken._returnPartition" [ label = "_returnPartition" ];
+  "SecurityToken.authorizeOperator" [ label = "authorizeOperator", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken.revokeOperator" [ label = "revokeOperator", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken.authorizeOperatorByPartition" [ label = "authorizeOperatorByPartition", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken.revokeOperatorByPartition" [ label = "revokeOperatorByPartition", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken.operatorTransferByPartition" [ label = "operatorTransferByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken._validateOperatorAndPartition" [ label = "_validateOperatorAndPartition" ];
+  "SecurityToken._updateTransfer" [ label = "_updateTransfer" ];
+  "SecurityToken._executeTransfer" [ label = "_executeTransfer" ];
+  "SecurityToken.freezeIssuance" [ label = "freezeIssuance", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.issue" [ label = "issue", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken._issue" [ label = "_issue" ];
+  "SecurityToken.issueMulti" [ label = "issueMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SecurityToken.issueByPartition" [ label = "issueByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.redeem" [ label = "redeem", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken._redeem" [ label = "_redeem" ];
+  "SecurityToken.redeemByPartition" [ label = "redeemByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken._redeemByPartition" [ label = "_redeemByPartition" ];
+  "SecurityToken.operatorRedeemByPartition" [ label = "operatorRedeemByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken._checkAndBurn" [ label = "_checkAndBurn" ];
+  "SecurityToken.redeemFrom" [ label = "redeemFrom", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.createCheckpoint" [ label = "createCheckpoint", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.setController" [ label = "setController", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.disableController" [ label = "disableController", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.canTransfer" [ label = "canTransfer", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.canTransferFrom" [ label = "canTransferFrom", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken._canTransfer" [ label = "_canTransfer" ];
+  "SecurityToken.canTransferByPartition" [ label = "canTransferByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.setDocument" [ label = "setDocument", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.removeDocument" [ label = "removeDocument", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.isControllable" [ label = "isControllable" ];
+  "SecurityToken.controllerTransfer" [ label = "controllerTransfer", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken.controllerRedeem" [ label = "controllerRedeem", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken._implementation" [ label = "_implementation", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SecurityToken.updateFromRegistry" [ label = "updateFromRegistry" ];
+  "SecurityToken.owner" [ label = "owner" ];
+  "SecurityToken.isOwner" [ label = "isOwner" ];
+  "SecurityToken.transferOwnership" [ label = "transferOwnership", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SecurityToken._transferOwnership" [ label = "_transferOwnership" ];
+  "SecurityToken.allowance" [ label = "allowance" ];
+  "SecurityToken.balanceOf" [ label = "balanceOf" ];
+  "SecurityToken._transfer" [ label = "_transfer" ];
+  "SecurityToken._approve" [ label = "_approve" ];
+  "SecurityToken._mint" [ label = "_mint" ];
+  "SecurityToken._burn" [ label = "_burn" ];
+  "SecurityToken._burnFrom" [ label = "_burnFrom" ];
+  "SecurityToken.totalSupply" [ label = "totalSupply" ];
+}
+
+subgraph "clusterSecurityTokenProxy" {
+  graph [ label = "SecurityTokenProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "SecurityTokenProxy.upgradeTo" [ label = "upgradeTo" ];
+  "SecurityTokenProxy.call" [ label = "call" ];
+  "SecurityTokenProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterSecurityTokenStorage" {
+  graph [ label = "SecurityTokenStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterIPolymathRegistry" {
+  graph [ label = "IPolymathRegistry", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IPolymathRegistry.getAddress" [ label = "getAddress" ];
+}
+
+subgraph "clusterIERC20" {
+  graph [ label = "IERC20", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IERC20.transferFrom" [ label = "transferFrom" ];
+  "IERC20.balanceOf" [ label = "balanceOf" ];
+  "IERC20.transfer" [ label = "transfer" ];
+}
+
+subgraph "clusterIOracle" {
+  graph [ label = "IOracle", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IOracle.getPrice" [ label = "getPrice" ];
+}
+
+subgraph "clusterDecimalMath" {
+  graph [ label = "DecimalMath", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "DecimalMath.div" [ label = "div" ];
+  "DecimalMath.mul" [ label = "mul" ];
+}
+
+subgraph "clusterUtil" {
+  graph [ label = "Util", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "Util.upper" [ label = "upper" ];
+  "Util.stringToBytes32" [ label = "stringToBytes32" ];
+  "Util.bytes32ToString" [ label = "bytes32ToString" ];
+}
+
+subgraph "clusternow" {
+  graph [ label = "now", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "now.add" [ label = "add" ];
+}
+
+subgraph "clusterEncoder" {
+  graph [ label = "Encoder", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "Encoder.getKey" [ label = "getKey" ];
+}
+
+subgraph "clusterIOwnable" {
+  graph [ label = "IOwnable", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IOwnable.owner" [ label = "owner" ];
+  "IOwnable.transferOwnership" [ label = "transferOwnership" ];
+}
+
+subgraph "clusterVersionUtils" {
+  graph [ label = "VersionUtils", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "VersionUtils.pack" [ label = "pack" ];
+}
+
+subgraph "clusterISecurityToken" {
+  graph [ label = "ISecurityToken", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "ISecurityToken.transfersFrozen" [ label = "transfersFrozen" ];
+  "ISecurityToken.changeDataStore" [ label = "changeDataStore" ];
+  "ISecurityToken.changeTreasuryWallet" [ label = "changeTreasuryWallet" ];
+  "ISecurityToken.addModule" [ label = "addModule" ];
+  "ISecurityToken.getModulesByType" [ label = "getModulesByType" ];
+  "ISecurityToken.getModule" [ label = "getModule" ];
+}
+
+subgraph "clusterISTFactory" {
+  graph [ label = "ISTFactory", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "ISTFactory.deployToken" [ label = "deployToken" ];
+}
+
+subgraph "clusterregistrationTime" {
+  graph [ label = "registrationTime", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "registrationTime.add" [ label = "add" ];
+}
+
+subgraph "clusterDataStoreFactory" {
+  graph [ label = "DataStoreFactory", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "DataStoreFactory.generateDataStore" [ label = "generateDataStore" ];
+}
+
+subgraph "clusterOwnedUpgradeabilityProxy" {
+  graph [ label = "OwnedUpgradeabilityProxy", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "OwnedUpgradeabilityProxy.upgradeToAndCall" [ label = "upgradeToAndCall" ];
+}
+
+subgraph "clusterIModuleRegistry" {
+  graph [ label = "IModuleRegistry", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IModuleRegistry.isCompatibleModule" [ label = "isCompatibleModule" ];
+  "IModuleRegistry.useModule" [ label = "useModule" ];
+}
+
+subgraph "clusterIDataStore" {
+  graph [ label = "IDataStore", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IDataStore.getAddressArrayLength" [ label = "getAddressArrayLength" ];
+  "IDataStore.getAddressArray" [ label = "getAddressArray" ];
+  "IDataStore.getAddressArrayElements" [ label = "getAddressArrayElements" ];
+  "IDataStore.getAddress" [ label = "getAddress" ];
+  "IDataStore.setAddress" [ label = "setAddress" ];
+}
+
+subgraph "clusterTokenLib" {
+  graph [ label = "TokenLib", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "TokenLib.getValueAt" [ label = "getValueAt" ];
+  "TokenLib.archiveModule" [ label = "archiveModule" ];
+  "TokenLib.upgradeModule" [ label = "upgradeModule" ];
+  "TokenLib.unarchiveModule" [ label = "unarchiveModule" ];
+  "TokenLib.removeModule" [ label = "removeModule" ];
+  "TokenLib.changeModuleBudget" [ label = "changeModuleBudget" ];
+  "TokenLib.adjustInvestorCount" [ label = "adjustInvestorCount" ];
+  "TokenLib.adjustCheckpoints" [ label = "adjustCheckpoints" ];
+  "TokenLib.recoverFreezeIssuanceAckSigner" [ label = "recoverFreezeIssuanceAckSigner" ];
+  "TokenLib.recoverDisableControllerAckSigner" [ label = "recoverDisableControllerAckSigner" ];
+  "TokenLib.verifyTransfer" [ label = "verifyTransfer" ];
+  "TokenLib.canTransfer" [ label = "canTransfer" ];
+  "TokenLib.setDocument" [ label = "setDocument" ];
+  "TokenLib.removeDocument" [ label = "removeDocument" ];
+}
+
+subgraph "clusterIPermissionManager" {
+  graph [ label = "IPermissionManager", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IPermissionManager.checkPermission" [ label = "checkPermission" ];
+}
+
+subgraph "clusterITransferManager" {
+  graph [ label = "ITransferManager", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "ITransferManager.getPartitions" [ label = "getPartitions" ];
+  "ITransferManager.getTokensByPartition" [ label = "getTokensByPartition" ];
+  "ITransferManager.executeTransfer" [ label = "executeTransfer" ];
+}
+
+subgraph "clusterIModuleFactory" {
+  graph [ label = "IModuleFactory", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IModuleFactory.types" [ label = "types" ];
+  "IModuleFactory.setupCostInPoly" [ label = "setupCostInPoly" ];
+  "IModuleFactory.deploy" [ label = "deploy" ];
+  "IModuleFactory.name" [ label = "name" ];
+}
+
+subgraph "clusterERC20" {
+  graph [ label = "ERC20", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "ERC20.approve" [ label = "approve" ];
+}
+
+subgraph "clusterIUpgradableTokenFactory" {
+  graph [ label = "IUpgradableTokenFactory", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IUpgradableTokenFactory.upgradeToken" [ label = "upgradeToken" ];
+}
+
+subgraph "clusterProxy" {
+  graph [ label = "Proxy", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "Proxy.transferFrom" [ label = "transferFrom" ];
+}
+
+subgraph "cluster_afterBalance" {
+  graph [ label = "_afterBalance", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_afterBalance.sub" [ label = "sub" ];
+}
+
+subgraph "clusterPolymathRegistry" {
+  graph [ label = "PolymathRegistry", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "PolymathRegistry.getAddress" [ label = "getAddress" ];
+}
+
+  "SecurityTokenRegistry.onlyOwner";
+  "SecurityTokenRegistry.owner";
+  "SecurityTokenRegistry.whenNotPausedOrOwner";
+  "SecurityTokenRegistry._whenNotPausedOrOwner";
+  "SecurityTokenRegistry.isPaused";
+  "SecurityTokenRegistry.whenNotPaused";
+  "SecurityTokenRegistry.whenPaused";
+  "SecurityTokenRegistry.initialize";
+  "SecurityTokenRegistry.getBoolValue";
+  "SecurityTokenRegistry.set";
+  "SecurityTokenRegistry._updateFromRegistry";
+  "SecurityTokenRegistry.updateFromRegistry";
+  "SecurityTokenRegistry.getAddressValue";
+  "IPolymathRegistry.getAddress";
+  "SecurityTokenRegistry._takeFee";
+  "SecurityTokenRegistry.getFees";
+  "IERC20.transferFrom";
+  "SecurityTokenRegistry.getUintValue";
+  "IOracle.getPrice";
+  "DecimalMath.div";
+  "DecimalMath.mul";
+  "SecurityTokenRegistry.getSecurityTokenLaunchFee";
+  "SecurityTokenRegistry.getTickerRegistrationFee";
+  "SecurityTokenRegistry.setGetterRegistry";
+  "SecurityTokenRegistry._implementation";
+  "SecurityTokenRegistry.registerTicker";
+  "Util.upper";
+  "SecurityTokenRegistry._tickerAvailable";
+  "SecurityTokenRegistry._tickerOwner";
+  "SecurityTokenRegistry._deleteTickerOwnership";
+  "SecurityTokenRegistry._addTicker";
+  "now.add";
+  "SecurityTokenRegistry._setTickerOwnership";
+  "SecurityTokenRegistry._storeTickerDetails";
+  "SecurityTokenRegistry.modifyTicker";
+  "SecurityTokenRegistry._modifyTicker";
+  "SecurityTokenRegistry._tickerStatus";
+  "Encoder.getKey";
+  "SecurityTokenRegistry.removeTicker";
+  "SecurityTokenRegistry.getArrayBytes32";
+  "SecurityTokenRegistry.pushArray";
+  "Util.stringToBytes32";
+  "SecurityTokenRegistry.transferTickerOwnership";
+  "IOwnable.owner";
+  "SecurityTokenRegistry.deleteArrayBytes32";
+  "Util.bytes32ToString";
+  "SecurityTokenRegistry.changeExpiryLimit";
+  "SecurityTokenRegistry.generateSecurityToken";
+  "SecurityTokenRegistry.generateNewSecurityToken";
+  "VersionUtils.pack";
+  "SecurityTokenRegistry._deployToken";
+  "SecurityTokenRegistry.refreshSecurityToken";
+  "ISecurityToken.transfersFrozen";
+  "ISTFactory.deployToken";
+  "SecurityTokenRegistry._storeSecurityTokenData";
+  "SecurityTokenRegistry.modifySecurityToken";
+  "registrationTime.add";
+  "SecurityTokenRegistry.isSecurityToken";
+  "SecurityTokenRegistry.getStringValue";
+  "SecurityTokenRegistry.transferOwnership";
+  "SecurityTokenRegistry.pause";
+  "SecurityTokenRegistry.unpause";
+  "SecurityTokenRegistry.changeTickerRegistrationFee";
+  "SecurityTokenRegistry._changeTickerRegistrationFee";
+  "SecurityTokenRegistry.changeSecurityLaunchFee";
+  "SecurityTokenRegistry._changeSecurityLaunchFee";
+  "SecurityTokenRegistry.changeFeesAmountAndCurrency";
+  "SecurityTokenRegistry.reclaimERC20";
+  "IERC20.balanceOf";
+  "IERC20.transfer";
+  "SecurityTokenRegistry.setProtocolFactory";
+  "SecurityTokenRegistry._setProtocolFactory";
+  "SecurityTokenRegistry.removeProtocolFactory";
+  "SecurityTokenRegistry.setLatestVersion";
+  "SecurityTokenRegistry._setLatestVersion";
+  "SecurityTokenRegistry.updatePolyTokenAddress";
+  "STFactory._deploy";
+  "ISecurityToken.changeDataStore";
+  "DataStoreFactory.generateDataStore";
+  "ISecurityToken.changeTreasuryWallet";
+  "ISecurityToken.addModule";
+  "IOwnable.transferOwnership";
+  "SecurityTokenProxy.upgradeTo";
+  "SecurityTokenProxy.call";
+  "STFactory.upgradeToken";
+  "OwnedUpgradeabilityProxy.upgradeToAndCall";
+  "ISecurityToken.getModulesByType";
+  "ISecurityToken.getModule";
+  "IModuleRegistry.isCompatibleModule";
+  "STGetter.getInvestorCount";
+  "IDataStore.getAddressArrayLength";
+  "STGetter.getInvestors";
+  "IDataStore.getAddressArray";
+  "STGetter.getInvestorsAt";
+  "STGetter.balanceOfAt";
+  "STGetter.getInvestorsSubsetAt";
+  "IDataStore.getAddressArrayElements";
+  "STGetter.getTreasuryWallet";
+  "IDataStore.getAddress";
+  "TokenLib.getValueAt";
+  "STGetter.balanceOf";
+  "STGetter.iterateInvestors";
+  "STGetter.checkPermission";
+  "IPermissionManager.checkPermission";
+  "STGetter.partitionsOf";
+  "ITransferManager.getPartitions";
+  "STGetter._appendPartition";
+  "SecurityToken.initialize";
+  "SecurityToken.updateFromRegistry";
+  "SecurityToken._onlyModuleOrOwner";
+  "SecurityToken.owner";
+  "SecurityToken.isModule";
+  "SecurityToken._isValidOperator";
+  "SecurityToken._isAuthorised";
+  "SecurityToken.allowance";
+  "SecurityToken._onlyController";
+  "SecurityToken.isControllable";
+  "SecurityToken._onlyOwner";
+  "SecurityToken.isOwner";
+  "SecurityToken._onlyModule";
+  "SecurityToken.addModuleWithLabel";
+  "IModuleRegistry.useModule";
+  "IModuleFactory.types";
+  "IModuleFactory.setupCostInPoly";
+  "ERC20.approve";
+  "IModuleFactory.deploy";
+  "SecurityToken._addModuleData";
+  "IModuleFactory.name";
+  "SecurityToken.addModule";
+  "SecurityToken.archiveModule";
+  "TokenLib.archiveModule";
+  "SecurityToken.upgradeModule";
+  "TokenLib.upgradeModule";
+  "SecurityToken.upgradeToken";
+  "IUpgradableTokenFactory.upgradeToken";
+  "SecurityToken.unarchiveModule";
+  "TokenLib.unarchiveModule";
+  "SecurityToken.removeModule";
+  "TokenLib.removeModule";
+  "SecurityToken.withdrawERC20";
+  "SecurityToken.changeModuleBudget";
+  "TokenLib.changeModuleBudget";
+  "SecurityToken.updateTokenDetails";
+  "SecurityToken.changeGranularity";
+  "SecurityToken.changeDataStore";
+  "SecurityToken._zeroAddressCheck";
+  "SecurityToken.changeName";
+  "SecurityToken.changeTreasuryWallet";
+  "IDataStore.setAddress";
+  "SecurityToken._adjustInvestorCount";
+  "TokenLib.adjustInvestorCount";
+  "SecurityToken.balanceOf";
+  "SecurityToken.freezeTransfers";
+  "SecurityToken.unfreezeTransfers";
+  "SecurityToken._adjustBalanceCheckpoints";
+  "TokenLib.adjustCheckpoints";
+  "SecurityToken.transfer";
+  "SecurityToken.transferWithData";
+  "SecurityToken._transferWithData";
+  "SecurityToken._isValidTransfer";
+  "SecurityToken._updateTransfer";
+  "SecurityToken._transfer";
+  "SecurityToken.transferFrom";
+  "SecurityToken.transferFromWithData";
+  "Proxy.transferFrom";
+  "SecurityToken.balanceOfByPartition";
+  "SecurityToken._balanceOfByPartition";
+  "ITransferManager.getTokensByPartition";
+  "SecurityToken.transferByPartition";
+  "SecurityToken._transferByPartition";
+  "SecurityToken._isValidPartition";
+  "SecurityToken._returnPartition";
+  "_afterBalance.sub";
+  "SecurityToken.authorizeOperator";
+  "SecurityToken._approve";
+  "SecurityToken.revokeOperator";
+  "SecurityToken.authorizeOperatorByPartition";
+  "SecurityToken.revokeOperatorByPartition";
+  "SecurityToken.operatorTransferByPartition";
+  "SecurityToken._validateOperatorAndPartition";
+  "SecurityToken._executeTransfer";
+  "ITransferManager.executeTransfer";
+  "SecurityToken.freezeIssuance";
+  "SecurityToken._isIssuanceAllowed";
+  "SecurityToken._isSignedByOwner";
+  "TokenLib.recoverFreezeIssuanceAckSigner";
+  "SecurityToken.issue";
+  "SecurityToken._issue";
+  "SecurityToken._mint";
+  "SecurityToken.issueMulti";
+  "SecurityToken.issueByPartition";
+  "SecurityToken.redeem";
+  "SecurityToken._redeem";
+  "SecurityToken._isValidRedeem";
+  "SecurityToken._checkAndBurn";
+  "SecurityToken.redeemByPartition";
+  "SecurityToken._redeemByPartition";
+  "SecurityToken.operatorRedeemByPartition";
+  "SecurityToken._burn";
+  "SecurityToken.redeemFrom";
+  "SecurityToken._burnFrom";
+  "SecurityToken.createCheckpoint";
+  "SecurityToken.totalSupply";
+  "SecurityToken.setController";
+  "SecurityToken.disableController";
+  "TokenLib.recoverDisableControllerAckSigner";
+  "SecurityToken.canTransfer";
+  "SecurityToken._canTransfer";
+  "SecurityToken.canTransferFrom";
+  "TokenLib.verifyTransfer";
+  "TokenLib.canTransfer";
+  "SecurityToken.canTransferByPartition";
+  "SecurityToken.setDocument";
+  "TokenLib.setDocument";
+  "SecurityToken.removeDocument";
+  "TokenLib.removeDocument";
+  "SecurityToken.controllerTransfer";
+  "SecurityToken.controllerRedeem";
+  "PolymathRegistry.getAddress";
+  "SecurityToken.transferOwnership";
+  "SecurityToken._transferOwnership";
+  "SecurityTokenRegistry.onlyOwner" -> "SecurityTokenRegistry.owner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.whenNotPausedOrOwner" -> "SecurityTokenRegistry._whenNotPausedOrOwner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._whenNotPausedOrOwner" -> "SecurityTokenRegistry.owner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._whenNotPausedOrOwner" -> "SecurityTokenRegistry.isPaused" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.whenNotPaused" -> "SecurityTokenRegistry.isPaused" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.whenPaused" -> "SecurityTokenRegistry.isPaused" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry.getBoolValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.initialize" -> "SecurityTokenRegistry._updateFromRegistry" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.updateFromRegistry" -> "SecurityTokenRegistry._updateFromRegistry" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._updateFromRegistry" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._updateFromRegistry" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._updateFromRegistry" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "SecurityTokenRegistry._takeFee" -> "SecurityTokenRegistry.getFees" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._takeFee" -> "IERC20.transferFrom" [ color = "white" ];
+  "SecurityTokenRegistry._takeFee" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.getFees" -> "SecurityTokenRegistry.getBoolValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.getFees" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.getFees" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.getFees" -> "IOracle.getPrice" [ color = "white" ];
+  "SecurityTokenRegistry.getFees" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "SecurityTokenRegistry.getFees" -> "DecimalMath.div" [ color = "white" ];
+  "SecurityTokenRegistry.getFees" -> "DecimalMath.mul" [ color = "white" ];
+  "SecurityTokenRegistry.getSecurityTokenLaunchFee" -> "SecurityTokenRegistry.getFees" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.getTickerRegistrationFee" -> "SecurityTokenRegistry.getFees" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.setGetterRegistry" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._implementation" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.registerTicker" -> "SecurityTokenRegistry._takeFee" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.registerTicker" -> "Util.upper" [ color = "white" ];
+  "SecurityTokenRegistry.registerTicker" -> "SecurityTokenRegistry._tickerAvailable" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.registerTicker" -> "SecurityTokenRegistry._tickerOwner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.registerTicker" -> "SecurityTokenRegistry._deleteTickerOwnership" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.registerTicker" -> "SecurityTokenRegistry._addTicker" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.registerTicker" -> "now.add" [ color = "white" ];
+  "SecurityTokenRegistry.registerTicker" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._addTicker" -> "SecurityTokenRegistry._setTickerOwnership" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._addTicker" -> "SecurityTokenRegistry._storeTickerDetails" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.modifyTicker" -> "Util.upper" [ color = "white" ];
+  "SecurityTokenRegistry.modifyTicker" -> "SecurityTokenRegistry._modifyTicker" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._modifyTicker" -> "SecurityTokenRegistry._tickerOwner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._modifyTicker" -> "SecurityTokenRegistry._deleteTickerOwnership" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._modifyTicker" -> "SecurityTokenRegistry._tickerStatus" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._modifyTicker" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._modifyTicker" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._modifyTicker" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._modifyTicker" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._modifyTicker" -> "SecurityTokenRegistry._addTicker" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._tickerOwner" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._tickerOwner" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.removeTicker" -> "Util.upper" [ color = "white" ];
+  "SecurityTokenRegistry.removeTicker" -> "SecurityTokenRegistry._tickerOwner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.removeTicker" -> "SecurityTokenRegistry._deleteTickerOwnership" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.removeTicker" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.removeTicker" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.removeTicker" -> "SecurityTokenRegistry._storeTickerDetails" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._tickerAvailable" -> "SecurityTokenRegistry._tickerOwner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._tickerAvailable" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._tickerAvailable" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._tickerAvailable" -> "SecurityTokenRegistry._tickerStatus" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._tickerStatus" -> "SecurityTokenRegistry.getBoolValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._tickerStatus" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "SecurityTokenRegistry.getArrayBytes32" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "SecurityTokenRegistry.pushArray" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "Util.stringToBytes32" [ color = "white" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "SecurityTokenRegistry.getBoolValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "SecurityTokenRegistry.pushArray" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._setTickerOwnership" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._storeTickerDetails" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "Util.upper" [ color = "white" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "SecurityTokenRegistry._tickerStatus" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "IOwnable.owner" [ color = "white" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "SecurityTokenRegistry._deleteTickerOwnership" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "SecurityTokenRegistry._setTickerOwnership" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.transferTickerOwnership" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "SecurityTokenRegistry.getArrayBytes32" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "SecurityTokenRegistry._tickerOwner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "SecurityTokenRegistry.deleteArrayBytes32" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "SecurityTokenRegistry.getArrayBytes32" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "SecurityTokenRegistry.getArrayBytes32" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._deleteTickerOwnership" -> "Util.bytes32ToString" [ color = "white" ];
+  "SecurityTokenRegistry.changeExpiryLimit" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeExpiryLimit" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.generateSecurityToken" -> "SecurityTokenRegistry.generateNewSecurityToken" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.generateSecurityToken" -> "VersionUtils.pack" [ color = "white" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "Util.upper" [ color = "white" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "SecurityTokenRegistry.getBoolValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "SecurityTokenRegistry._tickerOwner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "SecurityTokenRegistry._takeFee" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "SecurityTokenRegistry._deployToken" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.generateNewSecurityToken" -> "VersionUtils.pack" [ color = "white" ];
+  "SecurityTokenRegistry.refreshSecurityToken" -> "Util.upper" [ color = "white" ];
+  "SecurityTokenRegistry.refreshSecurityToken" -> "SecurityTokenRegistry._tickerStatus" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.refreshSecurityToken" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.refreshSecurityToken" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.refreshSecurityToken" -> "IOwnable.owner" [ color = "white" ];
+  "SecurityTokenRegistry.refreshSecurityToken" -> "ISecurityToken.transfersFrozen" [ color = "white" ];
+  "SecurityTokenRegistry.refreshSecurityToken" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.refreshSecurityToken" -> "SecurityTokenRegistry._deployToken" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deployToken" -> "ISTFactory.deployToken" [ color = "white" ];
+  "SecurityTokenRegistry._deployToken" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deployToken" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._deployToken" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deployToken" -> "SecurityTokenRegistry._storeSecurityTokenData" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deployToken" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._deployToken" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "Util.upper" [ color = "white" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "registrationTime.add" [ color = "white" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "SecurityTokenRegistry._modifyTicker" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.modifySecurityToken" -> "SecurityTokenRegistry._storeSecurityTokenData" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._storeSecurityTokenData" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._storeSecurityTokenData" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._storeSecurityTokenData" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._storeSecurityTokenData" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._storeSecurityTokenData" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._storeSecurityTokenData" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.isSecurityToken" -> "SecurityTokenRegistry.getStringValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.isSecurityToken" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.transferOwnership" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.transferOwnership" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.pause" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.unpause" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeTickerRegistrationFee" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeTickerRegistrationFee" -> "SecurityTokenRegistry._changeTickerRegistrationFee" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._changeTickerRegistrationFee" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeSecurityLaunchFee" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeSecurityLaunchFee" -> "SecurityTokenRegistry._changeSecurityLaunchFee" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._changeSecurityLaunchFee" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeFeesAmountAndCurrency" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeFeesAmountAndCurrency" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeFeesAmountAndCurrency" -> "SecurityTokenRegistry.getBoolValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeFeesAmountAndCurrency" -> "SecurityTokenRegistry._changeTickerRegistrationFee" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeFeesAmountAndCurrency" -> "SecurityTokenRegistry._changeSecurityLaunchFee" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.changeFeesAmountAndCurrency" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.reclaimERC20" -> "IERC20.balanceOf" [ color = "white" ];
+  "SecurityTokenRegistry.reclaimERC20" -> "IERC20.transfer" [ color = "white" ];
+  "SecurityTokenRegistry.reclaimERC20" -> "SecurityTokenRegistry.owner" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.setProtocolFactory" -> "SecurityTokenRegistry._setProtocolFactory" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._setProtocolFactory" -> "VersionUtils.pack" [ color = "white" ];
+  "SecurityTokenRegistry._setProtocolFactory" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._setProtocolFactory" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.removeProtocolFactory" -> "VersionUtils.pack" [ color = "white" ];
+  "SecurityTokenRegistry.removeProtocolFactory" -> "SecurityTokenRegistry.getUintValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.removeProtocolFactory" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.removeProtocolFactory" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.removeProtocolFactory" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.removeProtocolFactory" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry.setLatestVersion" -> "SecurityTokenRegistry._setLatestVersion" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._setLatestVersion" -> "VersionUtils.pack" [ color = "white" ];
+  "SecurityTokenRegistry._setLatestVersion" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry._setLatestVersion" -> "Encoder.getKey" [ color = "white" ];
+  "SecurityTokenRegistry._setLatestVersion" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.updatePolyTokenAddress" -> "SecurityTokenRegistry.set" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.isPaused" -> "SecurityTokenRegistry.getBoolValue" [ color = "#1bc6a6" ];
+  "SecurityTokenRegistry.owner" -> "SecurityTokenRegistry.getAddressValue" [ color = "#1bc6a6" ];
+  "ISTFactory.deployToken" -> "STFactory._deploy" [ color = "#1bc6a6" ];
+  "ISTFactory.deployToken" -> "ISecurityToken.changeDataStore" [ color = "white" ];
+  "ISTFactory.deployToken" -> "DataStoreFactory.generateDataStore" [ color = "white" ];
+  "ISTFactory.deployToken" -> "ISecurityToken.changeTreasuryWallet" [ color = "white" ];
+  "ISTFactory.deployToken" -> "ISecurityToken.addModule" [ color = "white" ];
+  "ISTFactory.deployToken" -> "IOwnable.transferOwnership" [ color = "white" ];
+  "STFactory._deploy" -> "SecurityTokenProxy.upgradeTo" [ color = "white" ];
+  "STFactory._deploy" -> "SecurityTokenProxy.call" [ color = "white" ];
+  "STFactory.upgradeToken" -> "OwnedUpgradeabilityProxy.upgradeToAndCall" [ color = "white" ];
+  "STFactory.upgradeToken" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "STFactory.upgradeToken" -> "ISecurityToken.getModulesByType" [ color = "white" ];
+  "STFactory.upgradeToken" -> "ISecurityToken.getModule" [ color = "white" ];
+  "STFactory.upgradeToken" -> "IModuleRegistry.isCompatibleModule" [ color = "white" ];
+  "STGetter.getInvestorCount" -> "IDataStore.getAddressArrayLength" [ color = "white" ];
+  "STGetter.getInvestors" -> "IDataStore.getAddressArray" [ color = "white" ];
+  "STGetter.getInvestorsAt" -> "IDataStore.getAddressArray" [ color = "white" ];
+  "STGetter.getInvestorsAt" -> "STGetter.balanceOfAt" [ color = "#1bc6a6" ];
+  "STGetter.getInvestorsSubsetAt" -> "IDataStore.getAddressArrayElements" [ color = "white" ];
+  "STGetter.getInvestorsSubsetAt" -> "STGetter.balanceOfAt" [ color = "#1bc6a6" ];
+  "STGetter.getTreasuryWallet" -> "IDataStore.getAddress" [ color = "white" ];
+  "STGetter.balanceOfAt" -> "TokenLib.getValueAt" [ color = "white" ];
+  "STGetter.balanceOfAt" -> "STGetter.balanceOf" [ color = "#1bc6a6" ];
+  "STGetter.iterateInvestors" -> "IDataStore.getAddressArrayElements" [ color = "white" ];
+  "STGetter.checkPermission" -> "IPermissionManager.checkPermission" [ color = "white" ];
+  "STGetter.partitionsOf" -> "ITransferManager.getPartitions" [ color = "white" ];
+  "STGetter.partitionsOf" -> "STGetter._appendPartition" [ color = "#1bc6a6" ];
+  "STGetter.partitionsOf" -> "STGetter._appendPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.initialize" -> "SecurityToken.updateFromRegistry" [ color = "#1bc6a6" ];
+  "SecurityToken._onlyModuleOrOwner" -> "SecurityToken.owner" [ color = "#1bc6a6" ];
+  "SecurityToken._onlyModuleOrOwner" -> "SecurityToken.isModule" [ color = "#1bc6a6" ];
+  "SecurityToken._isValidOperator" -> "SecurityToken._isAuthorised" [ color = "#1bc6a6" ];
+  "SecurityToken._isValidOperator" -> "SecurityToken.allowance" [ color = "#1bc6a6" ];
+  "SecurityToken._onlyController" -> "SecurityToken._isAuthorised" [ color = "#1bc6a6" ];
+  "SecurityToken._onlyController" -> "SecurityToken.isControllable" [ color = "#1bc6a6" ];
+  "SecurityToken._onlyOwner" -> "SecurityToken.isOwner" [ color = "#1bc6a6" ];
+  "SecurityToken._onlyModule" -> "SecurityToken.isModule" [ color = "#1bc6a6" ];
+  "SecurityToken.addModuleWithLabel" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.addModuleWithLabel" -> "IModuleRegistry.useModule" [ color = "white" ];
+  "SecurityToken.addModuleWithLabel" -> "IModuleFactory.types" [ color = "white" ];
+  "SecurityToken.addModuleWithLabel" -> "IModuleFactory.setupCostInPoly" [ color = "white" ];
+  "SecurityToken.addModuleWithLabel" -> "ERC20.approve" [ color = "white" ];
+  "SecurityToken.addModuleWithLabel" -> "IModuleFactory.deploy" [ color = "white" ];
+  "SecurityToken.addModuleWithLabel" -> "ERC20.approve" [ color = "white" ];
+  "SecurityToken.addModuleWithLabel" -> "SecurityToken._addModuleData" [ color = "#1bc6a6" ];
+  "SecurityToken._addModuleData" -> "IModuleFactory.name" [ color = "white" ];
+  "SecurityToken.addModule" -> "SecurityToken.addModuleWithLabel" [ color = "#1bc6a6" ];
+  "SecurityToken.archiveModule" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.archiveModule" -> "TokenLib.archiveModule" [ color = "white" ];
+  "SecurityToken.upgradeModule" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.upgradeModule" -> "TokenLib.upgradeModule" [ color = "white" ];
+  "SecurityToken.upgradeToken" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.upgradeToken" -> "IUpgradableTokenFactory.upgradeToken" [ color = "white" ];
+  "SecurityToken.unarchiveModule" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.unarchiveModule" -> "TokenLib.unarchiveModule" [ color = "white" ];
+  "SecurityToken.removeModule" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.removeModule" -> "TokenLib.removeModule" [ color = "white" ];
+  "SecurityToken.withdrawERC20" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.withdrawERC20" -> "IERC20.transfer" [ color = "white" ];
+  "SecurityToken.withdrawERC20" -> "SecurityToken.owner" [ color = "#1bc6a6" ];
+  "SecurityToken.changeModuleBudget" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.changeModuleBudget" -> "TokenLib.changeModuleBudget" [ color = "white" ];
+  "SecurityToken.updateTokenDetails" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.changeGranularity" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.changeDataStore" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.changeDataStore" -> "SecurityToken._zeroAddressCheck" [ color = "#1bc6a6" ];
+  "SecurityToken.changeName" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.changeTreasuryWallet" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.changeTreasuryWallet" -> "SecurityToken._zeroAddressCheck" [ color = "#1bc6a6" ];
+  "SecurityToken.changeTreasuryWallet" -> "IDataStore.getAddress" [ color = "white" ];
+  "SecurityToken.changeTreasuryWallet" -> "IDataStore.setAddress" [ color = "white" ];
+  "SecurityToken._adjustInvestorCount" -> "TokenLib.adjustInvestorCount" [ color = "white" ];
+  "SecurityToken._adjustInvestorCount" -> "SecurityToken.balanceOf" [ color = "#1bc6a6" ];
+  "SecurityToken._adjustInvestorCount" -> "SecurityToken.balanceOf" [ color = "#1bc6a6" ];
+  "SecurityToken.freezeTransfers" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.unfreezeTransfers" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken._adjustBalanceCheckpoints" -> "TokenLib.adjustCheckpoints" [ color = "white" ];
+  "SecurityToken._adjustBalanceCheckpoints" -> "SecurityToken.balanceOf" [ color = "#1bc6a6" ];
+  "SecurityToken.transfer" -> "SecurityToken.transferWithData" [ color = "#1bc6a6" ];
+  "SecurityToken.transferWithData" -> "SecurityToken._transferWithData" [ color = "#1bc6a6" ];
+  "SecurityToken._transferWithData" -> "SecurityToken._isValidTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken._transferWithData" -> "SecurityToken._updateTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken._transferWithData" -> "SecurityToken._transfer" [ color = "#1bc6a6" ];
+  "SecurityToken.transferFrom" -> "SecurityToken.transferFromWithData" [ color = "#1bc6a6" ];
+  "SecurityToken.transferFromWithData" -> "SecurityToken._isValidTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken.transferFromWithData" -> "SecurityToken._updateTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken.transferFromWithData" -> "Proxy.transferFrom" [ color = "white" ];
+  "SecurityToken.balanceOfByPartition" -> "SecurityToken._balanceOfByPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._balanceOfByPartition" -> "ITransferManager.getTokensByPartition" [ color = "white" ];
+  "SecurityToken.transferByPartition" -> "SecurityToken._transferByPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._transferByPartition" -> "SecurityToken._isValidPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._transferByPartition" -> "SecurityToken._balanceOfByPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._transferByPartition" -> "SecurityToken._transferWithData" [ color = "#1bc6a6" ];
+  "SecurityToken._transferByPartition" -> "SecurityToken._balanceOfByPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._transferByPartition" -> "SecurityToken._returnPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._returnPartition" -> "_afterBalance.sub" [ color = "white" ];
+  "SecurityToken.authorizeOperator" -> "SecurityToken._approve" [ color = "#1bc6a6" ];
+  "SecurityToken.revokeOperator" -> "SecurityToken._approve" [ color = "#1bc6a6" ];
+  "SecurityToken.authorizeOperatorByPartition" -> "SecurityToken._isValidPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.revokeOperatorByPartition" -> "SecurityToken._isValidPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.operatorTransferByPartition" -> "SecurityToken._validateOperatorAndPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.operatorTransferByPartition" -> "SecurityToken._transferByPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._validateOperatorAndPartition" -> "SecurityToken._isValidPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._validateOperatorAndPartition" -> "SecurityToken._isValidOperator" [ color = "#1bc6a6" ];
+  "SecurityToken._updateTransfer" -> "SecurityToken._adjustInvestorCount" [ color = "#1bc6a6" ];
+  "SecurityToken._updateTransfer" -> "SecurityToken._executeTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken._updateTransfer" -> "SecurityToken._adjustBalanceCheckpoints" [ color = "#1bc6a6" ];
+  "SecurityToken._updateTransfer" -> "SecurityToken._adjustBalanceCheckpoints" [ color = "#1bc6a6" ];
+  "SecurityToken._executeTransfer" -> "ITransferManager.executeTransfer" [ color = "white" ];
+  "SecurityToken.freezeIssuance" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.freezeIssuance" -> "SecurityToken._isIssuanceAllowed" [ color = "#1bc6a6" ];
+  "SecurityToken.freezeIssuance" -> "SecurityToken._isSignedByOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.freezeIssuance" -> "SecurityToken.owner" [ color = "#1bc6a6" ];
+  "SecurityToken.freezeIssuance" -> "TokenLib.recoverFreezeIssuanceAckSigner" [ color = "white" ];
+  "SecurityToken.issue" -> "SecurityToken._isIssuanceAllowed" [ color = "#1bc6a6" ];
+  "SecurityToken.issue" -> "SecurityToken._onlyModuleOrOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.issue" -> "SecurityToken._issue" [ color = "#1bc6a6" ];
+  "SecurityToken._issue" -> "SecurityToken._isValidTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken._issue" -> "SecurityToken._updateTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken._issue" -> "SecurityToken._mint" [ color = "#1bc6a6" ];
+  "SecurityToken.issueMulti" -> "SecurityToken._isIssuanceAllowed" [ color = "#1bc6a6" ];
+  "SecurityToken.issueMulti" -> "SecurityToken._onlyModuleOrOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.issueMulti" -> "SecurityToken._issue" [ color = "#1bc6a6" ];
+  "SecurityToken.issueByPartition" -> "SecurityToken._isValidPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.issueByPartition" -> "SecurityToken.issue" [ color = "#1bc6a6" ];
+  "SecurityToken.redeem" -> "SecurityToken._onlyModule" [ color = "#1bc6a6" ];
+  "SecurityToken.redeem" -> "SecurityToken._redeem" [ color = "#1bc6a6" ];
+  "SecurityToken._redeem" -> "SecurityToken._isValidRedeem" [ color = "#1bc6a6" ];
+  "SecurityToken._redeem" -> "SecurityToken._checkAndBurn" [ color = "#1bc6a6" ];
+  "SecurityToken.redeemByPartition" -> "SecurityToken._onlyModule" [ color = "#1bc6a6" ];
+  "SecurityToken.redeemByPartition" -> "SecurityToken._isValidPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.redeemByPartition" -> "SecurityToken._redeemByPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._redeemByPartition" -> "SecurityToken._redeem" [ color = "#1bc6a6" ];
+  "SecurityToken.operatorRedeemByPartition" -> "SecurityToken._onlyModule" [ color = "#1bc6a6" ];
+  "SecurityToken.operatorRedeemByPartition" -> "SecurityToken._zeroAddressCheck" [ color = "#1bc6a6" ];
+  "SecurityToken.operatorRedeemByPartition" -> "SecurityToken._validateOperatorAndPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.operatorRedeemByPartition" -> "SecurityToken._redeemByPartition" [ color = "#1bc6a6" ];
+  "SecurityToken._checkAndBurn" -> "SecurityToken._updateTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken._checkAndBurn" -> "SecurityToken._burn" [ color = "#1bc6a6" ];
+  "SecurityToken.redeemFrom" -> "SecurityToken._onlyModule" [ color = "#1bc6a6" ];
+  "SecurityToken.redeemFrom" -> "SecurityToken._isValidRedeem" [ color = "#1bc6a6" ];
+  "SecurityToken.redeemFrom" -> "SecurityToken._updateTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken.redeemFrom" -> "SecurityToken._burnFrom" [ color = "#1bc6a6" ];
+  "SecurityToken.createCheckpoint" -> "SecurityToken._onlyModuleOrOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.createCheckpoint" -> "SecurityToken.totalSupply" [ color = "#1bc6a6" ];
+  "SecurityToken.createCheckpoint" -> "IDataStore.getAddressArrayLength" [ color = "white" ];
+  "SecurityToken.setController" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.setController" -> "SecurityToken.isControllable" [ color = "#1bc6a6" ];
+  "SecurityToken.disableController" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.disableController" -> "SecurityToken._isSignedByOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.disableController" -> "SecurityToken.owner" [ color = "#1bc6a6" ];
+  "SecurityToken.disableController" -> "TokenLib.recoverDisableControllerAckSigner" [ color = "white" ];
+  "SecurityToken.disableController" -> "SecurityToken.isControllable" [ color = "#1bc6a6" ];
+  "SecurityToken.canTransfer" -> "SecurityToken._canTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken.canTransferFrom" -> "SecurityToken._canTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken.canTransferFrom" -> "SecurityToken.allowance" [ color = "#1bc6a6" ];
+  "SecurityToken._canTransfer" -> "TokenLib.verifyTransfer" [ color = "white" ];
+  "SecurityToken._canTransfer" -> "TokenLib.canTransfer" [ color = "white" ];
+  "SecurityToken._canTransfer" -> "SecurityToken.balanceOf" [ color = "#1bc6a6" ];
+  "SecurityToken.canTransferByPartition" -> "SecurityToken._canTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken.canTransferByPartition" -> "SecurityToken._balanceOfByPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.canTransferByPartition" -> "SecurityToken._balanceOfByPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.canTransferByPartition" -> "SecurityToken._returnPartition" [ color = "#1bc6a6" ];
+  "SecurityToken.setDocument" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.setDocument" -> "TokenLib.setDocument" [ color = "white" ];
+  "SecurityToken.removeDocument" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.removeDocument" -> "TokenLib.removeDocument" [ color = "white" ];
+  "SecurityToken.controllerTransfer" -> "SecurityToken._onlyController" [ color = "#1bc6a6" ];
+  "SecurityToken.controllerTransfer" -> "SecurityToken._updateTransfer" [ color = "#1bc6a6" ];
+  "SecurityToken.controllerTransfer" -> "SecurityToken._transfer" [ color = "#1bc6a6" ];
+  "SecurityToken.controllerRedeem" -> "SecurityToken._onlyController" [ color = "#1bc6a6" ];
+  "SecurityToken.controllerRedeem" -> "SecurityToken._checkAndBurn" [ color = "#1bc6a6" ];
+  "SecurityToken.updateFromRegistry" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.updateFromRegistry" -> "PolymathRegistry.getAddress" [ color = "white" ];
+  "SecurityToken.updateFromRegistry" -> "PolymathRegistry.getAddress" [ color = "white" ];
+  "SecurityToken.updateFromRegistry" -> "PolymathRegistry.getAddress" [ color = "white" ];
+  "SecurityToken.transferOwnership" -> "SecurityToken._onlyOwner" [ color = "#1bc6a6" ];
+  "SecurityToken.transferOwnership" -> "SecurityToken._transferOwnership" [ color = "#1bc6a6" ];
+
+
+rankdir=LR
+node [shape=plaintext]
+subgraph cluster_01 {
+label = "Legend";
+key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td align="right" port="i1">Internal Call</td></tr>
+  <tr><td align="right" port="i2">External Call</td></tr>
+  <tr><td align="right" port="i3">Defined Contract</td></tr>
+  <tr><td align="right" port="i4">Undefined Contract</td></tr>
+  </table>>]
+key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i3" bgcolor="#445773">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i4">
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
+      <tr>
+       <td></td>
+      </tr>
+     </table>
+  </td></tr>
+  </table>>]
+key:i1:e -> key2:i1:w [color="#1bc6a6"]
+key:i2:e -> key2:i2:w [color="white"]
+}
+}
+

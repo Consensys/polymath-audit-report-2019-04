@@ -1,0 +1,379 @@
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletStorage
+Function name: [schedules(address,uint256), schedules(address,uint256)] (ambiguous)
+PC address: 552
+Estimated Gas Usage: 763 - 1048
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1282
+
+mapping(address => Schedule[]) public schedules
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletStorage
+Function name: [templateNames(uint256), templateNames(uint256)] (ambiguous)
+PC address: 608
+Estimated Gas Usage: 689 - 784
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1297
+
+bytes32[] public templateNames
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletStorage
+Function name: [beneficiaries(uint256), beneficiaries(uint256)] (ambiguous)
+PC address: 641
+Estimated Gas Usage: 711 - 806
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1277
+
+address[] public beneficiaries
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: VestingEscrowWallet
+Function name: [getTreasuryWallet(), getTreasuryWallet()] (ambiguous)
+PC address: 1003
+Estimated Gas Usage: 4527 - 74592
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 14840
+Offset: 6085
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/VestingEscrowWallet.sol:1411
+
+function getTreasuryWallet() public view returns(address) {
+        if (treasuryWallet == address(0)) {
+            address wallet = IDataStore(getDataStore()).getAddress(TREASURY);
+            require(wallet != address(0), "Invalid address");
+            return wallet;
+        } else
+            return treasuryWallet;
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: VestingEscrowWallet
+Function name: [takeUsageFee(), takeUsageFee(), takeUsageFee(), takeUsageFee()] (ambiguous)
+PC address: 3774
+Estimated Gas Usage: 11770 - 187361
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 15336
+Offset: 15762
+Offset: 11043
+Offset: 11208
+Offset: 11423
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/VestingEscrowWallet.sol:1204
+
+function takeUsageFee() public withPerm(ADMIN) returns(bool) {
+        require(polyToken.transferFrom(securityToken, Ownable(factory).owner(), IModuleFactory(factory).usageCostInPoly()), "Unable to take fee");
+        return true;
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: VestingEscrowWallet
+Function name: pushAvailableTokensMulti(uint256,uint256)
+PC address: 3830
+Estimated Gas Usage: 5630 - 75934
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 15336
+Offset: 15762
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/VestingEscrowWallet.sol:1728
+
+function pushAvailableTokensMulti(uint256 _fromIndex, uint256 _toIndex) public withPerm(OPERATOR) {
+        require(_toIndex <= beneficiaries.length - 1, "Array out of bound");
+        for (uint256 i = _fromIndex; i <= _toIndex; i++) {
+            if (schedules[beneficiaries[i]].length !=0)
+                pushAvailableTokens(beneficiaries[i]);
+        }
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: VestingEscrowWallet
+Function name: revokeAllSchedules(address)
+PC address: 4707
+Estimated Gas Usage: 18876 - 130572
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 15336
+Offset: 15762
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/VestingEscrowWallet.sol:1627
+
+function revokeAllSchedules(address _beneficiary) public withPerm(ADMIN) {
+        _revokeAllSchedules(_beneficiary);
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: VestingEscrowWallet
+Function name: depositTokens(uint256)
+PC address: 4799
+Estimated Gas Usage: 13641 - 139659
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 15336
+Offset: 15762
+Offset: 24246
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/VestingEscrowWallet.sol:1382
+
+function depositTokens(uint256 _numberOfTokens) external withPerm(ADMIN) {
+        _depositTokens(_numberOfTokens);
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: VestingEscrowWallet
+Function name: pushAvailableTokens(address)
+PC address: 4867
+Estimated Gas Usage: 5674 - 76168
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 15336
+Offset: 15762
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/VestingEscrowWallet.sol:1424
+
+function pushAvailableTokens(address _beneficiary) public withPerm(OPERATOR) {
+        _sendTokens(_beneficiary);
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: VestingEscrowWallet
+Function name: revokeSchedulesMulti(address[])
+PC address: 5227
+Estimated Gas Usage: 5504 - 78583
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 15336
+Offset: 15762
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/VestingEscrowWallet.sol:1793
+
+function revokeSchedulesMulti(address[] memory _beneficiaries) public withPerm(ADMIN) {
+        for (uint256 i = 0; i < _beneficiaries.length; i++) {
+            _revokeAllSchedules(_beneficiaries[i]);
+        }
+    }
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWallet
+Function name: [schedules(address,uint256), schedules(address,uint256)] (ambiguous)
+PC address: 8983
+Estimated Gas Usage: 787 - 1072
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1282
+
+mapping(address => Schedule[]) public schedules
+
+--------------------
+
+==== External Call To Fixed Address ====
+SWC ID: 107
+Severity: Low
+Contract: VestingEscrowWallet
+Function name: [takeUsageFee(), takeUsageFee(), takeUsageFee(), takeUsageFee()] (ambiguous)
+PC address: 11208
+Estimated Gas Usage: 9180 - 115552
+The contract executes an external message call.
+An external function call to a fixed contract address is executed. Make sure that the callee contract has been reviewed carefully.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1205
+
+IModuleFactory(factory).usageCostInPoly()
+
+--------------------
+
+==== External Call To Fixed Address ====
+SWC ID: 107
+Severity: Low
+Contract: VestingEscrowWallet
+Function name: [takeUsageFee(), takeUsageFee(), takeUsageFee(), takeUsageFee()] (ambiguous)
+PC address: 11423
+Estimated Gas Usage: 10863 - 151987
+The contract executes an external message call.
+An external function call to a fixed contract address is executed. Make sure that the callee contract has been reviewed carefully.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1205
+
+polyToken.transferFrom(securityToken, Ownable(factory).owner(), IModuleFactory(factory).usageCostInPoly())
+
+--------------------
+
+==== Integer Underflow ====
+SWC ID: 101
+Severity: High
+Contract: VestingEscrowWallet
+Function name: pushAvailableTokensMulti(uint256,uint256)
+PC address: 11767
+Estimated Gas Usage: 5630 - 75934
+The binary subtraction can underflow.
+The operands of the subtraction operation are not sufficiently constrained. The subtraction could therefore result in an integer underflow. Prevent the underflow by checking inputs or ensure sure that the underflow is caught by an assertion.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1729
+
+beneficiaries.length - 1
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWallet
+Function name: pushAvailableTokensMulti(uint256,uint256)
+PC address: 11915
+Estimated Gas Usage: 6049 - 76353
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1731
+
+beneficiaries[i]
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWallet
+Function name: [templateNames(uint256), templateNames(uint256)] (ambiguous)
+PC address: 14432
+Estimated Gas Usage: 733 - 828
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1297
+
+bytes32[] public templateNames
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWallet
+Function name: [beneficiaries(uint256), beneficiaries(uint256)] (ambiguous)
+PC address: 14465
+Estimated Gas Usage: 755 - 850
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1277
+
+address[] public beneficiaries
+
+--------------------
+
+==== External Call To Fixed Address ====
+SWC ID: 107
+Severity: Low
+Contract: VestingEscrowWallet
+Function name: depositTokens(uint256)
+PC address: 24246
+Estimated Gas Usage: 6435 - 77635
+The contract executes an external message call.
+An external function call to a fixed contract address is executed. Make sure that the callee contract has been reviewed carefully.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1389
+
+ISecurityToken(securityToken).transferFrom(msg.sender, address(this), _numberOfTokens)
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWallet
+Function name: addSchedule(address,bytes32,uint256,uint256,uint256,uint256)
+PC address: 24965
+Estimated Gas Usage: 6014 - 76508
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1839
+
+_duration % _frequency
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWallet
+Function name: addSchedule(address,bytes32,uint256,uint256,uint256,uint256)
+PC address: 25115
+Estimated Gas Usage: 6197 - 76691
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWallet.sol:1841
+
+_numberOfTokens % periodCount
+
+--------------------
+
+

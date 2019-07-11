@@ -1,0 +1,2357 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/modules/STO/USDTiered/USDTieredSTO.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">contracts/modules/STO/USDTiered/</a> USDTieredSTO.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.62% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>214/217</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">77.08% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>74/96</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>51/51</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.71% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>229/232</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">80×</span>
+<span class="cline-any cline-yes">80×</span>
+<span class="cline-any cline-yes">80×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">78×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">80×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">110×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">187×</span>
+<span class="cline-any cline-yes">187×</span>
+<span class="cline-any cline-yes">187×</span>
+<span class="cline-any cline-yes">43×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">175×</span>
+<span class="cline-any cline-yes">175×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">175×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">175×</span>
+<span class="cline-any cline-yes">175×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">43×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">43×</span>
+<span class="cline-any cline-yes">43×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">43×</span>
+<span class="cline-any cline-yes">43×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">43×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">175×</span>
+<span class="cline-any cline-yes">91×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">83×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-yes">52×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75×</span>
+<span class="cline-any cline-yes">75×</span>
+<span class="cline-any cline-yes">75×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">181×</span>
+<span class="cline-any cline-yes">89×</span>
+<span class="cline-any cline-yes">92×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">146×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">146×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">258×</span>
+<span class="cline-any cline-yes">109×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">119×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">339×</span>
+<span class="cline-any cline-yes">902×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">385×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity ^0.5.0;
+&nbsp;
+import "../STO.sol";
+import "../../../interfaces/IPolymathRegistry.sol";
+import "../../../interfaces/IOracle.sol";
+import "../../../libraries/DecimalMath.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "./USDTieredSTOStorage.sol";
+&nbsp;
+/**
+ * @title STO module for standard capped crowdsale
+ */
+contract USDTieredSTO is USDTieredSTOStorage, STO {
+    using SafeMath for uint256;
+&nbsp;
+    string internal constant POLY_ORACLE = "PolyUsdOracle";
+    string internal constant ETH_ORACLE = "EthUsdOracle";
+&nbsp;
+    ////////////
+    // Events //
+    ////////////
+&nbsp;
+    event SetAllowBeneficialInvestments(bool _allowed);
+    event SetNonAccreditedLimit(address _investor, uint256 _limit);
+    event SetAccredited(address _investor, bool _accredited);
+    event TokenPurchase(
+        address indexed _purchaser,
+        address indexed _beneficiary,
+        uint256 _tokens,
+        uint256 _usdAmount,
+        uint256 _tierPrice,
+        uint256 _tier
+    );
+    event FundsReceived(
+        address indexed _purchaser,
+        address indexed _beneficiary,
+        uint256 _usdAmount,
+        FundRaiseType _fundRaiseType,
+        uint256 _receivedValue,
+        uint256 _spentValue,
+        uint256 _rate
+    );
+    event ReserveTokenMint(address indexed _owner, address indexed _wallet, uint256 _tokens, uint256 _latestTier);
+    event SetAddresses(address indexed _wallet, address[] _usdTokens);
+    event SetLimits(uint256 _nonAccreditedLimitUSD, uint256 _minimumInvestmentUSD);
+    event SetTimes(uint256 _startTime, uint256 _endTime);
+    event SetTiers(
+        uint256[] _ratePerTier,
+        uint256[] _ratePerTierDiscountPoly,
+        uint256[] _tokensPerTierTotal,
+        uint256[] _tokensPerTierDiscountPoly
+    );
+    event SetTreasuryWallet(address _oldWallet, address _newWallet);
+&nbsp;
+    ///////////////
+    // Modifiers //
+    ///////////////
+&nbsp;
+    modifier validETH() {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_getOracle(bytes32("ETH"), bytes32("USD")) != address(0), "Invalid Oracle");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(fundRaiseTypes[uint8(FundRaiseType.ETH)], "ETH not allowed");
+        _;
+    }
+&nbsp;
+    modifier validPOLY() {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_getOracle(bytes32("POLY"), bytes32("USD")) != address(0), "Invalid Oracle");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(fundRaiseTypes[uint8(FundRaiseType.POLY)], "POLY not allowed");
+        _;
+    }
+&nbsp;
+    modifier validSC(address _usdToken) {
+        require(fundRaiseTypes[uint8(FundRaiseType.SC)] &amp;&amp; usdTokenEnabled[_usdToken], "USD not allowed");
+        _;
+    }
+&nbsp;
+    ///////////////////////
+    // STO Configuration //
+    ///////////////////////
+&nbsp;
+    constructor(address _securityToken, address _polyAddress) public Module(_securityToken, _polyAddress) {
+&nbsp;
+    }
+&nbsp;
+    /**
+     * @notice Function used to intialize the contract variables
+     * @param _startTime Unix timestamp at which offering get started
+     * @param _endTime Unix timestamp at which offering get ended
+     * @param _ratePerTier Rate (in USD) per tier (* 10**18)
+     * @param _tokensPerTierTotal Tokens available in each tier
+     * @param _nonAccreditedLimitUSD Limit in USD (* 10**18) for non-accredited investors
+     * @param _minimumInvestmentUSD Minimun investment in USD (* 10**18)
+     * @param _fundRaiseTypes Types of currency used to collect the funds
+     * @param _wallet Ethereum account address to hold the funds
+     * @param _treasuryWallet Ethereum account address to receive unsold tokens
+     * @param _usdTokens Contract address of the stable coins
+     */
+    function configure(
+        uint256 _startTime,
+        uint256 _endTime,
+        uint256[] memory _ratePerTier,
+        uint256[] memory _ratePerTierDiscountPoly,
+        uint256[] memory _tokensPerTierTotal,
+        uint256[] memory _tokensPerTierDiscountPoly,
+        uint256 _nonAccreditedLimitUSD,
+        uint256 _minimumInvestmentUSD,
+        FundRaiseType[] memory _fundRaiseTypes,
+        address payable _wallet,
+        address _treasuryWallet,
+        address[] memory _usdTokens
+    )
+        public
+        onlyFactory
+    {
+        oracleKeys[bytes32("ETH")][bytes32("USD")] = ETH_ORACLE;
+        oracleKeys[bytes32("POLY")][bytes32("USD")] = POLY_ORACLE;
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(endTime == 0, "Already configured");
+        _modifyTimes(_startTime, _endTime);
+        _modifyTiers(_ratePerTier, _ratePerTierDiscountPoly, _tokensPerTierTotal, _tokensPerTierDiscountPoly);
+        // NB - _setFundRaiseType must come before modifyAddresses
+        _setFundRaiseType(_fundRaiseTypes);
+        _modifyAddresses(_wallet, _treasuryWallet, _usdTokens);
+        _modifyLimits(_nonAccreditedLimitUSD, _minimumInvestmentUSD);
+    }
+&nbsp;
+    /**
+     * @dev Modifies fund raise types
+     * @param _fundRaiseTypes Array of fund raise types to allow
+     */
+    function modifyFunding(FundRaiseType[] calldata _fundRaiseTypes) external {
+        _onlySecurityTokenOwner();
+        _isSTOStarted();
+        _setFundRaiseType(_fundRaiseTypes);
+    }
+&nbsp;
+    /**
+     * @dev modifies max non accredited invets limit and overall minimum investment limit
+     * @param _nonAccreditedLimitUSD max non accredited invets limit
+     * @param _minimumInvestmentUSD overall minimum investment limit
+     */
+    function modifyLimits(uint256 _nonAccreditedLimitUSD, uint256 _minimumInvestmentUSD) external {
+        _onlySecurityTokenOwner();
+        _isSTOStarted();
+        _modifyLimits(_nonAccreditedLimitUSD, _minimumInvestmentUSD);
+    }
+&nbsp;
+    /**
+     * @dev modifiers STO tiers. All tiers must be passed, can not edit specific tiers.
+     * @param _ratePerTier Array of rates per tier
+     * @param _ratePerTierDiscountPoly Array of discounted poly rates per tier
+     * @param _tokensPerTierTotal Array of total tokens per tier
+     * @param _tokensPerTierDiscountPoly Array of discounted tokens per tier
+     */
+    function modifyTiers(
+        uint256[] calldata _ratePerTier,
+        uint256[] calldata _ratePerTierDiscountPoly,
+        uint256[] calldata _tokensPerTierTotal,
+        uint256[] calldata _tokensPerTierDiscountPoly
+    )
+        external
+    {
+        _onlySecurityTokenOwner();
+        _isSTOStarted();
+        _modifyTiers(_ratePerTier, _ratePerTierDiscountPoly, _tokensPerTierTotal, _tokensPerTierDiscountPoly);
+    }
+&nbsp;
+    /**
+     * @dev Modifies STO start and end times
+     * @param _startTime start time of sto
+     * @param _endTime end time of sto
+     */
+    function modifyTimes(uint256 _startTime, uint256 _endTime) external {
+        _onlySecurityTokenOwner();
+        _isSTOStarted();
+        _modifyTimes(_startTime, _endTime);
+    }
+&nbsp;
+    function _isSTOStarted() internal view {
+        /*solium-disable-next-line security/no-block-members*/
+        require(now &lt; startTime, "Already started");
+    }
+&nbsp;
+    /**
+     * @dev Modifies addresses used as wallet, reserve wallet and usd token
+     * @param _wallet Address of wallet where funds are sent
+     * @param _treasuryWallet Address of wallet where unsold tokens are sent
+     * @param _usdTokens Address of usd tokens
+     */
+    function modifyAddresses(address payable _wallet, address _treasuryWallet, address[] calldata _usdTokens) external {
+        _onlySecurityTokenOwner();
+        _modifyAddresses(_wallet, _treasuryWallet, _usdTokens);
+    }
+&nbsp;
+    function _modifyLimits(uint256 _nonAccreditedLimitUSD, uint256 _minimumInvestmentUSD) internal {
+        minimumInvestmentUSD = _minimumInvestmentUSD;
+        nonAccreditedLimitUSD = _nonAccreditedLimitUSD;
+        emit SetLimits(minimumInvestmentUSD, nonAccreditedLimitUSD);
+    }
+&nbsp;
+    function _modifyTiers(
+        uint256[] memory _ratePerTier,
+        uint256[] memory _ratePerTierDiscountPoly,
+        uint256[] memory _tokensPerTierTotal,
+        uint256[] memory _tokensPerTierDiscountPoly
+    )
+        internal
+    {
+        require(
+            _tokensPerTierTotal.length &gt; 0 &amp;&amp;
+            _ratePerTier.length == _tokensPerTierTotal.length &amp;&amp;
+            _ratePerTierDiscountPoly.length == _tokensPerTierTotal.length &amp;&amp;
+            _tokensPerTierDiscountPoly.length == _tokensPerTierTotal.length,
+            "Invalid Input"
+        );
+        delete tiers;
+        for (uint256 i = 0; i &lt; _ratePerTier.length; i++) {
+            require(_ratePerTier[i] &gt; 0 &amp;&amp; _tokensPerTierTotal[i] &gt; 0, "Invalid value");
+            <span class="missing-if-branch" title="else path not taken" >E</span>require(_tokensPerTierDiscountPoly[i] &lt;= _tokensPerTierTotal[i], "Too many discounted tokens");
+            <span class="missing-if-branch" title="else path not taken" >E</span>require(_ratePerTierDiscountPoly[i] &lt;= _ratePerTier[i], "Invalid discount");
+            tiers.push(Tier(_ratePerTier[i], _ratePerTierDiscountPoly[i], _tokensPerTierTotal[i], _tokensPerTierDiscountPoly[i], 0, 0));
+        }
+        emit SetTiers(_ratePerTier, _ratePerTierDiscountPoly, _tokensPerTierTotal, _tokensPerTierDiscountPoly);
+    }
+&nbsp;
+    function _modifyTimes(uint256 _startTime, uint256 _endTime) internal {
+        /*solium-disable-next-line security/no-block-members*/
+        require((_endTime &gt; _startTime) &amp;&amp; (_startTime &gt; now), "Invalid times");
+        startTime = _startTime;
+        endTime = _endTime;
+        emit SetTimes(_startTime, _endTime);
+    }
+&nbsp;
+    function _modifyAddresses(address payable _wallet, address _treasuryWallet, address[] memory _usdTokens) internal {
+        require(_wallet != address(0), "Invalid wallet");
+        wallet = _wallet;
+        emit SetTreasuryWallet(treasuryWallet, _treasuryWallet);
+        treasuryWallet = _treasuryWallet;
+        _modifyUSDTokens(_usdTokens);
+    }
+&nbsp;
+    function _modifyUSDTokens(address[] memory _usdTokens) internal {
+        uint256 i;
+        for(i = 0; i &lt; usdTokens.length; i++) {
+            usdTokenEnabled[usdTokens[i]] = false;
+        }
+        usdTokens = _usdTokens;
+        for(i = 0; i &lt; _usdTokens.length; i++) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>require(_usdTokens[i] != address(0) &amp;&amp; _usdTokens[i] != address(polyToken), "Invalid USD token");
+            usdTokenEnabled[_usdTokens[i]] = true;
+        }
+        emit SetAddresses(wallet, _usdTokens);
+    }
+&nbsp;
+    ////////////////////
+    // STO Management //
+    ////////////////////
+&nbsp;
+    /**
+     * @notice Finalizes the STO and mint remaining tokens to treasury address
+     * @notice Treasury wallet address must be whitelisted to successfully finalize
+     */
+    function finalize() external {
+        _onlySecurityTokenOwner();
+        require(!isFinalized, "STO is finalized");
+        isFinalized = true;
+        uint256 tempReturned;
+        uint256 tempSold;
+        uint256 remainingTokens;
+        for (uint256 i = 0; i &lt; tiers.length; i++) {
+            remainingTokens = tiers[i].tokenTotal.sub(tiers[i].mintedTotal);
+            tempReturned = tempReturned.add(remainingTokens);
+            tempSold = tempSold.add(tiers[i].mintedTotal);
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (remainingTokens &gt; 0) {
+                tiers[i].mintedTotal = tiers[i].tokenTotal;
+            }
+        }
+        address walletAddress = (treasuryWallet == address(0) ? IDataStore(getDataStore()).getAddress(TREASURY) : treasuryWallet);
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(walletAddress != address(0), "Invalid address");
+        uint256 granularity = ISecurityToken(securityToken).granularity();
+        tempReturned = tempReturned.div(granularity);
+        tempReturned = tempReturned.mul(granularity);
+        ISecurityToken(securityToken).issue(walletAddress, tempReturned, "");
+        emit ReserveTokenMint(msg.sender, walletAddress, tempReturned, currentTier);
+        finalAmountReturned = tempReturned;
+        totalTokensSold = tempSold;
+    }
+&nbsp;
+    /**
+     * @notice Modifies the list of overrides for non-accredited limits in USD
+     * @param _investors Array of investor addresses to modify
+     * @param _nonAccreditedLimit Array of uints specifying non-accredited limits
+     */
+    function changeNonAccreditedLimit(address[] calldata _investors, uint256[] calldata _nonAccreditedLimit) external {
+        _onlySecurityTokenOwner();
+        //nonAccreditedLimitUSDOverride
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_investors.length == _nonAccreditedLimit.length, "Length mismatch");
+        for (uint256 i = 0; i &lt; _investors.length; i++) {
+            nonAccreditedLimitUSDOverride[_investors[i]] = _nonAccreditedLimit[i];
+            emit SetNonAccreditedLimit(_investors[i], _nonAccreditedLimit[i]);
+        }
+    }
+&nbsp;
+    /**
+     * @notice Returns investor accredited &amp; non-accredited override informatiomn
+     * @return investors list of all configured investors
+     * @return accredited whether investor is accredited
+     * @return override any USD overrides for non-accredited limits for the investor
+     */
+    function getAccreditedData() external view returns (address[] memory investors, bool[] memory accredited, uint256[] memory overrides) {
+        IDataStore dataStore = getDataStore();
+        investors = dataStore.getAddressArray(INVESTORSKEY);
+        accredited = new bool[](investors.length);
+        overrides = new uint256[](investors.length);
+        for (uint256 i = 0; i &lt; investors.length; i++) {
+            accredited[i] = _getIsAccredited(investors[i], dataStore);
+            overrides[i] = nonAccreditedLimitUSDOverride[investors[i]];
+        }
+    }
+&nbsp;
+    /**
+     * @notice Function to set allowBeneficialInvestments (allow beneficiary to be different to funder)
+     * @param _allowBeneficialInvestments Boolean to allow or disallow beneficial investments
+     */
+    function changeAllowBeneficialInvestments(bool _allowBeneficialInvestments) external {
+        _onlySecurityTokenOwner();
+        require(_allowBeneficialInvestments != allowBeneficialInvestments);
+        allowBeneficialInvestments = _allowBeneficialInvestments;
+        emit SetAllowBeneficialInvestments(allowBeneficialInvestments);
+    }
+&nbsp;
+    //////////////////////////
+    // Investment Functions //
+    //////////////////////////
+&nbsp;
+    /**
+    * @notice fallback function - assumes ETH being invested
+    */
+    function() external payable {
+        buyWithETHRateLimited(msg.sender, 0);
+    }
+&nbsp;
+    // Buy functions without rate restriction
+    function buyWithETH(address _beneficiary) external payable returns (uint256, uint256, uint256) {
+        return buyWithETHRateLimited(_beneficiary, 0);
+    }
+&nbsp;
+    function buyWithPOLY(address _beneficiary, uint256 _investedPOLY) external returns (uint256, uint256, uint256) {
+        return buyWithPOLYRateLimited(_beneficiary, _investedPOLY, 0);
+    }
+&nbsp;
+    function buyWithUSD(address _beneficiary, uint256 _investedSC, IERC20 _usdToken) external returns (uint256, uint256, uint256) {
+        return buyWithUSDRateLimited(_beneficiary, _investedSC, 0, _usdToken);
+    }
+&nbsp;
+    /**
+      * @notice Purchase tokens using ETH
+      * @param _beneficiary Address where security tokens will be sent
+      * @param _minTokens Minumum number of tokens to buy or else revert
+      */
+    function buyWithETHRateLimited(address _beneficiary, uint256 _minTokens) public payable validETH returns (uint256, uint256, uint256) {
+        (uint256 rate, uint256 spentUSD, uint256 spentValue, uint256 initialMinted) = _getSpentvalues(_beneficiary,  msg.value, FundRaiseType.ETH, _minTokens);
+        // Modify storage
+        investorInvested[_beneficiary][uint8(FundRaiseType.ETH)] = investorInvested[_beneficiary][uint8(FundRaiseType.ETH)].add(spentValue);
+        fundsRaised[uint8(FundRaiseType.ETH)] = fundsRaised[uint8(FundRaiseType.ETH)].add(spentValue);
+        // Forward ETH to issuer wallet
+        wallet.transfer(spentValue);
+        // Refund excess ETH to investor wallet
+        msg.sender.transfer(msg.value.sub(spentValue));
+        emit FundsReceived(msg.sender, _beneficiary, spentUSD, FundRaiseType.ETH, msg.value, spentValue, rate);
+        return (spentUSD, spentValue, getTokensMinted().sub(initialMinted));
+    }
+&nbsp;
+    /**
+      * @notice Purchase tokens using POLY
+      * @param _beneficiary Address where security tokens will be sent
+      * @param _investedPOLY Amount of POLY invested
+      * @param _minTokens Minumum number of tokens to buy or else revert
+      */
+    function buyWithPOLYRateLimited(address _beneficiary, uint256 _investedPOLY, uint256 _minTokens) public validPOLY returns (uint256, uint256, uint256) {
+        return _buyWithTokens(_beneficiary, _investedPOLY, FundRaiseType.POLY, _minTokens, polyToken);
+    }
+&nbsp;
+    /**
+      * @notice Purchase tokens using Stable coins
+      * @param _beneficiary Address where security tokens will be sent
+      * @param _investedSC Amount of Stable coins invested
+      * @param _minTokens Minumum number of tokens to buy or else revert
+      * @param _usdToken Address of USD stable coin to buy tokens with
+      */
+    function buyWithUSDRateLimited(address _beneficiary, uint256 _investedSC, uint256 _minTokens, IERC20 _usdToken)
+        public validSC(address(_usdToken)) returns (uint256, uint256, uint256)
+    {
+        return _buyWithTokens(_beneficiary, _investedSC, FundRaiseType.SC, _minTokens, _usdToken);
+    }
+&nbsp;
+    function _buyWithTokens(address _beneficiary, uint256 _tokenAmount, FundRaiseType _fundRaiseType, uint256 _minTokens, IERC20 _token) internal returns (uint256, uint256, uint256) {
+        (uint256 rate, uint256 spentUSD, uint256 spentValue, uint256 initialMinted) = _getSpentvalues(_beneficiary, _tokenAmount, _fundRaiseType, _minTokens);
+        // Modify storage
+        investorInvested[_beneficiary][uint8(_fundRaiseType)] = investorInvested[_beneficiary][uint8(_fundRaiseType)].add(spentValue);
+        fundsRaised[uint8(_fundRaiseType)] = fundsRaised[uint8(_fundRaiseType)].add(spentValue);
+        if(address(_token) != address(polyToken))
+            stableCoinsRaised[address(_token)] = stableCoinsRaised[address(_token)].add(spentValue);
+        // Forward coins to issuer wallet
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_token.transferFrom(msg.sender, wallet, spentValue), "Transfer failed");
+        emit FundsReceived(msg.sender, _beneficiary, spentUSD, _fundRaiseType, _tokenAmount, spentValue, rate);
+        return (spentUSD, spentValue, getTokensMinted().sub(initialMinted));
+    }
+&nbsp;
+    function _getSpentvalues(address _beneficiary, uint256 _amount, FundRaiseType _fundRaiseType, uint256 _minTokens) internal returns(uint256 rate, uint256 spentUSD, uint256 spentValue, uint256 initialMinted) {
+        initialMinted = getTokensMinted();
+        rate = getRate(_fundRaiseType);
+        (spentUSD, spentValue) = _buyTokens(_beneficiary, _amount, rate, _fundRaiseType);
+        require(getTokensMinted().sub(initialMinted) &gt;= _minTokens, "Insufficient minted");
+    }
+&nbsp;
+&nbsp;
+    /**
+      * @notice Low level token purchase
+      * @param _beneficiary Address where security tokens will be sent
+      * @param _investmentValue Amount of POLY, ETH or Stable coins invested
+      * @param _fundRaiseType Fund raise type (POLY, ETH, SC)
+      */
+    function _buyTokens(
+        address _beneficiary,
+        uint256 _investmentValue,
+        uint256 _rate,
+        FundRaiseType _fundRaiseType
+    )
+        internal
+        whenNotPaused
+        returns(uint256 spentUSD, uint256 spentValue)
+    {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!allowBeneficialInvestments) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>require(_beneficiary == msg.sender, "Beneficiary != funder");
+        }
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_canBuy(_beneficiary), "Unauthorized");
+&nbsp;
+        uint256 originalUSD = DecimalMath.mul(_rate, _investmentValue);
+        uint256 allowedUSD = _buyTokensChecks(_beneficiary, _investmentValue, originalUSD);
+&nbsp;
+        for (uint256 i = currentTier; i &lt; tiers.length; i++) {
+            bool gotoNextTier;
+            uint256 tempSpentUSD;
+            // Update current tier if needed
+            if (currentTier != i)
+                currentTier = i;
+            // If there are tokens remaining, process investment
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (tiers[i].mintedTotal &lt; tiers[i].tokenTotal) {
+                (tempSpentUSD, gotoNextTier) = _calculateTier(_beneficiary, i, allowedUSD.sub(spentUSD), _fundRaiseType);
+                spentUSD = spentUSD.add(tempSpentUSD);
+                // If all funds have been spent, exit the loop
+                if (!gotoNextTier)
+                    break;
+            }
+        }
+&nbsp;
+        // Modify storage
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (spentUSD &gt; 0) {
+            if (investorInvestedUSD[_beneficiary] == 0)
+                investorCount = investorCount + 1;
+            investorInvestedUSD[_beneficiary] = investorInvestedUSD[_beneficiary].add(spentUSD);
+            fundsRaisedUSD = fundsRaisedUSD.add(spentUSD);
+        }
+&nbsp;
+        spentValue = DecimalMath.div(spentUSD, _rate);
+    }
+&nbsp;
+    function _buyTokensChecks(
+        address _beneficiary,
+        uint256 _investmentValue,
+        uint256 investedUSD
+    )
+        internal
+        view
+        returns(uint256 netInvestedUSD)
+    {
+        require(isOpen(), "STO not open");
+        require(_investmentValue &gt; 0, "No funds sent");
+&nbsp;
+        // Check for minimum investment
+        require(investedUSD.add(investorInvestedUSD[_beneficiary]) &gt;= minimumInvestmentUSD, "Investment &lt; min");
+        netInvestedUSD = investedUSD;
+        // Check for non-accredited cap
+        if (!_isAccredited(_beneficiary)) {
+            uint256 investorLimitUSD = (nonAccreditedLimitUSDOverride[_beneficiary] == 0) ? nonAccreditedLimitUSD : nonAccreditedLimitUSDOverride[_beneficiary];
+            require(investorInvestedUSD[_beneficiary] &lt; investorLimitUSD, "Over Non-accredited investor limit");
+            if (investedUSD.add(investorInvestedUSD[_beneficiary]) &gt; investorLimitUSD)
+                netInvestedUSD = investorLimitUSD.sub(investorInvestedUSD[_beneficiary]);
+        }
+    }
+&nbsp;
+    function _calculateTier(
+        address _beneficiary,
+        uint256 _tier,
+        uint256 _investedUSD,
+        FundRaiseType _fundRaiseType
+    )
+        internal
+        returns(uint256 spentUSD, bool gotoNextTier)
+     {
+        // First purchase any discounted tokens if POLY investment
+        uint256 tierSpentUSD;
+        uint256 tierPurchasedTokens;
+        uint256 investedUSD = _investedUSD;
+        Tier storage tierData = tiers[_tier];
+        // Check whether there are any remaining discounted tokens
+        if ((_fundRaiseType == FundRaiseType.POLY) &amp;&amp; (tierData.tokensDiscountPoly &gt; tierData.mintedDiscountPoly)) {
+            uint256 discountRemaining = tierData.tokensDiscountPoly.sub(tierData.mintedDiscountPoly);
+            uint256 totalRemaining = tierData.tokenTotal.sub(tierData.mintedTotal);
+            if (totalRemaining &lt; discountRemaining)
+                (spentUSD, tierPurchasedTokens, gotoNextTier) = _purchaseTier(_beneficiary, tierData.rateDiscountPoly, totalRemaining, investedUSD, _tier);
+            else
+                (spentUSD, tierPurchasedTokens, gotoNextTier) = _purchaseTier(_beneficiary, tierData.rateDiscountPoly, discountRemaining, investedUSD, _tier);
+            investedUSD = investedUSD.sub(spentUSD);
+            tierData.mintedDiscountPoly = tierData.mintedDiscountPoly.add(tierPurchasedTokens);
+            tierData.minted[uint8(_fundRaiseType)] = tierData.minted[uint8(_fundRaiseType)].add(tierPurchasedTokens);
+            tierData.mintedTotal = tierData.mintedTotal.add(tierPurchasedTokens);
+        }
+        // Now, if there is any remaining USD to be invested, purchase at non-discounted rate
+        if (investedUSD &gt; 0 &amp;&amp;
+            tierData.tokenTotal.sub(tierData.mintedTotal) &gt; 0 &amp;&amp;
+            (_fundRaiseType != FundRaiseType.POLY || tierData.tokensDiscountPoly &lt;= tierData.mintedDiscountPoly)
+        ) {
+            (tierSpentUSD, tierPurchasedTokens, gotoNextTier) = _purchaseTier(_beneficiary, tierData.rate, tierData.tokenTotal.sub(tierData.mintedTotal), investedUSD, _tier);
+            spentUSD = spentUSD.add(tierSpentUSD);
+            tierData.minted[uint8(_fundRaiseType)] = tierData.minted[uint8(_fundRaiseType)].add(tierPurchasedTokens);
+            tierData.mintedTotal = tierData.mintedTotal.add(tierPurchasedTokens);
+        }
+    }
+&nbsp;
+    function _purchaseTier(
+        address _beneficiary,
+        uint256 _tierPrice,
+        uint256 _tierRemaining,
+        uint256 _investedUSD,
+        uint256 _tier
+    )
+        internal
+        returns(uint256 spentUSD, uint256 purchasedTokens, bool gotoNextTier)
+    {
+        purchasedTokens = DecimalMath.div(_investedUSD, _tierPrice);
+        uint256 granularity = ISecurityToken(securityToken).granularity();
+&nbsp;
+        if (purchasedTokens &gt; _tierRemaining) {
+            purchasedTokens = _tierRemaining.div(granularity);
+            gotoNextTier = true;
+        } else {
+            purchasedTokens = purchasedTokens.div(granularity);
+        }
+&nbsp;
+        purchasedTokens = purchasedTokens.mul(granularity);
+        spentUSD = DecimalMath.mul(purchasedTokens, _tierPrice);
+&nbsp;
+        // In case of rounding issues, ensure that spentUSD is never more than investedUSD
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (spentUSD &gt; _investedUSD) {
+<span class="cstat-no" title="statement not covered" >            spentUSD = _investedUSD</span>;
+        }
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (purchasedTokens &gt; 0) {
+            ISecurityToken(securityToken).issue(_beneficiary, purchasedTokens, "");
+            emit TokenPurchase(msg.sender, _beneficiary, purchasedTokens, spentUSD, _tierPrice, _tier);
+        }
+    }
+&nbsp;
+    function _isAccredited(address _investor) internal view returns(bool) {
+        IDataStore dataStore = getDataStore();
+        return _getIsAccredited(_investor, dataStore);
+    }
+&nbsp;
+    function _getIsAccredited(address _investor, IDataStore dataStore) internal view returns(bool) {
+        uint256 flags = dataStore.getUint256(_getKey(INVESTORFLAGS, _investor));
+        uint256 flag = flags &amp; uint256(1); //isAccredited is flag 0 so we don't need to bit shift flags.
+        return flag &gt; 0 ? true : false;
+    }
+&nbsp;
+    /////////////
+    // Getters //
+    /////////////
+&nbsp;
+    /**
+     * @notice This function returns whether or not the STO is in fundraising mode (open)
+     * @return bool Whether the STO is accepting investments
+     */
+    function isOpen() public view returns(bool) {
+        /*solium-disable-next-line security/no-block-members*/
+        if (isFinalized || now &lt; startTime || now &gt;= endTime || capReached())
+            return false;
+        return true;
+    }
+&nbsp;
+    /**
+     * @notice Checks whether the cap has been reached.
+     * @return bool Whether the cap was reached
+     */
+    function capReached() public view returns (bool) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (isFinalized) {
+<span class="cstat-no" title="statement not covered" >            return (finalAmountReturned == 0);</span>
+        }
+        return (tiers[tiers.length - 1].mintedTotal == tiers[tiers.length - 1].tokenTotal);
+    }
+&nbsp;
+    /**
+     * @dev returns current conversion rate of funds
+     * @param _fundRaiseType Fund raise type to get rate of
+     */
+    function getRate(FundRaiseType _fundRaiseType) public returns (uint256) {
+        if (_fundRaiseType == FundRaiseType.ETH) {
+            return IOracle(_getOracle(bytes32("ETH"), bytes32("USD"))).getPrice();
+        } else if (_fundRaiseType == FundRaiseType.POLY) {
+            return IOracle(_getOracle(bytes32("POLY"), bytes32("USD"))).getPrice();
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (_fundRaiseType == FundRaiseType.SC) {
+            return 10**18;
+        }
+    }
+&nbsp;
+    /**
+     * @notice This function converts from ETH or POLY to USD
+     * @param _fundRaiseType Currency key
+     * @param _amount Value to convert to USD
+     * @return uint256 Value in USD
+     */
+    function convertToUSD(FundRaiseType _fundRaiseType, uint256 _amount) public returns(uint256) {
+        return DecimalMath.mul(_amount, getRate(_fundRaiseType));
+    }
+&nbsp;
+    /**
+     * @notice This function converts from USD to ETH or POLY
+     * @param _fundRaiseType Currency key
+     * @param _amount Value to convert from USD
+     * @return uint256 Value in ETH or POLY
+     */
+    function convertFromUSD(FundRaiseType _fundRaiseType, uint256 _amount) public returns(uint256) {
+        return DecimalMath.div(_amount, getRate(_fundRaiseType));
+    }
+&nbsp;
+    /**
+     * @notice Return the total no. of tokens sold
+     * @return uint256 Total number of tokens sold
+     */
+    function getTokensSold() public view returns (uint256) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (isFinalized)
+<span class="cstat-no" title="statement not covered" >            return totalTokensSold;</span>
+        return getTokensMinted();
+    }
+&nbsp;
+    /**
+     * @notice Return the total no. of tokens minted
+     * @return uint256 Total number of tokens minted
+     */
+    function getTokensMinted() public view returns (uint256 tokensMinted) {
+        for (uint256 i = 0; i &lt; tiers.length; i++) {
+            tokensMinted = tokensMinted.add(tiers[i].mintedTotal);
+        }
+    }
+&nbsp;
+    /**
+     * @notice Return the total no. of tokens sold for the given fund raise type
+     * param _fundRaiseType The fund raising currency (e.g. ETH, POLY, SC) to calculate sold tokens for
+     * @return uint256 Total number of tokens sold for ETH
+     */
+    function getTokensSoldFor(FundRaiseType _fundRaiseType) external view returns (uint256 tokensSold) {
+        for (uint256 i = 0; i &lt; tiers.length; i++) {
+            tokensSold = tokensSold.add(tiers[i].minted[uint8(_fundRaiseType)]);
+        }
+    }
+&nbsp;
+    /**
+     * @notice Return array of minted tokens in each fund raise type for given tier
+     * param _tier The tier to return minted tokens for
+     * @return uint256[] array of minted tokens in each fund raise type
+     */
+    function getTokensMintedByTier(uint256 _tier) external view returns(uint256[] memory) {
+        uint256[] memory tokensMinted = new uint256[](3);
+        tokensMinted[0] = tiers[_tier].minted[uint8(FundRaiseType.ETH)];
+        tokensMinted[1] = tiers[_tier].minted[uint8(FundRaiseType.POLY)];
+        tokensMinted[2] = tiers[_tier].minted[uint8(FundRaiseType.SC)];
+        return tokensMinted;
+    }
+&nbsp;
+    /**
+     * @notice Return the total no. of tokens sold in a given tier
+     * param _tier The tier to calculate sold tokens for
+     * @return uint256 Total number of tokens sold in the tier
+     */
+    function getTokensSoldByTier(uint256 _tier) external view returns (uint256) {
+        uint256 tokensSold;
+        tokensSold = tokensSold.add(tiers[_tier].minted[uint8(FundRaiseType.ETH)]);
+        tokensSold = tokensSold.add(tiers[_tier].minted[uint8(FundRaiseType.POLY)]);
+        tokensSold = tokensSold.add(tiers[_tier].minted[uint8(FundRaiseType.SC)]);
+        return tokensSold;
+    }
+&nbsp;
+    /**
+     * @notice Return the total no. of tiers
+     * @return uint256 Total number of tiers
+     */
+    function getNumberOfTiers() external view returns (uint256) {
+        return tiers.length;
+    }
+&nbsp;
+    /**
+     * @notice Return the usd tokens accepted by the STO
+     * @return address[] usd tokens
+     */
+    function getUsdTokens() external view returns (address[] memory) {
+        return usdTokens;
+    }
+&nbsp;
+    /**
+     * @notice Return the permissions flag that are associated with STO
+     */
+    function getPermissions() public view returns(bytes32[] memory allPermissions) {
+        return allPermissions;
+    }
+&nbsp;
+    /**
+     * @notice Return the STO details
+     * @return Unixtimestamp at which offering gets start.
+     * @return Unixtimestamp at which offering ends.
+     * @return Currently active tier
+     * @return Array of Number of tokens this STO will be allowed to sell at different tiers.
+     * @return Array Rate at which tokens are sold at different tiers
+     * @return Amount of funds raised
+     * @return Number of individual investors this STO have.
+     * @return Amount of tokens sold.
+     * @return Array of bools to show if funding is allowed in ETH, POLY, SC respectively
+     */
+    function getSTODetails() external view returns(uint256, uint256, uint256, uint256[] memory, uint256[] memory, uint256, uint256, uint256, bool[] memory) {
+        uint256[] memory cap = new uint256[](tiers.length);
+        uint256[] memory rate = new uint256[](tiers.length);
+        for(uint256 i = 0; i &lt; tiers.length; i++) {
+            cap[i] = tiers[i].tokenTotal;
+            rate[i] = tiers[i].rate;
+        }
+        bool[] memory _fundRaiseTypes = new bool[](3);
+        _fundRaiseTypes[0] = fundRaiseTypes[uint8(FundRaiseType.ETH)];
+        _fundRaiseTypes[1] = fundRaiseTypes[uint8(FundRaiseType.POLY)];
+        _fundRaiseTypes[2] = fundRaiseTypes[uint8(FundRaiseType.SC)];
+        return (
+            startTime,
+            endTime,
+            currentTier,
+            cap,
+            rate,
+            fundsRaisedUSD,
+            investorCount,
+            getTokensSold(),
+            _fundRaiseTypes
+        );
+    }
+&nbsp;
+    /**
+     * @notice This function returns the signature of configure function
+     * @return bytes4 Configure function signature
+     */
+    function getInitFunction() public pure returns(bytes4) {
+        return this.configure.selector;
+    }
+&nbsp;
+    function _getOracle(bytes32 _currency, bytes32 _denominatedCurrency) internal view returns(address) {
+        return IPolymathRegistry(ISecurityToken(securityToken).polymathRegistry()).getAddress(oracleKeys[_currency][_denominatedCurrency]);
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 24 2019 01:30:03 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

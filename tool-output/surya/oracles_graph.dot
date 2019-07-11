@@ -1,0 +1,178 @@
+digraph G {
+  graph [ ratio = "auto", page = "100", compound =true, bgcolor = "#2e3e56" ];
+  node [ style = "filled", fillcolor = "#edad56", color = "#edad56", penwidth =3 ];
+  edge [ color = "#fcfcfc", penwidth =2, fontname = "helvetica Neue Ultra Light" ];
+subgraph "clusterMakerDAOOracle" {
+  graph [ label = "MakerDAOOracle", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "MakerDAOOracle.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "MakerDAOOracle.changeMedianier" [ label = "changeMedianier", color = "#FF9797", fillcolor = "#FF9797" ];
+  "MakerDAOOracle.getCurrencyAddress" [ label = "getCurrencyAddress", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "MakerDAOOracle.getCurrencySymbol" [ label = "getCurrencySymbol", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "MakerDAOOracle.getCurrencyDenominated" [ label = "getCurrencyDenominated", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "MakerDAOOracle.getPrice" [ label = "getPrice", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "MakerDAOOracle.setManualPrice" [ label = "setManualPrice", color = "#FF9797", fillcolor = "#FF9797" ];
+  "MakerDAOOracle.setManualOverride" [ label = "setManualOverride", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterPolyOracle" {
+  graph [ label = "PolyOracle", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PolyOracle.isAdminOrOwner" [ label = "isAdminOrOwner", color = "#1bc6a6", shape =doubleoctagon ];
+  "PolyOracle.<Constructor>" [ label = "<Constructor>", color = "brown", fillcolor = "#FF9797" ];
+  "PolyOracle.__callback" [ label = "__callback", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.schedulePriceUpdatesFixed" [ label = "schedulePriceUpdatesFixed", color = "brown", fillcolor = "#FF9797" ];
+  "PolyOracle.schedulePriceUpdatesRolling" [ label = "schedulePriceUpdatesRolling", color = "brown", fillcolor = "#FF9797" ];
+  "PolyOracle.setPOLYUSD" [ label = "setPOLYUSD", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setFreezeOracle" [ label = "setFreezeOracle", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setOracleURL" [ label = "setOracleURL", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setOracleQueryType" [ label = "setOracleQueryType", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setSanityBounds" [ label = "setSanityBounds", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setGasPrice" [ label = "setGasPrice", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.getPriceAndTime" [ label = "getPriceAndTime", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setGasLimit" [ label = "setGasLimit", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setStaleTime" [ label = "setStaleTime", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setIgnoreRequestIds" [ label = "setIgnoreRequestIds", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setAdmin" [ label = "setAdmin", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.setOraclizeTimeTolerance" [ label = "setOraclizeTimeTolerance", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PolyOracle.getCurrencyAddress" [ label = "getCurrencyAddress", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PolyOracle.getCurrencySymbol" [ label = "getCurrencySymbol", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PolyOracle.getCurrencyDenominated" [ label = "getCurrencyDenominated", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PolyOracle.getPrice" [ label = "getPrice", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PolyOracle.drainContract" [ label = "drainContract", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PolyOracle.owner" [ label = "owner" ];
+  "PolyOracle.oraclize_setCustomGasPrice" [ label = "oraclize_setCustomGasPrice" ];
+  "PolyOracle.oraclize_cbAddress" [ label = "oraclize_cbAddress" ];
+  "PolyOracle.parseInt" [ label = "parseInt" ];
+  "PolyOracle.oraclize_getPrice" [ label = "oraclize_getPrice" ];
+  "PolyOracle.oraclize_query" [ label = "oraclize_query" ];
+}
+
+subgraph "clusterStableOracle" {
+  graph [ label = "StableOracle", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "StableOracle.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "StableOracle.changeOracle" [ label = "changeOracle", color = "#FF9797", fillcolor = "#FF9797" ];
+  "StableOracle.changeEvictPercentage" [ label = "changeEvictPercentage", color = "#FF9797", fillcolor = "#FF9797" ];
+  "StableOracle.getCurrencyAddress" [ label = "getCurrencyAddress", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "StableOracle.getCurrencySymbol" [ label = "getCurrencySymbol", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "StableOracle.getCurrencyDenominated" [ label = "getCurrencyDenominated", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "StableOracle.getPrice" [ label = "getPrice", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "StableOracle._change" [ label = "_change" ];
+  "StableOracle.setManualPrice" [ label = "setManualPrice", color = "#FF9797", fillcolor = "#FF9797" ];
+  "StableOracle.setManualOverride" [ label = "setManualOverride", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterIMedianizer" {
+  graph [ label = "IMedianizer", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IMedianizer.peek" [ label = "peek" ];
+}
+
+subgraph "clusterPOLYUSD" {
+  graph [ label = "POLYUSD", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "POLYUSD.mul" [ label = "mul" ];
+  "POLYUSD.add" [ label = "add" ];
+  "POLYUSD.sub" [ label = "sub" ];
+}
+
+subgraph "clusterIOracle" {
+  graph [ label = "IOracle", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IOracle.getCurrencyAddress" [ label = "getCurrencyAddress" ];
+  "IOracle.getCurrencySymbol" [ label = "getCurrencySymbol" ];
+  "IOracle.getCurrencyDenominated" [ label = "getCurrencyDenominated" ];
+  "IOracle.getPrice" [ label = "getPrice" ];
+}
+
+subgraph "cluster_newPrice" {
+  graph [ label = "_newPrice", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_newPrice.sub" [ label = "sub" ];
+}
+
+subgraph "cluster_oldPrice" {
+  graph [ label = "_oldPrice", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_oldPrice.sub" [ label = "sub" ];
+}
+
+subgraph "clusterdiff" {
+  graph [ label = "diff", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "diff.mul" [ label = "mul" ];
+}
+
+  "MakerDAOOracle.getPrice";
+  "IMedianizer.peek";
+  "PolyOracle.isAdminOrOwner";
+  "PolyOracle.owner";
+  "PolyOracle.null";
+  "PolyOracle.oraclize_setCustomGasPrice";
+  "PolyOracle.__callback";
+  "PolyOracle.oraclize_cbAddress";
+  "PolyOracle.parseInt";
+  "POLYUSD.mul";
+  "POLYUSD.add";
+  "POLYUSD.sub";
+  "PolyOracle.schedulePriceUpdatesFixed";
+  "PolyOracle.oraclize_getPrice";
+  "PolyOracle.oraclize_query";
+  "PolyOracle.schedulePriceUpdatesRolling";
+  "PolyOracle.setGasPrice";
+  "StableOracle.getCurrencyAddress";
+  "IOracle.getCurrencyAddress";
+  "StableOracle.getCurrencySymbol";
+  "IOracle.getCurrencySymbol";
+  "StableOracle.getCurrencyDenominated";
+  "IOracle.getCurrencyDenominated";
+  "StableOracle.getPrice";
+  "IOracle.getPrice";
+  "StableOracle._change";
+  "_newPrice.sub";
+  "_oldPrice.sub";
+  "diff.mul";
+  "MakerDAOOracle.getPrice" -> "IMedianizer.peek" [ color = "white" ];
+  "PolyOracle.isAdminOrOwner" -> "PolyOracle.owner" [ color = "#1bc6a6" ];
+  "PolyOracle.null" -> "PolyOracle.oraclize_setCustomGasPrice" [ color = "#1bc6a6" ];
+  "PolyOracle.__callback" -> "PolyOracle.oraclize_cbAddress" [ color = "#1bc6a6" ];
+  "PolyOracle.__callback" -> "PolyOracle.parseInt" [ color = "#1bc6a6" ];
+  "PolyOracle.__callback" -> "POLYUSD.mul" [ color = "white" ];
+  "PolyOracle.__callback" -> "POLYUSD.add" [ color = "white" ];
+  "PolyOracle.__callback" -> "POLYUSD.sub" [ color = "white" ];
+  "PolyOracle.schedulePriceUpdatesFixed" -> "PolyOracle.oraclize_getPrice" [ color = "#1bc6a6" ];
+  "PolyOracle.schedulePriceUpdatesFixed" -> "PolyOracle.oraclize_query" [ color = "#1bc6a6" ];
+  "PolyOracle.schedulePriceUpdatesFixed" -> "PolyOracle.oraclize_getPrice" [ color = "#1bc6a6" ];
+  "PolyOracle.schedulePriceUpdatesFixed" -> "PolyOracle.oraclize_query" [ color = "#1bc6a6" ];
+  "PolyOracle.schedulePriceUpdatesRolling" -> "PolyOracle.oraclize_getPrice" [ color = "#1bc6a6" ];
+  "PolyOracle.schedulePriceUpdatesRolling" -> "PolyOracle.oraclize_query" [ color = "#1bc6a6" ];
+  "PolyOracle.setGasPrice" -> "PolyOracle.oraclize_setCustomGasPrice" [ color = "#1bc6a6" ];
+  "StableOracle.getCurrencyAddress" -> "IOracle.getCurrencyAddress" [ color = "white" ];
+  "StableOracle.getCurrencySymbol" -> "IOracle.getCurrencySymbol" [ color = "white" ];
+  "StableOracle.getCurrencyDenominated" -> "IOracle.getCurrencyDenominated" [ color = "white" ];
+  "StableOracle.getPrice" -> "IOracle.getPrice" [ color = "white" ];
+  "StableOracle.getPrice" -> "StableOracle._change" [ color = "#1bc6a6" ];
+  "StableOracle._change" -> "_newPrice.sub" [ color = "white" ];
+  "StableOracle._change" -> "_oldPrice.sub" [ color = "white" ];
+  "StableOracle._change" -> "diff.mul" [ color = "white" ];
+
+
+rankdir=LR
+node [shape=plaintext]
+subgraph cluster_01 {
+label = "Legend";
+key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td align="right" port="i1">Internal Call</td></tr>
+  <tr><td align="right" port="i2">External Call</td></tr>
+  <tr><td align="right" port="i3">Defined Contract</td></tr>
+  <tr><td align="right" port="i4">Undefined Contract</td></tr>
+  </table>>]
+key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i3" bgcolor="#445773">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i4">
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
+      <tr>
+       <td></td>
+      </tr>
+     </table>
+  </td></tr>
+  </table>>]
+key:i1:e -> key2:i1:w [color="#1bc6a6"]
+key:i2:e -> key2:i2:w [color="white"]
+}
+}
+

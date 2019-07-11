@@ -1,0 +1,394 @@
+diff --git a/contracts/modules/TransferManager/LTM/LockUpTransferManager.sol b/contracts/modules/Experimental/TransferManager/LockUpTransferManager.sol
+index d8a0d785..6ec87071 100644
+--- a/contracts/modules/TransferManager/LTM/LockUpTransferManager.sol
++++ b/contracts/modules/Experimental/TransferManager/LockUpTransferManager.sol
+@@ -1,13 +1,36 @@
+-pragma solidity 0.5.8;
++pragma solidity ^0.4.24;
+ 
+-import "../../TransferManager/TransferManager.sol";
+-import "./LockUpTransferManagerStorage.sol";
++import "../../TransferManager/ITransferManager.sol";
+ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+-import "openzeppelin-solidity/contracts/math/Math.sol";
+ 
+-contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager {
++contract LockUpTransferManager is ITransferManager {
++
+     using SafeMath for uint256;
+ 
++    // permission definition
++    bytes32 public constant ADMIN = "ADMIN";
++
++    // a per-user lockup
++    struct LockUp {
++        uint256 lockupAmount; // Amount to be locked
++        uint256 startTime; // when this lockup starts (seconds)
++        uint256 lockUpPeriodSeconds; // total period of lockup (seconds)
++        uint256 releaseFrequencySeconds; // how often to release a tranche of tokens (seconds)
++    }
++
++    // mapping use to store the lockup details corresponds to lockup name
++    mapping (bytes32 => LockUp) public lockups;
++    // mapping user addresses to an array of lockups name for that user
++    mapping (address => bytes32[]) internal userToLockups;
++    // get list of the addresses for a particular lockupName
++    mapping (bytes32 => address[]) internal lockupToUsers;
++    // holds lockup index corresponds to user address. userAddress => lockupName => lockupIndex
++    mapping (address => mapping(bytes32 => uint256)) internal userToLockupIndex;
++    // holds the user address index corresponds to the lockup. lockupName => userAddress => userIndex
++    mapping (bytes32 => mapping(address => uint256)) internal lockupToUserIndex;
++
++    bytes32[] lockupArray;
++
+     event AddLockUpToUser(
+         address indexed _userAddress,
+         bytes32 indexed _lockupName
+@@ -51,49 +74,15 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @param _from Address of the sender
+      * @param _amount The amount of tokens to transfer
+      */
+-    function executeTransfer(address  _from, address /*_to*/, uint256  _amount, bytes calldata /*_data*/) external returns(Result) {
+-        (Result success,) = _verifyTransfer(_from, _amount);
+-        return success;
+-    }
+-
+-    /** @notice Used to verify the transfer transaction and prevent locked up tokens from being transferred
+-     * @param _from Address of the sender
+-     * @param _amount The amount of tokens to transfer
+-     */
+-    function verifyTransfer(
+-        address  _from,
+-        address /* _to*/,
+-        uint256  _amount,
+-        bytes memory /* _data */
+-    )
+-        public
+-        view
+-        returns(Result, bytes32)
+-    {
+-        return _verifyTransfer(_from, _amount);
+-    }
+-
+-    /** @notice Used to verify the transfer transaction and prevent locked up tokens from being transferred
+-     * @param _from Address of the sender
+-     * @param _amount The amount of tokens to transfer
+-     */
+-    function _verifyTransfer(
+-        address  _from,
+-        uint256  _amount
+-    )
+-        internal
+-        view
+-        returns(Result, bytes32)
+-    {
++    function verifyTransfer(address  _from, address /* _to*/, uint256  _amount, bytes /* _data */, bool /*_isTransfer*/) public returns(Result) {
+         // only attempt to verify the transfer if the token is unpaused, this isn't a mint txn, and there exists a lockup for this user
+         if (!paused && _from != address(0) && userToLockups[_from].length != 0) {
+             // check if this transfer is valid
+             return _checkIfValidTransfer(_from, _amount);
+         }
+-        return (Result.NA, bytes32(0));
++        return Result.NA;
+     }
+ 
+-
+     /**
+      * @notice Use to add the new lockup type
+      * @param _lockupAmount Amount of tokens that need to lock.
+@@ -130,11 +119,11 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @param _lockupNames Array of names of the lockup
+      */
+     function addNewLockUpTypeMulti(
+-        uint256[] memory _lockupAmounts,
+-        uint256[] memory _startTimes,
+-        uint256[] memory _lockUpPeriodsSeconds,
+-        uint256[] memory _releaseFrequenciesSeconds,
+-        bytes32[] memory _lockupNames
++        uint256[] _lockupAmounts,
++        uint256[] _startTimes,
++        uint256[] _lockUpPeriodsSeconds,
++        uint256[] _releaseFrequenciesSeconds,
++        bytes32[] _lockupNames
+     )
+         public
+         withPerm(ADMIN)
+@@ -178,13 +167,13 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @param _lockupNames Array of names of the lockups
+      */
+     function addLockUpByNameMulti(
+-        address[] memory _userAddresses,
+-        bytes32[] memory _lockupNames
++        address[] _userAddresses,
++        bytes32[] _lockupNames
+     )
+         public
+         withPerm(ADMIN)
+     {
+-        _checkLengthOfArray(_userAddresses.length, _lockupNames.length);
++        require(_userAddresses.length == _lockupNames.length, "Length mismatch");
+         for (uint256 i = 0; i < _userAddresses.length; i++) {
+             _addLockUpByName(_userAddresses[i], _lockupNames[i]);
+         }
+@@ -210,7 +199,7 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+         external
+         withPerm(ADMIN)
+     {
+-        _addNewLockUpToUser(
++       _addNewLockUpToUser(
+             _userAddress,
+             _lockupAmount,
+             _startTime,
+@@ -230,12 +219,12 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @param _lockupNames Array of names of the lockup
+      */
+     function addNewLockUpToUserMulti(
+-        address[] memory _userAddresses,
+-        uint256[] memory _lockupAmounts,
+-        uint256[] memory _startTimes,
+-        uint256[] memory _lockUpPeriodsSeconds,
+-        uint256[] memory _releaseFrequenciesSeconds,
+-        bytes32[] memory _lockupNames
++        address[] _userAddresses,
++        uint256[] _lockupAmounts,
++        uint256[] _startTimes,
++        uint256[] _lockUpPeriodsSeconds,
++        uint256[] _releaseFrequenciesSeconds,
++        bytes32[] _lockupNames
+     )
+         public
+         withPerm(ADMIN)
+@@ -274,7 +263,7 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @notice Used to remove the multiple lockup type
+      * @param _lockupNames Array of the lockup names.
+      */
+-    function removeLockupTypeMulti(bytes32[] memory _lockupNames) public withPerm(ADMIN) {
++    function removeLockupTypeMulti(bytes32[] _lockupNames) external withPerm(ADMIN) {
+         for (uint256 i = 0; i < _lockupNames.length; i++) {
+             _removeLockupType(_lockupNames[i]);
+         }
+@@ -285,8 +274,8 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @param _userAddresses Array of addresses of the user whose tokens are locked up
+      * @param _lockupNames Array of the names of the lockup that needs to be removed.
+      */
+-    function removeLockUpFromUserMulti(address[] memory _userAddresses, bytes32[] memory _lockupNames) public withPerm(ADMIN) {
+-        _checkLengthOfArray(_userAddresses.length, _lockupNames.length);
++    function removeLockUpFromUserMulti(address[] _userAddresses, bytes32[] _lockupNames) external withPerm(ADMIN) {
++        require(_userAddresses.length == _lockupNames.length, "Length mismatch");
+         for (uint256 i = 0; i < _userAddresses.length; i++) {
+             _removeLockUpFromUser(_userAddresses[i], _lockupNames[i]);
+         }
+@@ -328,11 +317,11 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @param _lockupNames Array of the lockup names that needs to be modified
+      */
+     function modifyLockUpTypeMulti(
+-        uint256[] memory _lockupAmounts,
+-        uint256[] memory _startTimes,
+-        uint256[] memory _lockUpPeriodsSeconds,
+-        uint256[] memory _releaseFrequenciesSeconds,
+-        bytes32[] memory _lockupNames
++        uint256[] _lockupAmounts,
++        uint256[] _startTimes,
++        uint256[] _lockUpPeriodsSeconds,
++        uint256[] _releaseFrequenciesSeconds,
++        bytes32[] _lockupNames
+     )
+         public
+         withPerm(ADMIN)
+@@ -408,8 +397,8 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+     * @param _lockupName Name of the lockup type
+     * @return address List of users associated with the given lockup name
+     */
+-    function getListOfAddresses(bytes32 _lockupName) external view returns(address[] memory) {
+-        _validLockUpCheck(_lockupName);
++    function getListOfAddresses(bytes32 _lockupName) external view returns(address[]) {
++        require(lockups[_lockupName].startTime != 0, "Blacklist type doesn't exist");
+         return lockupToUsers[_lockupName];
+     }
+ 
+@@ -417,7 +406,7 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @notice get the list of lockups names
+      * @return bytes32 Array of lockups names
+      */
+-    function getAllLockups() external view returns(bytes32[] memory) {
++    function getAllLockups() external view returns(bytes32[]) {
+         return lockupArray;
+     }
+ 
+@@ -426,7 +415,7 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @param _user Address of the user
+      * @return bytes32 List of lockups names associated with the given address
+      */
+-    function getLockupsNamesToUser(address _user) external view returns(bytes32[] memory) {
++    function getLockupsNamesToUser(address _user) external view returns(bytes32[]) {
+         return userToLockups[_user];
+     }
+ 
+@@ -436,7 +425,7 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @return uint256 Total locked tokens amount
+      */
+     function getLockedTokenToUser(address _userAddress) public view returns(uint256) {
+-        _checkZeroAddress(_userAddress);
++        require(_userAddress != address(0), "Invalid address");
+         bytes32[] memory userLockupNames = userToLockups[_userAddress];
+         uint256 totalRemainingLockedAmount = 0;
+         for (uint256 i = 0; i < userLockupNames.length; i++) {
+@@ -453,14 +442,14 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+      * @param _userAddress Address of the user whose lock ups should be checked
+      * @param _amount Amount of tokens that need to transact
+      */
+-    function _checkIfValidTransfer(address _userAddress, uint256 _amount) internal view returns (Result, bytes32) {
++    function _checkIfValidTransfer(address _userAddress, uint256 _amount) internal view returns (Result) {
+         uint256 totalRemainingLockedAmount = getLockedTokenToUser(_userAddress);
+         // Present balance of the user
+-        uint256 currentBalance = securityToken.balanceOf(_userAddress);
++        uint256 currentBalance = ISecurityToken(securityToken).balanceOf(_userAddress);
+         if ((currentBalance.sub(_amount)) >= totalRemainingLockedAmount) {
+-            return (Result.NA, bytes32(0));
++            return Result.NA;
+         }
+-        return (Result.INVALID, bytes32(uint256(address(this)) << 96));
++        return Result.INVALID;
+     }
+ 
+     /**
+@@ -485,7 +474,7 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+     }
+ 
+     function _removeLockupType(bytes32 _lockupName) internal {
+-        _validLockUpCheck(_lockupName);
++        require(lockups[_lockupName].startTime != 0, "Lockup type doesn’t exist");
+         require(lockupToUsers[_lockupName].length == 0, "Users attached to lockup");
+         // delete lockup type
+         delete(lockups[_lockupName]);
+@@ -515,8 +504,9 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+         if (_startTime == 0) {
+             _startTime = now;
+         }
+-        _checkValidStartTime(_startTime);
+-        _validLockUpCheck(_lockupName);
++        require(_startTime >= now, "Invalid start time");
++        require(lockups[_lockupName].lockupAmount != 0, "Doesn't exist");
++
+         _checkLockUpParams(
+             _lockupAmount,
+             _lockUpPeriodSeconds,
+@@ -540,8 +530,8 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+     }
+ 
+     function _removeLockUpFromUser(address _userAddress, bytes32 _lockupName) internal {
+-        _checkZeroAddress(_userAddress);
+-        _checkValidName(_lockupName);
++        require(_userAddress != address(0), "Invalid address");
++        require(_lockupName != bytes32(0), "Invalid lockup name");
+         require(
+             userToLockups[_userAddress][userToLockupIndex[_userAddress][_lockupName]] == _lockupName,
+             "User not in lockup"
+@@ -580,7 +570,7 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+     )
+         internal
+     {
+-        _checkZeroAddress(_userAddress);
++        require(_userAddress != address(0), "Invalid address");
+         _addNewLockUpType(
+             _lockupAmount,
+             _startTime,
+@@ -597,8 +587,8 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+     )
+         internal
+     {
+-        _checkZeroAddress(_userAddress);
+-        _checkValidStartTime(lockups[_lockupName].startTime);
++        require(_userAddress != address(0), "Invalid address");
++        require(lockups[_lockupName].startTime >= now, "Lockup expired");
+         if(userToLockups[_userAddress].length > 0) {
+             require(
+                 userToLockups[_userAddress][userToLockupIndex[_userAddress][_lockupName]] != _lockupName,
+@@ -621,13 +611,13 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+     )
+         internal
+     {
+-        /*solium-disable-next-line security/no-block-members*/
+-        if (_startTime == 0) {
+-            _startTime = now;
+-        }
+-        _checkValidName(_lockupName);
++      /*solium-disable-next-line security/no-block-members*/
++      if (_startTime == 0) {
++          _startTime = now;
++      }
++        require(_lockupName != bytes32(0), "Invalid name");
+         require(lockups[_lockupName].lockupAmount == 0, "Already exist");
+-        _checkValidStartTime(_startTime);
++        require(_startTime >= now, "Invalid start time");
+         _checkLockUpParams(_lockupAmount, _lockUpPeriodSeconds, _releaseFrequencySeconds);
+         lockups[_lockupName] = LockUp(_lockupAmount, _startTime, _lockUpPeriodSeconds, _releaseFrequencySeconds);
+         lockupArray.push(_lockupName);
+@@ -649,52 +639,12 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+         internal
+         pure
+     {
+-        require(
+-            _lockUpPeriodSeconds != 0 &&
+-            _releaseFrequencySeconds != 0 &&
+-            _lockupAmount != 0,
+-            "Cannot be zero"
+-        );
+-    }
+-
+-    function _checkValidStartTime(uint256 _startTime) internal view {
+-        require(_startTime >= now, "Invalid startTime or expired");
+-    }
+-
+-    function _checkZeroAddress(address _userAddress) internal pure {
+-        require(_userAddress != address(0), "Invalid address");
+-    }
+-
+-    function _validLockUpCheck(bytes32 _lockupName) internal view {
+-        require(lockups[_lockupName].startTime != 0, "Doesn't exist");
+-    }
+-
+-    function _checkValidName(bytes32 _name) internal pure {
+-        require(_name != bytes32(0), "Invalid name");
+-    }
+-
+-    function _checkLengthOfArray(uint256 _length1, uint256 _length2) internal pure {
+-        require(_length1 == _length2, "Length mismatch");
+-    }
+-
+-    /**
+-     * @notice return the amount of tokens for a given user as per the partition
+-     * @param _partition Identifier
+-     * @param _tokenHolder Whom token amount need to query
+-     * @param _additionalBalance It is the `_value` that transfer during transfer/transferFrom function call
+-     */
+-    function getTokensByPartition(bytes32 _partition, address _tokenHolder, uint256 _additionalBalance) external view returns(uint256){
+-        uint256 currentBalance = (msg.sender == address(securityToken)) ? (securityToken.balanceOf(_tokenHolder)).add(_additionalBalance) : securityToken.balanceOf(_tokenHolder);
+-        uint256 lockedBalance = Math.min(getLockedTokenToUser(_tokenHolder), currentBalance);
+-        if (paused) {
+-            return (_partition == UNLOCKED ? currentBalance : uint256(0));
+-        } else {
+-            if (_partition == LOCKED)
+-                return lockedBalance;
+-            else if (_partition == UNLOCKED)
+-                return currentBalance.sub(lockedBalance);
+-        }
+-        return uint256(0);
++      require(
++          _lockUpPeriodSeconds != 0 &&
++          _releaseFrequencySeconds != 0 &&
++          _lockupAmount != 0,
++          "Cannot be zero"
++      );
+     }
+ 
+     /**
+@@ -707,7 +657,7 @@ contract LockUpTransferManager is LockUpTransferManagerStorage, TransferManager
+     /**
+      * @notice Returns the permissions flag that are associated with Percentage transfer Manager
+      */
+-    function getPermissions() public view returns(bytes32[] memory) {
++    function getPermissions() public view returns(bytes32[]) {
+         bytes32[] memory allPermissions = new bytes32[](1);
+         allPermissions[0] = ADMIN;
+         return allPermissions;

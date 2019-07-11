@@ -1,0 +1,290 @@
+diff --git a/contracts/modules/TransferManager/BTM/BlacklistTransferManager.sol b/contracts/modules/Experimental/TransferManager/BlacklistTransferManager.sol
+index d121ad78..fe8c3ae9 100644
+--- a/contracts/modules/TransferManager/BTM/BlacklistTransferManager.sol
++++ b/contracts/modules/Experimental/TransferManager/BlacklistTransferManager.sol
+@@ -1,15 +1,39 @@
+-pragma solidity 0.5.8;
++pragma solidity ^0.4.24;
+ 
+-import "../TransferManager.sol";
+-import "./BlacklistTransferManagerStorage.sol";
++import "../../TransferManager/ITransferManager.sol";
+ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+ 
+ /**
+  * @title Transfer Manager module to automate blacklist and restrict transfers
+  */
+-contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferManager {
++contract BlacklistTransferManager is ITransferManager {
+     using SafeMath for uint256;
+ 
++    bytes32 public constant ADMIN = "ADMIN";
++
++    struct BlacklistsDetails {
++        uint256 startTime;
++        uint256 endTime;
++        uint256 repeatPeriodTime;
++    }
++
++    //hold the different blacklist details corresponds to its name
++    mapping(bytes32 => BlacklistsDetails) public blacklists;
++
++    //hold the different name of blacklist corresponds to a investor
++    mapping(address => bytes32[]) investorToBlacklist;
++
++    //get list of the addresses for a particular blacklist
++    mapping(bytes32 => address[]) blacklistToInvestor;
++
++    //mapping use to store the indexes for different blacklist types for a investor
++    mapping(address => mapping(bytes32 => uint256)) investorToIndex;
++
++    //mapping use to store the indexes for different investor for a blacklist type
++    mapping(bytes32 => mapping(address => uint256)) blacklistToIndex;
++
++    bytes32[] allBlacklists;
++
+     // Emit when new blacklist type is added
+     event AddBlacklistType(
+         uint256 _startTime,
+@@ -50,10 +74,9 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+      * @param _polyAddress Address of the polytoken
+      */
+     constructor (address _securityToken, address _polyAddress)
+-        public
+-        Module(_securityToken, _polyAddress)
++    public
++    Module(_securityToken, _polyAddress)
+     {
+-
+     }
+ 
+     /**
+@@ -71,33 +94,7 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     * if the current time is between the timeframe define for the
+     * blacklist type associated with the _from address
+     */
+-    function executeTransfer(address _from, address /*_to*/, uint256 /*_amount*/, bytes  calldata /*_data*/) external returns(Result) {
+-        (Result success, ) = _verifyTransfer(_from);
+-        return success;
+-    }
+-
+-
+-    /**
+-    * @notice Used to verify the transfer transaction (View)
+-    * @param _from Address of the sender
+-    * @dev Restrict the blacklist address to transfer tokens
+-    * if the current time is between the timeframe define for the
+-    * blacklist type associated with the _from address
+-    */
+-    function verifyTransfer(
+-        address _from,
+-        address /* _to */,
+-        uint256 /* _amount */,
+-        bytes  memory/* _data */
+-    )
+-        public
+-        view
+-        returns(Result, bytes32)
+-    {
+-        return _verifyTransfer(_from);
+-    }
+-
+-    function _verifyTransfer(address _from) internal view returns(Result, bytes32) {
++    function verifyTransfer(address _from, address /* _to */, uint256 /* _amount */, bytes /* _data */, bool /* _isTransfer */) public returns(Result) {
+         if (!paused) {
+             if (investorToBlacklist[_from].length != 0) {
+                 for (uint256 i = 0; i < investorToBlacklist[_from].length; i++) {
+@@ -114,19 +111,18 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+                             uint256 repeater = (now.sub(startTimeTemp)).div(repeatPeriodTimeTemp);
+                             /*solium-disable-next-line security/no-block-members*/
+                             if (endTimeTemp.add(repeatPeriodTimeTemp.mul(repeater)) >= now) {
+-                                return (Result.INVALID, bytes32(uint256(address(this)) << 96));
++                                return Result.INVALID;
+                             }
+                         } else if(endTimeTemp >= now) {
+-                            return (Result.INVALID, bytes32(uint256(address(this)) << 96));
++                            return Result.INVALID;
+                         }
+                     }
+                 }
+             }
+         }
+-        return (Result.NA, bytes32(0));
++        return Result.NA;
+     }
+ 
+-
+     /**
+     * @notice Used to add the blacklist type
+     * @param _startTime Start date of the blacklist type
+@@ -157,15 +153,7 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     * @param _blacklistNames Name of the blacklist type
+     * @param _repeatPeriodTimes Repeat period of the blacklist type
+     */
+-    function addBlacklistTypeMulti(
+-        uint256[] memory _startTimes,
+-        uint256[] memory _endTimes,
+-        bytes32[] memory _blacklistNames,
+-        uint256[] memory _repeatPeriodTimes
+-    )
+-        public
+-        withPerm(ADMIN)
+-    {
++    function addBlacklistTypeMulti(uint256[] _startTimes, uint256[] _endTimes, bytes32[] _blacklistNames, uint256[] _repeatPeriodTimes) public withPerm(ADMIN) {
+         require (_startTimes.length == _endTimes.length && _endTimes.length == _blacklistNames.length && _blacklistNames.length == _repeatPeriodTimes.length, "Input array's length mismatch");
+         for (uint256 i = 0; i < _startTimes.length; i++) {
+             _addBlacklistType(_startTimes[i], _endTimes[i], _blacklistNames[i], _repeatPeriodTimes[i]);
+@@ -196,15 +184,7 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     * @param _blacklistNames Name of the blacklist type
+     * @param _repeatPeriodTimes Repeat period of the blacklist type
+     */
+-    function modifyBlacklistTypeMulti(
+-        uint256[] memory _startTimes,
+-        uint256[] memory _endTimes,
+-        bytes32[] memory _blacklistNames,
+-        uint256[] memory _repeatPeriodTimes
+-    )
+-        public
+-        withPerm(ADMIN)
+-    {
++    function modifyBlacklistTypeMulti(uint256[] _startTimes, uint256[] _endTimes, bytes32[] _blacklistNames, uint256[] _repeatPeriodTimes) public withPerm(ADMIN) {
+         require (_startTimes.length == _endTimes.length && _endTimes.length == _blacklistNames.length && _blacklistNames.length == _repeatPeriodTimes.length, "Input array's length mismatch");
+         for (uint256 i = 0; i < _startTimes.length; i++) {
+             _modifyBlacklistType(_startTimes[i], _endTimes[i], _blacklistNames[i], _repeatPeriodTimes[i]);
+@@ -212,9 +192,9 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     }
+ 
+     /**
+-    * @notice Used to delete the blacklist type
+-    * @param _blacklistName Name of the blacklist type
+-    */
++     * @notice Used to delete the blacklist type
++     * @param _blacklistName Name of the blacklist type
++     */
+     function deleteBlacklistType(bytes32 _blacklistName) public withPerm(ADMIN) {
+         _deleteBlacklistType(_blacklistName);
+     }
+@@ -242,7 +222,7 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     * @notice Used to delete the multiple blacklist type
+     * @param _blacklistNames Name of the blacklist type
+     */
+-    function deleteBlacklistTypeMulti(bytes32[] memory _blacklistNames) public withPerm(ADMIN) {
++    function deleteBlacklistTypeMulti(bytes32[] _blacklistNames) external withPerm(ADMIN) {
+         for(uint256 i = 0; i < _blacklistNames.length; i++) {
+             _deleteBlacklistType(_blacklistNames[i]);
+         }
+@@ -277,8 +257,8 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     * @param _investors Address of the investor
+     * @param _blacklistName Name of the blacklist
+     */
+-    function addInvestorToBlacklistMulti(address[] memory _investors, bytes32 _blacklistName) public withPerm(ADMIN) {
+-        for(uint256 i = 0; i < _investors.length; i++) {
++    function addInvestorToBlacklistMulti(address[] _investors, bytes32 _blacklistName) public withPerm(ADMIN) {
++        for (uint256 i = 0; i < _investors.length; i++) {
+             _addInvestorToBlacklist(_investors[i], _blacklistName);
+         }
+     }
+@@ -288,7 +268,7 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     * @param _investors Address of the investor
+     * @param _blacklistNames Name of the blacklist
+     */
+-    function addMultiInvestorToBlacklistMulti(address[] memory _investors, bytes32[] memory _blacklistNames) public withPerm(ADMIN) {
++    function addMultiInvestorToBlacklistMulti(address[] _investors, bytes32[] _blacklistNames) public withPerm(ADMIN) {
+         require (_investors.length == _blacklistNames.length, "Input array's length mismatch");
+         for(uint256 i = 0; i < _investors.length; i++) {
+             _addInvestorToBlacklist(_investors[i], _blacklistNames[i]);
+@@ -303,13 +283,7 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     * @param _repeatPeriodTime Repeat period of the blacklist type
+     * @param _investor Address of the investor
+     */
+-    function addInvestorToNewBlacklist(
+-        uint256 _startTime,
+-        uint256 _endTime,
+-        bytes32 _blacklistName,
+-        uint256 _repeatPeriodTime,
+-        address _investor
+-    ) public withPerm(ADMIN) {
++    function addInvestorToNewBlacklist(uint256 _startTime, uint256 _endTime, bytes32 _blacklistName, uint256 _repeatPeriodTime, address _investor) external withPerm(ADMIN){
+         _addBlacklistType(_startTime, _endTime, _blacklistName, _repeatPeriodTime);
+         _addInvestorToBlacklist(_investor, _blacklistName);
+     }
+@@ -376,22 +350,21 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+         }
+     }
+ 
+-     /**
++    /**
+     * @notice Used to delete the multiple investor from all the associated blacklist types
+     * @param _investor Address of the investor
+     */
+-    function deleteInvestorFromAllBlacklistMulti(address[] memory _investor) public withPerm(ADMIN) {
++    function deleteInvestorFromAllBlacklistMulti(address[] _investor) external withPerm(ADMIN) {
+         for(uint256 i = 0; i < _investor.length; i++) {
+             _deleteInvestorFromAllBlacklist(_investor[i]);
+         }
+     }
+-
+-     /**
++    /**
+     * @notice Used to delete the multiple investor from the blacklist
+     * @param _investors address of the investor
+     * @param _blacklistNames name of the blacklist
+     */
+-    function deleteMultiInvestorsFromBlacklistMulti(address[] memory _investors, bytes32[] memory _blacklistNames) public withPerm(ADMIN) {
++    function deleteMultiInvestorsFromBlacklistMulti(address[] _investors, bytes32[] _blacklistNames) public withPerm(ADMIN) {
+         require (_investors.length == _blacklistNames.length, "Input array's length mismatch");
+         for(uint256 i = 0; i < _investors.length; i++) {
+             _deleteInvestorFromBlacklist(_investors[i], _blacklistNames[i]);
+@@ -412,7 +385,7 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     * @param _blacklistName Name of the blacklist type
+     * @return address List of investors associated with the blacklist
+     */
+-    function getListOfAddresses(bytes32 _blacklistName) external view returns(address[] memory) {
++    function getListOfAddresses(bytes32 _blacklistName) external view returns(address[]) {
+         require(blacklists[_blacklistName].endTime != 0, "Blacklist type doesn't exist");
+         return blacklistToInvestor[_blacklistName];
+     }
+@@ -422,7 +395,7 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+     * @param _user Address of the user
+     * @return bytes32 List of blacklist names associated with the given address
+     */
+-    function getBlacklistNamesToUser(address _user) external view returns(bytes32[] memory) {
++    function getBlacklistNamesToUser(address _user) external view returns(bytes32[]) {
+         return investorToBlacklist[_user];
+     }
+ 
+@@ -430,32 +403,14 @@ contract BlacklistTransferManager is BlacklistTransferManagerStorage, TransferMa
+      * @notice get the list of blacklist names
+      * @return bytes32 Array of blacklist names
+      */
+-    function getAllBlacklists() external view returns(bytes32[] memory) {
++    function getAllBlacklists() external view returns(bytes32[]) {
+         return allBlacklists;
+     }
+ 
+-    /**
+-     * @notice return the amount of tokens for a given user as per the partition
+-     * @param _partition Identifier
+-     * @param _tokenHolder Whom token amount need to query
+-     * @param _additionalBalance It is the `_value` that transfer during transfer/transferFrom function call
+-     */
+-    function getTokensByPartition(bytes32 _partition, address _tokenHolder, uint256 _additionalBalance) external view returns(uint256) {
+-        uint256 currentBalance = (msg.sender == address(securityToken)) ? (securityToken.balanceOf(_tokenHolder)).add(_additionalBalance) : securityToken.balanceOf(_tokenHolder);
+-        if (paused && _partition == UNLOCKED)
+-            return currentBalance;
+-
+-        (Result success, ) = verifyTransfer(_tokenHolder, address(0), 0, "0x0");
+-        if ((_partition == LOCKED && success == Result.INVALID) || (_partition == UNLOCKED && success != Result.INVALID))
+-            return currentBalance;
+-        else
+-            return 0;
+-    }
+-
+     /**
+     * @notice Return the permissions flag that are associated with blacklist transfer manager
+     */
+-    function getPermissions() public view returns(bytes32[] memory) {
++    function getPermissions() public view returns(bytes32[]) {
+         bytes32[] memory allPermissions = new bytes32[](1);
+         allPermissions[0] = ADMIN;
+         return allPermissions;

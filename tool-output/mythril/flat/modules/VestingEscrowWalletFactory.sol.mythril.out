@@ -1,0 +1,148 @@
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletStorage
+Function name: [schedules(address,uint256), schedules(address,uint256)] (ambiguous)
+PC address: 552
+Estimated Gas Usage: 763 - 1048
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWalletFactory.sol:269
+
+mapping(address => Schedule[]) public schedules
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletStorage
+Function name: [templateNames(uint256), templateNames(uint256)] (ambiguous)
+PC address: 608
+Estimated Gas Usage: 689 - 784
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWalletFactory.sol:284
+
+bytes32[] public templateNames
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletStorage
+Function name: [beneficiaries(uint256), beneficiaries(uint256)] (ambiguous)
+PC address: 641
+Estimated Gas Usage: 711 - 806
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWalletFactory.sol:264
+
+address[] public beneficiaries
+
+--------------------
+
+==== Delegatecall Proxy ====
+SWC ID: 112
+Severity: Low
+Contract: OwnedUpgradeabilityProxy
+Function name: fallback
+PC address: 2172
+Estimated Gas Usage: 714 - 3443
+The contract implements a delegatecall proxy.
+The smart contract forwards the received calldata via delegatecall. Note that callers can execute arbitrary functions in the callee contract and that the callee contract can access the storage of the calling contract. Make sure that the callee contract is audited properly.DELEGATECALL target: 0x0
+--------------------
+In file: modules/VestingEscrowWalletFactory.sol:35
+
+delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletProxy
+Function name: [schedules(address,uint256), schedules(address,uint256)] (ambiguous)
+PC address: 2664
+Estimated Gas Usage: 786 - 1071
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWalletFactory.sol:269
+
+mapping(address => Schedule[]) public schedules
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletProxy
+Function name: [templateNames(uint256), templateNames(uint256)] (ambiguous)
+PC address: 3059
+Estimated Gas Usage: 711 - 806
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWalletFactory.sol:284
+
+bytes32[] public templateNames
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletProxy
+Function name: [beneficiaries(uint256), beneficiaries(uint256)] (ambiguous)
+PC address: 3092
+Estimated Gas Usage: 733 - 828
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWalletFactory.sol:264
+
+address[] public beneficiaries
+
+--------------------
+
+==== Delegatecall Proxy ====
+SWC ID: 112
+Severity: Low
+Contract: VestingEscrowWalletProxy
+Function name: fallback
+PC address: 3602
+Estimated Gas Usage: 747 - 3476
+The contract implements a delegatecall proxy.
+The smart contract forwards the received calldata via delegatecall. Note that callers can execute arbitrary functions in the callee contract and that the callee contract can access the storage of the calling contract. Make sure that the callee contract is audited properly.DELEGATECALL target: Concat(0,
+       Extract(159,
+               0,
+               19_code_224(VestingEscrowWalletProxy)))
+--------------------
+In file: modules/VestingEscrowWalletFactory.sol:35
+
+delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+--------------------
+
+==== Integer Underflow ====
+SWC ID: 101
+Severity: High
+Contract: VestingEscrowWalletFactory
+Function name: [description(), description(), description(), description()] (ambiguous)
+PC address: 8945
+Estimated Gas Usage: 2668 - 4787
+The binary subtraction can underflow.
+The operands of the subtraction operation are not sufficiently constrained. The subtraction could therefore result in an integer underflow. Prevent the underflow by checking inputs or ensure sure that the underflow is caught by an assertion.
+--------------------
+In file: modules/VestingEscrowWalletFactory.sol:885
+
+string public description
+
+--------------------
+
+

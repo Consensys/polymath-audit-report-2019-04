@@ -1,0 +1,84 @@
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: GeneralPermissionManagerStorage
+Function name: [allDelegates(uint256), allDelegates(uint256)] (ambiguous)
+PC address: 474
+Estimated Gas Usage: 645 - 740
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/GeneralPermissionManagerFactory.sol:1280
+
+address[] public allDelegates
+
+--------------------
+
+==== Delegatecall Proxy ====
+SWC ID: 112
+Severity: Low
+Contract: OwnedUpgradeabilityProxy
+Function name: fallback
+PC address: 2172
+Estimated Gas Usage: 714 - 3443
+The contract implements a delegatecall proxy.
+The smart contract forwards the received calldata via delegatecall. Note that callers can execute arbitrary functions in the callee contract and that the callee contract can access the storage of the calling contract. Make sure that the callee contract is audited properly.DELEGATECALL target: 0x0
+--------------------
+In file: modules/GeneralPermissionManagerFactory.sol:853
+
+delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: GeneralPermissionManagerProxy
+Function name: [allDelegates(uint256), allDelegates(uint256)] (ambiguous)
+PC address: 2560
+Estimated Gas Usage: 690 - 785
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/GeneralPermissionManagerFactory.sol:1280
+
+address[] public allDelegates
+
+--------------------
+
+==== Delegatecall Proxy ====
+SWC ID: 112
+Severity: Low
+Contract: GeneralPermissionManagerProxy
+Function name: fallback
+PC address: 3433
+Estimated Gas Usage: 726 - 3455
+The contract implements a delegatecall proxy.
+The smart contract forwards the received calldata via delegatecall. Note that callers can execute arbitrary functions in the callee contract and that the callee contract can access the storage of the calling contract. Make sure that the callee contract is audited properly.DELEGATECALL target: Concat(0,
+       Extract(159,
+               0,
+               7_code_224(GeneralPermissionManagerProxy)))
+--------------------
+In file: modules/GeneralPermissionManagerFactory.sol:853
+
+delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+--------------------
+
+==== Integer Underflow ====
+SWC ID: 101
+Severity: High
+Contract: GeneralPermissionManagerFactory
+Function name: [description(), description(), description(), description()] (ambiguous)
+PC address: 8945
+Estimated Gas Usage: 3199 - 5601
+The binary subtraction can underflow.
+The operands of the subtraction operation are not sufficiently constrained. The subtraction could therefore result in an integer underflow. Prevent the underflow by checking inputs or ensure sure that the underflow is caught by an assertion.
+--------------------
+In file: modules/GeneralPermissionManagerFactory.sol:504
+
+string public description
+
+--------------------
+
+

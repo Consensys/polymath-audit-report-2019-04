@@ -1,0 +1,2177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/modules/TransferManager/GTM/GeneralTransferManager.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">contracts/modules/TransferManager/GTM/</a> GeneralTransferManager.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">99.25% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>132/133</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">88.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>53/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>41/41</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">99.35% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>152/153</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">551×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">551×</span>
+<span class="cline-any cline-yes">551×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">557×</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-yes">278×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">261×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">487×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">487×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">483×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">85×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">164×</span>
+<span class="cline-any cline-yes">164×</span>
+<span class="cline-any cline-yes">164×</span>
+<span class="cline-any cline-yes">149×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">164×</span>
+<span class="cline-any cline-yes">164×</span>
+<span class="cline-any cline-yes">164×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">74×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">711×</span>
+<span class="cline-any cline-yes">643×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">420×</span>
+<span class="cline-any cline-yes">416×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">487×</span>
+<span class="cline-any cline-yes">261×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">487×</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">487×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1548×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1173×</span>
+<span class="cline-any cline-yes">1173×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">177×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">177×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-yes">555×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">483×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity ^0.5.0;
+&nbsp;
+import "../TransferManager.sol";
+import "../../../libraries/Encoder.sol";
+import "../../../libraries/VersionUtils.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "openzeppelin-solidity/contracts/cryptography/ECDSA.sol";
+import "./GeneralTransferManagerStorage.sol";
+&nbsp;
+/**
+ * @title Transfer Manager module for core transfer validation functionality
+ */
+contract GeneralTransferManager is GeneralTransferManagerStorage, TransferManager {
+    using SafeMath for uint256;
+    using ECDSA for bytes32;
+&nbsp;
+    // Emit when Issuance address get changed
+    event ChangeIssuanceAddress(address _issuanceAddress);
+&nbsp;
+    // Emit when investor details get modified related to their whitelisting
+    event ChangeDefaults(uint64 _defaultCanSendAfter, uint64 _defaultCanReceiveAfter);
+&nbsp;
+    // _canSendAfter is the time from which the _investor can send tokens
+    // _canReceiveAfter is the time from which the _investor can receive tokens
+    // if allowAllWhitelistIssuances is TRUE, then _canReceiveAfter is ignored when receiving tokens from the issuance address
+    // if allowAllWhitelistTransfers is TRUE, then _canReceiveAfter and _canSendAfter is ignored when sending or receiving tokens
+    // in any case, any investor sending or receiving tokens, must have a _expiryTime in the future
+    event ModifyKYCData(
+        address indexed _investor,
+        address indexed _addedBy,
+        uint64 _canSendAfter,
+        uint64 _canReceiveAfter,
+        uint64 _expiryTime
+    );
+&nbsp;
+    event ModifyInvestorFlag(
+        address indexed _investor,
+        uint8 indexed _flag,
+        bool _value
+    );
+&nbsp;
+    event ModifyTransferRequirements(
+        TransferType indexed _transferType,
+        bool _fromValidKYC,
+        bool _toValidKYC,
+        bool _fromRestricted,
+        bool _toRestricted
+    );
+&nbsp;
+    /**
+     * @notice Constructor
+     * @param _securityToken Address of the security token
+     */
+    constructor(address _securityToken, address _polyToken)
+    public
+    Module(_securityToken, _polyToken)
+    {
+&nbsp;
+    }
+&nbsp;
+    /**
+     * @notice This function returns the signature of configure function
+     */
+    function getInitFunction() public pure returns(bytes4) {
+        return bytes4(0);
+    }
+&nbsp;
+    /**
+     * @notice Used to change the default times used when canSendAfter / canReceiveAfter are zero
+     * @param _defaultCanSendAfter default for zero canSendAfter
+     * @param _defaultCanReceiveAfter default for zero canReceiveAfter
+     */
+    function changeDefaults(uint64 _defaultCanSendAfter, uint64 _defaultCanReceiveAfter) public withPerm(ADMIN) {
+        /* 0 values are also allowed as they represent that the Issuer
+           does not want a default value for these variables.
+           0 is also the default value of these variables */
+        defaults.canSendAfter = _defaultCanSendAfter;
+        defaults.canReceiveAfter = _defaultCanReceiveAfter;
+        emit ChangeDefaults(_defaultCanSendAfter, _defaultCanReceiveAfter);
+    }
+&nbsp;
+    /**
+     * @notice Used to change the Issuance Address
+     * @param _issuanceAddress new address for the issuance
+     */
+    function changeIssuanceAddress(address _issuanceAddress) public withPerm(ADMIN) {
+        // address(0x0) is also a valid value and in most cases, the address that issues tokens is 0x0.
+        issuanceAddress = _issuanceAddress;
+        emit ChangeIssuanceAddress(_issuanceAddress);
+    }
+&nbsp;
+    /**
+     * @notice Default implementation of verifyTransfer used by SecurityToken
+     * If the transfer request comes from the STO, it only checks that the investor is in the whitelist
+     * If the transfer request comes from a token holder, it checks that:
+     * a) Both are on the whitelist
+     * b) Seller's sale lockup period is over
+     * c) Buyer's purchase lockup is over
+     * @param _from Address of the sender
+     * @param _to Address of the receiver
+    */
+    function executeTransfer(
+        address _from,
+        address _to,
+        uint256 /*_amount*/,
+        bytes calldata _data
+    ) external returns(Result) {
+        if (_data.length &gt; 32) {
+            address target;
+            uint256 nonce;
+            uint256 validFrom;
+            uint256 validTo;
+            bytes memory data;
+            (target, nonce, validFrom, validTo, data) = abi.decode(_data, (address, uint256, uint256, uint256, bytes));
+            if (target == address(this))
+                _processTransferSignature(nonce, validFrom, validTo, data);
+        }
+        (Result success,) = _verifyTransfer(_from, _to);
+        return success;
+    }
+&nbsp;
+    function _processTransferSignature(uint256 _nonce, uint256 _validFrom, uint256 _validTo, bytes memory _data) internal {
+        address[] memory investor;
+        uint256[] memory canSendAfter;
+        uint256[] memory canReceiveAfter;
+        uint256[] memory expiryTime;
+        bytes memory signature;
+        (investor, canSendAfter, canReceiveAfter, expiryTime, signature) =
+            abi.decode(_data, (address[], uint256[], uint256[], uint256[], bytes));
+        _modifyKYCDataSignedMulti(investor, canSendAfter, canReceiveAfter, expiryTime, _validFrom, _validTo, _nonce, signature);
+    }
+&nbsp;
+    /**
+     * @notice Default implementation of verifyTransfer used by SecurityToken
+     * @param _from Address of the sender
+     * @param _to Address of the receiver
+    */
+    function verifyTransfer(
+        address _from,
+        address _to,
+        uint256 /*_amount*/,
+        bytes memory /* _data */
+    )
+        public
+        view
+        returns(Result, bytes32)
+    {
+        return _verifyTransfer(_from, _to);
+    }
+&nbsp;
+    function _verifyTransfer(
+        address _from,
+        address _to
+    )
+        internal
+        view
+        returns(Result, bytes32)
+    {
+        if (!paused) {
+            TransferRequirements memory txReq;
+            uint64 canSendAfter;
+            uint64 fromExpiry;
+            uint64 toExpiry;
+            uint64 canReceiveAfter;
+&nbsp;
+            if (_from == issuanceAddress) {
+                txReq = transferRequirements[uint8(TransferType.ISSUANCE)];
+            } else if (_to == address(0)) {
+                txReq = transferRequirements[uint8(TransferType.REDEMPTION)];
+            } else {
+                txReq = transferRequirements[uint8(TransferType.GENERAL)];
+            }
+&nbsp;
+            (canSendAfter, fromExpiry, canReceiveAfter, toExpiry) = _getValuesForTransfer(_from, _to);
+&nbsp;
+            if ((txReq.fromValidKYC &amp;&amp; !_validExpiry(fromExpiry)) || (txReq.toValidKYC &amp;&amp; !_validExpiry(toExpiry))) {
+                return (Result.NA, bytes32(0));
+            }
+&nbsp;
+            (canSendAfter, canReceiveAfter) = _adjustTimes(canSendAfter, canReceiveAfter);
+&nbsp;
+            if ((txReq.fromRestricted &amp;&amp; !_validLockTime(canSendAfter)) || (txReq.toRestricted &amp;&amp; !_validLockTime(canReceiveAfter))) {
+                return (Result.NA, bytes32(0));
+            }
+&nbsp;
+            return (Result.VALID, getAddressBytes32());
+        }
+        return (Result.NA, bytes32(0));
+    }
+&nbsp;
+    /**
+    * @notice Modifies the successful checks required for a transfer to be deemed valid.
+    * @param _transferType Type of transfer (0 = General, 1 = Issuance, 2 = Redemption)
+    * @param _fromValidKYC Defines if KYC is required for the sender
+    * @param _toValidKYC Defines if KYC is required for the receiver
+    * @param _fromRestricted Defines if transfer time restriction is checked for the sender
+    * @param _toRestricted Defines if transfer time restriction is checked for the receiver
+    */
+    function modifyTransferRequirements(
+        TransferType _transferType,
+        bool _fromValidKYC,
+        bool _toValidKYC,
+        bool _fromRestricted,
+        bool _toRestricted
+    ) public withPerm(ADMIN) {
+        _modifyTransferRequirements(
+            _transferType,
+            _fromValidKYC,
+            _toValidKYC,
+            _fromRestricted,
+            _toRestricted
+        );
+    }
+&nbsp;
+    /**
+    * @notice Modifies the successful checks required for transfers.
+    * @param _transferTypes Types of transfer (0 = General, 1 = Issuance, 2 = Redemption)
+    * @param _fromValidKYC Defines if KYC is required for the sender
+    * @param _toValidKYC Defines if KYC is required for the receiver
+    * @param _fromRestricted Defines if transfer time restriction is checked for the sender
+    * @param _toRestricted Defines if transfer time restriction is checked for the receiver
+    */
+    function modifyTransferRequirementsMulti(
+        TransferType[] memory _transferTypes,
+        bool[] memory _fromValidKYC,
+        bool[] memory _toValidKYC,
+        bool[] memory _fromRestricted,
+        bool[] memory _toRestricted
+    ) public withPerm(ADMIN) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(
+            _transferTypes.length == _fromValidKYC.length &amp;&amp;
+            _fromValidKYC.length == _toValidKYC.length &amp;&amp;
+            _toValidKYC.length == _fromRestricted.length &amp;&amp;
+            _fromRestricted.length == _toRestricted.length,
+            "Mismatched input lengths"
+        );
+&nbsp;
+        for (uint256 i = 0; i &lt;  _transferTypes.length; i++) {
+            _modifyTransferRequirements(
+                _transferTypes[i],
+                _fromValidKYC[i],
+                _toValidKYC[i],
+                _fromRestricted[i],
+                _toRestricted[i]
+            );
+        }
+    }
+&nbsp;
+    function _modifyTransferRequirements(
+        TransferType _transferType,
+        bool _fromValidKYC,
+        bool _toValidKYC,
+        bool _fromRestricted,
+        bool _toRestricted
+    ) internal {
+        transferRequirements[uint8(_transferType)] =
+            TransferRequirements(
+                _fromValidKYC,
+                _toValidKYC,
+                _fromRestricted,
+                _toRestricted
+            );
+&nbsp;
+        emit ModifyTransferRequirements(
+            _transferType,
+            _fromValidKYC,
+            _toValidKYC,
+            _fromRestricted,
+            _toRestricted
+        );
+    }
+&nbsp;
+&nbsp;
+    /**
+    * @notice Add or remove KYC info of an investor.
+    * @param _investor is the address to whitelist
+    * @param _canSendAfter is the moment when the sale lockup period ends and the investor can freely sell or transfer their tokens
+    * @param _canReceiveAfter is the moment when the purchase lockup period ends and the investor can freely purchase or receive tokens from others
+    * @param _expiryTime is the moment till investors KYC will be validated. After that investor need to do re-KYC
+    */
+    function modifyKYCData(
+        address _investor,
+        uint64 _canSendAfter,
+        uint64 _canReceiveAfter,
+        uint64 _expiryTime
+    )
+        public
+        withPerm(ADMIN)
+    {
+        _modifyKYCData(_investor, _canSendAfter, _canReceiveAfter, _expiryTime);
+    }
+&nbsp;
+    function _modifyKYCData(address _investor, uint64 _canSendAfter, uint64 _canReceiveAfter, uint64 _expiryTime) internal {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_investor != address(0), "Invalid investor");
+        IDataStore dataStore = getDataStore();
+        if (!_isExistingInvestor(_investor, dataStore)) {
+           dataStore.insertAddress(INVESTORSKEY, _investor);
+        }
+        uint256 _data = VersionUtils.packKYC(_canSendAfter, _canReceiveAfter, _expiryTime, uint8(1));
+        dataStore.setUint256(_getKey(WHITELIST, _investor), _data);
+        emit ModifyKYCData(_investor, msg.sender, _canSendAfter, _canReceiveAfter, _expiryTime);
+    }
+&nbsp;
+    /**
+    * @notice Add or remove KYC info of an investor.
+    * @param _investors is the address to whitelist
+    * @param _canSendAfter is the moment when the sale lockup period ends and the investor can freely sell his tokens
+    * @param _canReceiveAfter is the moment when the purchase lockup period ends and the investor can freely purchase tokens from others
+    * @param _expiryTime is the moment till investors KYC will be validated. After that investor need to do re-KYC
+    */
+    function modifyKYCDataMulti(
+        address[] memory _investors,
+        uint64[] memory _canSendAfter,
+        uint64[] memory _canReceiveAfter,
+        uint64[] memory _expiryTime
+    )
+        public
+        withPerm(ADMIN)
+    {
+        require(
+            _investors.length == _canSendAfter.length &amp;&amp;
+            _canSendAfter.length == _canReceiveAfter.length &amp;&amp;
+            _canReceiveAfter.length == _expiryTime.length,
+            "Mismatched input lengths"
+        );
+        for (uint256 i = 0; i &lt; _investors.length; i++) {
+            _modifyKYCData(_investors[i], _canSendAfter[i], _canReceiveAfter[i], _expiryTime[i]);
+        }
+    }
+&nbsp;
+    /**
+    * @notice Used to modify investor Flag.
+    * @dev Flags are properties about investors that can be true or false like isAccredited
+    * @param _investor is the address of the investor.
+    * @param _flag index of flag to change. flag is used to know specifics about investor like isAccredited.
+    * @param _value value of the flag. a flag can be true or false.
+    */
+    function modifyInvestorFlag(
+        address _investor,
+        uint8 _flag,
+        bool _value
+    )
+        public
+        withPerm(ADMIN)
+    {
+        _modifyInvestorFlag(_investor, _flag, _value);
+    }
+&nbsp;
+&nbsp;
+    function _modifyInvestorFlag(address _investor, uint8 _flag, bool _value) internal {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_investor != address(0), "Invalid investor");
+        IDataStore dataStore = getDataStore();
+        if (!_isExistingInvestor(_investor, dataStore)) {
+           dataStore.insertAddress(INVESTORSKEY, _investor);
+           //KYC data can not be present if _isExistingInvestor is false and hence we can set packed KYC as uint256(1) to set `added` as true
+           dataStore.setUint256(_getKey(WHITELIST, _investor), uint256(1));
+        }
+        //NB Flags are packed together in a uint256 to save gas. We can have a maximum of 256 flags.
+        uint256 flags = dataStore.getUint256(_getKey(INVESTORFLAGS, _investor));
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (_value)
+            flags = flags | (ONE &lt;&lt; _flag);
+        else
+<span class="cstat-no" title="statement not covered" >            flags = flags &amp; ~(ONE &lt;&lt; _flag)</span>;
+        dataStore.setUint256(_getKey(INVESTORFLAGS, _investor), flags);
+        emit ModifyInvestorFlag(_investor, _flag, _value);
+    }
+&nbsp;
+    /**
+    * @notice Used to modify investor data.
+    * @param _investors List of the addresses to modify data about.
+    * @param _flag index of flag to change. flag is used to know specifics about investor like isAccredited.
+    * @param _value value of the flag. a flag can be true or false.
+    */
+    function modifyInvestorFlagMulti(
+        address[] memory _investors,
+        uint8[] memory _flag,
+        bool[] memory _value
+    )
+        public
+        withPerm(ADMIN)
+    {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(
+            _investors.length == _flag.length &amp;&amp;
+            _flag.length == _value.length,
+            "Mismatched input lengths"
+        );
+        for (uint256 i = 0; i &lt; _investors.length; i++) {
+            _modifyInvestorFlag(_investors[i], _flag[i], _value[i]);
+        }
+    }
+&nbsp;
+    /**
+    * @notice Adds or removes addresses from the whitelist - can be called by anyone with a valid signature
+    * @param _investor is the address to whitelist
+    * @param _canSendAfter is the moment when the sale lockup period ends and the investor can freely sell his tokens
+    * @param _canReceiveAfter is the moment when the purchase lockup period ends and the investor can freely purchase tokens from others
+    * @param _expiryTime is the moment till investors KYC will be validated. After that investor need to do re-KYC
+    * @param _validFrom is the time that this signature is valid from
+    * @param _validTo is the time that this signature is valid until
+    * @param _nonce nonce of signature (avoid replay attack)
+    * @param _signature issuer signature
+    */
+    function modifyKYCDataSigned(
+        address _investor,
+        uint256 _canSendAfter,
+        uint256 _canReceiveAfter,
+        uint256 _expiryTime,
+        uint256 _validFrom,
+        uint256 _validTo,
+        uint256 _nonce,
+        bytes memory _signature
+    )
+        public
+    {
+        require(
+            _modifyKYCDataSigned(_investor, _canSendAfter, _canReceiveAfter, _expiryTime, _validFrom, _validTo, _nonce, _signature),
+            "Invalid signature or data"
+        );
+    }
+&nbsp;
+    function _modifyKYCDataSigned(
+        address _investor,
+        uint256 _canSendAfter,
+        uint256 _canReceiveAfter,
+        uint256 _expiryTime,
+        uint256 _validFrom,
+        uint256 _validTo,
+        uint256 _nonce,
+        bytes memory _signature
+    )
+        internal
+        returns(bool)
+    {
+        /*solium-disable-next-line security/no-block-members*/
+        if(_validFrom &gt; now || _validTo &lt; now || _investor == address(0))
+            return false;
+        bytes32 hash = keccak256(
+            abi.encodePacked(this, _investor, _canSendAfter, _canReceiveAfter, _expiryTime, _validFrom, _validTo, _nonce)
+        );
+        if (_checkSig(hash, _signature, _nonce)) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>require(
+                uint64(_canSendAfter) == _canSendAfter &amp;&amp;
+                uint64(_canReceiveAfter) == _canReceiveAfter &amp;&amp;
+                uint64(_expiryTime) == _expiryTime,
+                "uint64 overflow"
+            );
+            _modifyKYCData(_investor, uint64(_canSendAfter), uint64(_canReceiveAfter), uint64(_expiryTime));
+            return true;
+        }
+        return false;
+    }
+&nbsp;
+    /**
+    * @notice Adds or removes addresses from the whitelist - can be called by anyone with a valid signature
+    * @dev using uint256 for some uint256 variables as web3 wasn;t packing and hashing uint64 arrays properly
+    * @param _investor is the address to whitelist
+    * @param _canSendAfter is the moment when the sale lockup period ends and the investor can freely sell his tokens
+    * @param _canReceiveAfter is the moment when the purchase lockup period ends and the investor can freely purchase tokens from others
+    * @param _expiryTime is the moment till investors KYC will be validated. After that investor need to do re-KYC
+    * @param _validFrom is the time that this signature is valid from
+    * @param _validTo is the time that this signature is valid until
+    * @param _nonce nonce of signature (avoid replay attack)
+    * @param _signature issuer signature
+    */
+    function modifyKYCDataSignedMulti(
+        address[] memory _investor,
+        uint256[] memory _canSendAfter,
+        uint256[] memory _canReceiveAfter,
+        uint256[] memory _expiryTime,
+        uint256 _validFrom,
+        uint256 _validTo,
+        uint256 _nonce,
+        bytes memory _signature
+    )
+        public
+    {
+        require(
+            _modifyKYCDataSignedMulti(_investor, _canSendAfter, _canReceiveAfter, _expiryTime, _validFrom, _validTo, _nonce, _signature),
+            "Invalid signature or data"
+        );
+    }
+&nbsp;
+    function _modifyKYCDataSignedMulti(
+        address[] memory _investor,
+        uint256[] memory _canSendAfter,
+        uint256[] memory _canReceiveAfter,
+        uint256[] memory _expiryTime,
+        uint256 _validFrom,
+        uint256 _validTo,
+        uint256 _nonce,
+        bytes memory _signature
+    )
+        internal
+        returns(bool)
+    {
+        if (_investor.length != _canSendAfter.length ||
+            _canSendAfter.length != _canReceiveAfter.length ||
+            _canReceiveAfter.length != _expiryTime.length
+        ) {
+            return false;
+        }
+&nbsp;
+        if (_validFrom &gt; now || _validTo &lt; now) {
+            return false;
+        }
+&nbsp;
+        bytes32 hash = keccak256(
+            abi.encodePacked(this, _investor, _canSendAfter, _canReceiveAfter, _expiryTime, _validFrom, _validTo, _nonce)
+        );
+&nbsp;
+        if (_checkSig(hash, _signature, _nonce)) {
+            for (uint256 i = 0; i &lt; _investor.length; i++) {
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (uint64(_canSendAfter[i]) == _canSendAfter[i] &amp;&amp;
+                    uint64(_canReceiveAfter[i]) == _canReceiveAfter[i] &amp;&amp;
+                    uint64(_expiryTime[i]) == _expiryTime[i]
+                )
+                    _modifyKYCData(_investor[i], uint64(_canSendAfter[i]), uint64(_canReceiveAfter[i]), uint64(_expiryTime[i]));
+            }
+            return true;
+        }
+        return false;
+    }
+&nbsp;
+    /**
+     * @notice Used to verify the signature
+     */
+    function _checkSig(bytes32 _hash, bytes memory _signature, uint256 _nonce) internal returns(bool) {
+        //Check that the signature is valid
+        //sig should be signing - _investor, _canSendAfter, _canReceiveAfter &amp; _expiryTime and be signed by the issuer address
+        address signer = _hash.toEthSignedMessageHash().recover(_signature);
+        if (nonceMap[signer][_nonce] || !_checkPerm(OPERATOR, signer)) {
+            return false;
+        }
+        nonceMap[signer][_nonce] = true;
+        return true;
+    }
+&nbsp;
+    /**
+     * @notice Internal function used to check whether the KYC of investor is valid
+     * @param _expiryTime Expiry time of the investor
+     */
+    function _validExpiry(uint64 _expiryTime) internal view returns(bool valid) {
+        if (_expiryTime &gt;= uint64(now)) /*solium-disable-line security/no-block-members*/
+            valid = true;
+    }
+&nbsp;
+    /**
+     * @notice Internal function used to check whether the lock time of investor is valid
+     * @param _lockTime Lock time of the investor
+     */
+    function _validLockTime(uint64 _lockTime) internal view returns(bool valid) {
+        if (_lockTime &lt;= uint64(now)) /*solium-disable-line security/no-block-members*/
+            valid = true;
+    }
+&nbsp;
+    /**
+     * @notice Internal function to adjust times using default values
+     */
+    function _adjustTimes(uint64 _canSendAfter, uint64 _canReceiveAfter) internal view returns(uint64, uint64) {
+        if (_canSendAfter == 0) {
+            _canSendAfter = defaults.canSendAfter;
+        }
+        if (_canReceiveAfter == 0) {
+            _canReceiveAfter = defaults.canReceiveAfter;
+        }
+        return (_canSendAfter, _canReceiveAfter);
+    }
+&nbsp;
+    function _getKey(bytes32 _key1, address _key2) internal pure returns(bytes32) {
+        return bytes32(keccak256(abi.encodePacked(_key1, _key2)));
+    }
+&nbsp;
+    function _getKYCValues(address _investor, IDataStore dataStore) internal view returns(
+        uint64 canSendAfter,
+        uint64 canReceiveAfter,
+        uint64 expiryTime,
+        uint8 added
+    )
+    {
+        uint256 data = dataStore.getUint256(_getKey(WHITELIST, _investor));
+        (canSendAfter, canReceiveAfter, expiryTime, added)  = VersionUtils.unpackKYC(data);
+    }
+&nbsp;
+    function _isExistingInvestor(address _investor, IDataStore dataStore) internal view returns(bool) {
+        uint256 data = dataStore.getUint256(_getKey(WHITELIST, _investor));
+        //extracts `added` from packed `_whitelistData`
+        return uint8(data) == 0 ? false : true;
+    }
+&nbsp;
+    function _getValuesForTransfer(address _from, address _to) internal view returns(uint64 canSendAfter, uint64 fromExpiry, uint64 canReceiveAfter, uint64 toExpiry) {
+        IDataStore dataStore = getDataStore();
+        (canSendAfter, , fromExpiry, ) = _getKYCValues(_from, dataStore);
+        (, canReceiveAfter, toExpiry, ) = _getKYCValues(_to, dataStore);
+    }
+&nbsp;
+    /**
+     * @dev Returns list of all investors
+     */
+    function getAllInvestors() public view returns(address[] memory investors) {
+        IDataStore dataStore = getDataStore();
+        investors = dataStore.getAddressArray(INVESTORSKEY);
+    }
+&nbsp;
+    /**
+     * @dev Returns list of investors in a range
+     */
+    function getInvestors(uint256 _fromIndex, uint256 _toIndex) public view returns(address[] memory investors) {
+        IDataStore dataStore = getDataStore();
+        investors = dataStore.getAddressArrayElements(INVESTORSKEY, _fromIndex, _toIndex);
+    }
+&nbsp;
+    function getAllInvestorFlags() public view returns(address[] memory investors, uint256[] memory flags) {
+        investors = getAllInvestors();
+        flags = new uint256[](investors.length);
+        for (uint256 i = 0; i &lt; investors.length; i++) {
+            flags[i] = _getInvestorFlags(investors[i]);
+        }
+    }
+&nbsp;
+    function getInvestorFlag(address _investor, uint8 _flag) public view returns(bool value) {
+        uint256 flag = (_getInvestorFlags(_investor) &gt;&gt; _flag) &amp; ONE;
+        value = flag &gt; 0 ? true : false;
+    }
+&nbsp;
+    function getInvestorFlags(address _investor) public view returns(uint256 flags) {
+        flags = _getInvestorFlags(_investor);
+    }
+&nbsp;
+    function _getInvestorFlags(address _investor) public view returns(uint256 flags) {
+        IDataStore dataStore = getDataStore();
+        flags = dataStore.getUint256(_getKey(INVESTORFLAGS, _investor));
+    }
+&nbsp;
+    /**
+     * @dev Returns list of all investors data
+     */
+    function getAllKYCData() external view returns(
+        address[] memory investors,
+        uint256[] memory canSendAfters,
+        uint256[] memory canReceiveAfters,
+        uint256[] memory expiryTimes
+    ) {
+        investors = getAllInvestors();
+        (canSendAfters, canReceiveAfters, expiryTimes) = _kycData(investors);
+        return (investors, canSendAfters, canReceiveAfters, expiryTimes);
+    }
+&nbsp;
+    /**
+     * @dev Returns list of specified investors data
+     */
+    function getKYCData(address[] calldata _investors) external view returns(
+        uint256[] memory,
+        uint256[] memory,
+        uint256[] memory
+    ) {
+        return _kycData(_investors);
+    }
+&nbsp;
+    function _kycData(address[] memory _investors) internal view returns(
+        uint256[] memory,
+        uint256[] memory,
+        uint256[] memory
+    ) {
+        uint256[] memory canSendAfters = new uint256[](_investors.length);
+        uint256[] memory canReceiveAfters = new uint256[](_investors.length);
+        uint256[] memory expiryTimes = new uint256[](_investors.length);
+        for (uint256 i = 0; i &lt; _investors.length; i++) {
+            (canSendAfters[i], canReceiveAfters[i], expiryTimes[i], ) = _getKYCValues(_investors[i], getDataStore());
+        }
+        return (canSendAfters, canReceiveAfters, expiryTimes);
+    }
+&nbsp;
+    /**
+     * @notice Return the permissions flag that are associated with general trnasfer manager
+     */
+    function getPermissions() public view returns(bytes32[] memory) {
+        bytes32[] memory allPermissions = new bytes32[](1);
+        allPermissions[0] = ADMIN;
+        return allPermissions;
+    }
+&nbsp;
+    /**
+     * @notice return the amount of tokens for a given user as per the partition
+     * @param _partition Identifier
+     * @param _tokenHolder Whom token amount need to query
+     * @param _additionalBalance It is the `_value` that transfer during transfer/transferFrom function call
+     */
+    function getTokensByPartition(bytes32 _partition, address _tokenHolder, uint256 _additionalBalance) external view returns(uint256) {
+        uint256 currentBalance = (msg.sender == securityToken) ? (IERC20(securityToken).balanceOf(_tokenHolder)).add(_additionalBalance) : IERC20(securityToken).balanceOf(_tokenHolder);
+        uint256 canSendAfter;
+        (canSendAfter,,,) = _getKYCValues(_tokenHolder, getDataStore());
+        canSendAfter = (canSendAfter == 0 ? defaults.canSendAfter:  canSendAfter);
+        bool unlockedCheck = paused ? _partition == UNLOCKED : (_partition == UNLOCKED &amp;&amp; now &gt;= canSendAfter);
+        if (((_partition == LOCKED &amp;&amp; now &lt; canSendAfter) &amp;&amp; !paused) || unlockedCheck)
+            return currentBalance;
+        else
+            return 0;
+    }
+&nbsp;
+    function getAddressBytes32() public view returns(bytes32) {
+        return bytes32(uint256(address(this)) &lt;&lt; 96);
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 24 2019 01:30:03 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

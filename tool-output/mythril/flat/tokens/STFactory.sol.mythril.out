@@ -1,0 +1,69 @@
+==== Delegatecall Proxy ====
+SWC ID: 112
+Severity: Low
+Contract: OwnedProxy
+Function name: fallback
+PC address: 973
+Estimated Gas Usage: 648 - 3377
+The contract implements a delegatecall proxy.
+The smart contract forwards the received calldata via delegatecall. Note that callers can execute arbitrary functions in the callee contract and that the callee contract can access the storage of the calling contract. Make sure that the callee contract is audited properly.DELEGATECALL target: 0x0
+--------------------
+In file: tokens/STFactory.sol:35
+
+delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+--------------------
+
+==== Delegatecall Proxy ====
+SWC ID: 112
+Severity: Low
+Contract: DataStoreProxy
+Function name: fallback
+PC address: 1108
+Estimated Gas Usage: 670 - 3399
+The contract implements a delegatecall proxy.
+The smart contract forwards the received calldata via delegatecall. Note that callers can execute arbitrary functions in the callee contract and that the callee contract can access the storage of the calling contract. Make sure that the callee contract is audited properly.DELEGATECALL target: Concat(0,
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy),
+       5_code(DataStoreProxy))
+--------------------
+In file: tokens/STFactory.sol:35
+
+delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+--------------------
+
+==== Delegatecall Proxy ====
+SWC ID: 112
+Severity: Low
+Contract: OwnedUpgradeabilityProxy
+Function name: fallback
+PC address: 2172
+Estimated Gas Usage: 714 - 3443
+The contract implements a delegatecall proxy.
+The smart contract forwards the received calldata via delegatecall. Note that callers can execute arbitrary functions in the callee contract and that the callee contract can access the storage of the calling contract. Make sure that the callee contract is audited properly.DELEGATECALL target: 0x0
+--------------------
+In file: tokens/STFactory.sol:35
+
+delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+--------------------
+
+

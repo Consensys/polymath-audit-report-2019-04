@@ -1,0 +1,68 @@
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: ModuleRegistry
+Function name: reclaimERC20(address)
+PC address: 2154
+Estimated Gas Usage: 4985 - 75339
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 8762
+Offset: 8965
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: ModuleRegistry.sol:1855
+
+function reclaimERC20(address _tokenContract) external onlyOwner {
+        require(_tokenContract != address(0), "0x address is invalid");
+        IERC20 token = IERC20(_tokenContract);
+        uint256 balance = token.balanceOf(address(this));
+        require(token.transfer(owner(), balance), "token transfer failed");
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: ModuleRegistry
+Function name: [updateFromRegistry(), updateFromRegistry()] (ambiguous)
+PC address: 3447
+Estimated Gas Usage: 23241 - 190192
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 20672
+Offset: 20905
+Offset: 21138
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: ModuleRegistry.sol:1883
+
+function updateFromRegistry() external onlyOwner {
+        address _polymathRegistry = getAddressValue(POLYMATHREGISTRY);
+        set(SECURITY_TOKEN_REGISTRY, IPolymathRegistry(_polymathRegistry).getAddress("SecurityTokenRegistry"));
+        set(FEATURE_REGISTRY, IPolymathRegistry(_polymathRegistry).getAddress("FeatureRegistry"));
+        set(POLYTOKEN, IPolymathRegistry(_polymathRegistry).getAddress("PolyToken"));
+    }
+
+--------------------
+
+==== External Call To User-Supplied Address ====
+SWC ID: 107
+Severity: Medium
+Contract: ModuleRegistry
+Function name: reclaimERC20(address)
+PC address: 8965
+Estimated Gas Usage: 4146 - 40314
+A call to a user-supplied address is executed.
+The callee address of an external message call can be set by the caller. Note that the callee can contain arbitrary code and may re-enter any function in this contract. Review the business logic carefully to prevent averse effects on the contract state.
+--------------------
+In file: ModuleRegistry.sol:1859
+
+token.transfer(owner(), balance)
+
+--------------------
+
+

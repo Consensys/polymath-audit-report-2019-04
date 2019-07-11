@@ -1,0 +1,22 @@
+digraph G {
+  graph [ ratio = "auto", page = "40" ];
+  "FeatureRegistry";
+  "IFeatureRegistry";
+  "ReclaimTokens";
+  "ModuleRegistry";
+  "IModuleRegistry";
+  "EternalStorage";
+  "PolymathRegistry";
+  "SecurityTokenRegistry";
+  "Proxy";
+  "STRGetter";
+  "FeatureRegistry" -> "IFeatureRegistry";
+  "FeatureRegistry" -> "ReclaimTokens";
+  "ModuleRegistry" -> "IModuleRegistry";
+  "ModuleRegistry" -> "EternalStorage";
+  "PolymathRegistry" -> "ReclaimTokens";
+  "SecurityTokenRegistry" -> "EternalStorage";
+  "SecurityTokenRegistry" -> "Proxy";
+  "STRGetter" -> "EternalStorage";
+}
+

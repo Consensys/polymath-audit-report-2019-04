@@ -1,0 +1,30 @@
+digraph G {
+  graph [ ratio = "auto", page = "40" ];
+  "VestingEscrowWallet";
+  "VestingEscrowWalletStorage";
+  "Wallet";
+  "VestingEscrowWalletFactory";
+  "UpgradableModuleFactory";
+  "VestingEscrowWalletProxy";
+  "ModuleStorage";
+  "Pausable";
+  "OwnedUpgradeabilityProxy";
+  "Module";
+  "VestingEscrowWallet" -> "VestingEscrowWalletStorage";
+  "VestingEscrowWallet" -> "Wallet";
+  "VestingEscrowWalletFactory" -> "UpgradableModuleFactory";
+  "VestingEscrowWalletProxy" -> "VestingEscrowWalletStorage";
+  "VestingEscrowWalletProxy" -> "ModuleStorage";
+  "VestingEscrowWalletProxy" -> "Pausable";
+  "VestingEscrowWalletProxy" -> "OwnedUpgradeabilityProxy";
+  "Wallet" -> "Module";
+  "VestingEscrowWallet" -> "VestingEscrowWalletStorage";
+  "VestingEscrowWallet" -> "Wallet";
+  "VestingEscrowWalletFactory" -> "UpgradableModuleFactory";
+  "VestingEscrowWalletProxy" -> "VestingEscrowWalletStorage";
+  "VestingEscrowWalletProxy" -> "ModuleStorage";
+  "VestingEscrowWalletProxy" -> "Pausable";
+  "VestingEscrowWalletProxy" -> "OwnedUpgradeabilityProxy";
+  "Wallet" -> "Module";
+}
+

@@ -1,0 +1,136 @@
+digraph G {
+  graph [ ratio = "auto", page = "100", compound =true, bgcolor = "#2e3e56" ];
+  node [ style = "filled", fillcolor = "#edad56", color = "#edad56", penwidth =3 ];
+  edge [ color = "#fcfcfc", penwidth =2, fontname = "helvetica Neue Ultra Light" ];
+subgraph "clusterGeneralPermissionManager" {
+  graph [ label = "GeneralPermissionManager", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "GeneralPermissionManager.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralPermissionManager.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralPermissionManager.checkPermission" [ label = "checkPermission", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralPermissionManager.addDelegate" [ label = "addDelegate", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralPermissionManager.deleteDelegate" [ label = "deleteDelegate", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralPermissionManager.checkDelegate" [ label = "checkDelegate", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralPermissionManager.changePermission" [ label = "changePermission", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralPermissionManager.changePermissionMulti" [ label = "changePermissionMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralPermissionManager.getAllDelegatesWithPerm" [ label = "getAllDelegatesWithPerm", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes" [ label = "getAllModulesAndPermsFromTypes", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralPermissionManager._changePermission" [ label = "_changePermission", color = "#f2c383", fillcolor = "#f2c383" ];
+  "GeneralPermissionManager.getAllDelegates" [ label = "getAllDelegates", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralPermissionManager.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterGeneralPermissionManagerFactory" {
+  graph [ label = "GeneralPermissionManagerFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "GeneralPermissionManagerFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralPermissionManagerFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralPermissionManagerFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterGeneralPermissionManagerProxy" {
+  graph [ label = "GeneralPermissionManagerProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "GeneralPermissionManagerProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralPermissionManagerProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterGeneralPermissionManagerStorage" {
+  graph [ label = "GeneralPermissionManagerStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterIPermissionManager" {
+  graph [ label = "IPermissionManager  (iface)", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "IPermissionManager.checkPermission" [ label = "checkPermission", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IPermissionManager.addDelegate" [ label = "addDelegate", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IPermissionManager.deleteDelegate" [ label = "deleteDelegate", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IPermissionManager.checkDelegate" [ label = "checkDelegate", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IPermissionManager.changePermission" [ label = "changePermission", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IPermissionManager.changePermissionMulti" [ label = "changePermissionMulti", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IPermissionManager.getAllDelegatesWithPerm" [ label = "getAllDelegatesWithPerm", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IPermissionManager.getAllModulesAndPermsFromTypes" [ label = "getAllModulesAndPermsFromTypes", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IPermissionManager.getPermissions" [ label = "getPermissions", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IPermissionManager.getAllDelegates" [ label = "getAllDelegates", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+}
+
+subgraph "clusterISecurityToken" {
+  graph [ label = "ISecurityToken", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "ISecurityToken.getModulesByType" [ label = "getModulesByType" ];
+}
+
+subgraph "clusterIModule" {
+  graph [ label = "IModule", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IModule.getPermissions" [ label = "getPermissions" ];
+}
+
+subgraph "clusterVersionUtils" {
+  graph [ label = "VersionUtils", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "VersionUtils.pack" [ label = "pack" ];
+}
+
+subgraph "clusterIPolymathRegistry" {
+  graph [ label = "IPolymathRegistry", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IPolymathRegistry.getAddress" [ label = "getAddress" ];
+}
+
+  "GeneralPermissionManager.changePermission";
+  "GeneralPermissionManager._changePermission";
+  "GeneralPermissionManager.changePermissionMulti";
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes";
+  "ISecurityToken.getModulesByType";
+  "IModule.getPermissions";
+  "GeneralPermissionManagerFactory.null";
+  "VersionUtils.pack";
+  "GeneralPermissionManagerFactory.deploy";
+  "IPolymathRegistry.getAddress";
+  "GeneralPermissionManagerFactory._initializeModule";
+  "GeneralPermissionManagerProxy.null";
+  "GeneralPermissionManagerProxy._upgradeTo";
+  "GeneralPermissionManager.changePermission" -> "GeneralPermissionManager._changePermission" [ color = "#1bc6a6" ];
+  "GeneralPermissionManager.changePermissionMulti" -> "GeneralPermissionManager._changePermission" [ color = "#1bc6a6" ];
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes" -> "ISecurityToken.getModulesByType" [ color = "white" ];
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes" -> "IModule.getPermissions" [ color = "white" ];
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes" -> "ISecurityToken.getModulesByType" [ color = "white" ];
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes" -> "IModule.getPermissions" [ color = "white" ];
+  "GeneralPermissionManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "GeneralPermissionManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "GeneralPermissionManagerFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "GeneralPermissionManagerFactory.deploy" -> "GeneralPermissionManagerFactory._initializeModule" [ color = "#1bc6a6" ];
+  "GeneralPermissionManagerProxy.null" -> "GeneralPermissionManagerProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "GeneralPermissionManager.changePermission" -> "GeneralPermissionManager._changePermission" [ color = "#1bc6a6" ];
+  "GeneralPermissionManager.changePermissionMulti" -> "GeneralPermissionManager._changePermission" [ color = "#1bc6a6" ];
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes" -> "ISecurityToken.getModulesByType" [ color = "white" ];
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes" -> "IModule.getPermissions" [ color = "white" ];
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes" -> "ISecurityToken.getModulesByType" [ color = "white" ];
+  "GeneralPermissionManager.getAllModulesAndPermsFromTypes" -> "IModule.getPermissions" [ color = "white" ];
+  "GeneralPermissionManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "GeneralPermissionManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "GeneralPermissionManagerFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "GeneralPermissionManagerFactory.deploy" -> "GeneralPermissionManagerFactory._initializeModule" [ color = "#1bc6a6" ];
+  "GeneralPermissionManagerProxy.null" -> "GeneralPermissionManagerProxy._upgradeTo" [ color = "#1bc6a6" ];
+
+
+rankdir=LR
+node [shape=plaintext]
+subgraph cluster_01 {
+label = "Legend";
+key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td align="right" port="i1">Internal Call</td></tr>
+  <tr><td align="right" port="i2">External Call</td></tr>
+  <tr><td align="right" port="i3">Defined Contract</td></tr>
+  <tr><td align="right" port="i4">Undefined Contract</td></tr>
+  </table>>]
+key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i3" bgcolor="#445773">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i4">
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
+      <tr>
+       <td></td>
+      </tr>
+     </table>
+  </td></tr>
+  </table>>]
+key:i1:e -> key2:i1:w [color="#1bc6a6"]
+key:i2:e -> key2:i2:w [color="white"]
+}
+}
+

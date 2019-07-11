@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/modules/STO/Capped/CappedSTO.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">contracts/modules/STO/Capped/</a> CappedSTO.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>60/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.11% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>35/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>18/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>64/64</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity ^0.5.0;
+&nbsp;
+import "../STO.sol";
+import "openzeppelin-solidity/contracts/utils/ReentrancyGuard.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "./CappedSTOStorage.sol";
+&nbsp;
+/**
+ * @title STO module for standard capped crowdsale
+ */
+contract CappedSTO is CappedSTOStorage, STO, ReentrancyGuard {
+    using SafeMath for uint256;
+&nbsp;
+    /**
+    * Event for token purchase logging
+    * @param purchaser who paid for the tokens
+    * @param beneficiary who got the tokens
+    * @param value weis paid for purchase
+    * @param amount amount of tokens purchased
+    */
+    event TokenPurchase(address indexed purchaser, address indexed beneficiary, uint256 value, uint256 amount);
+&nbsp;
+    event SetAllowBeneficialInvestments(bool _allowed);
+&nbsp;
+    constructor(address _securityToken, address _polyToken) public Module(_securityToken, _polyToken) {
+&nbsp;
+    }
+&nbsp;
+    //////////////////////////////////
+    /**
+    * @notice fallback function ***DO NOT OVERRIDE***
+    */
+    function() external payable {
+        buyTokens(msg.sender);
+    }
+&nbsp;
+    /**
+     * @notice Function used to intialize the contract variables
+     * @param _startTime Unix timestamp at which offering get started
+     * @param _endTime Unix timestamp at which offering get ended
+     * @param _cap Maximum No. of token base units for sale
+     * @param _rate Token units a buyer gets multiplied by 10^18 per wei / base unit of POLY
+     * @param _fundRaiseTypes Type of currency used to collect the funds
+     * @param _fundsReceiver Ethereum account address to hold the funds
+     */
+    function configure(
+        uint256 _startTime,
+        uint256 _endTime,
+        uint256 _cap,
+        uint256 _rate,
+        FundRaiseType[] memory _fundRaiseTypes,
+        address payable _fundsReceiver
+    )
+        public
+        onlyFactory
+    {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(endTime == 0, "Already configured");
+        require(_rate &gt; 0, "Rate of token should be greater than 0");
+        require(_fundsReceiver != address(0), "Zero address is not permitted");
+        /*solium-disable-next-line security/no-block-members*/
+        require(_startTime &gt;= now &amp;&amp; _endTime &gt; _startTime, "Date parameters are not valid");
+        require(_cap &gt; 0, "Cap should be greater than 0");
+        require(_fundRaiseTypes.length == 1, "It only selects single fund raise type");
+        startTime = _startTime;
+        endTime = _endTime;
+        cap = _cap;
+        rate = _rate;
+        wallet = _fundsReceiver;
+        _setFundRaiseType(_fundRaiseTypes);
+    }
+&nbsp;
+    /**
+     * @notice This function returns the signature of configure function
+     */
+    function getInitFunction() public pure returns(bytes4) {
+        return this.configure.selector;
+    }
+&nbsp;
+    /**
+     * @notice Function to set allowBeneficialInvestments (allow beneficiary to be different to funder)
+     * @param _allowBeneficialInvestments Boolean to allow or disallow beneficial investments
+     */
+    function changeAllowBeneficialInvestments(bool _allowBeneficialInvestments) public {
+        _onlySecurityTokenOwner();
+        require(_allowBeneficialInvestments != allowBeneficialInvestments, "Does not change value");
+        allowBeneficialInvestments = _allowBeneficialInvestments;
+        emit SetAllowBeneficialInvestments(allowBeneficialInvestments);
+    }
+&nbsp;
+    /**
+      * @notice Low level token purchase ***DO NOT OVERRIDE***
+      * @param _beneficiary Address performing the token purchase
+      */
+    function buyTokens(address _beneficiary) public payable whenNotPaused nonReentrant {
+        if (!allowBeneficialInvestments) {
+            require(_beneficiary == msg.sender, "Beneficiary address does not match msg.sender");
+        }
+&nbsp;
+        require(fundRaiseTypes[uint8(FundRaiseType.ETH)], "Mode of investment is not ETH");
+&nbsp;
+        uint256 weiAmount = msg.value;
+        uint256 refund = _processTx(_beneficiary, weiAmount);
+        weiAmount = weiAmount.sub(refund);
+&nbsp;
+        _forwardFunds(refund);
+    }
+&nbsp;
+    /**
+      * @notice low level token purchase
+      * @param _investedPOLY Amount of POLY invested
+      */
+    function buyTokensWithPoly(uint256 _investedPOLY) public whenNotPaused nonReentrant {
+        require(fundRaiseTypes[uint8(FundRaiseType.POLY)], "Mode of investment is not POLY");
+        uint256 refund = _processTx(msg.sender, _investedPOLY);
+        _forwardPoly(msg.sender, wallet, _investedPOLY.sub(refund));
+    }
+&nbsp;
+    /**
+    * @notice Checks whether the cap has been reached.
+    * @return bool Whether the cap was reached
+    */
+    function capReached() public view returns(bool) {
+        return totalTokensSold &gt;= cap;
+    }
+&nbsp;
+    /**
+     * @notice Return the total no. of tokens sold
+     */
+    function getTokensSold() external view returns (uint256) {
+        return totalTokensSold;
+    }
+&nbsp;
+    /**
+     * @notice Return the permissions flag that are associated with STO
+     */
+    function getPermissions() public view returns(bytes32[] memory) {
+        bytes32[] memory allPermissions = new bytes32[](0);
+        return allPermissions;
+    }
+&nbsp;
+    /**
+     * @notice Return the STO details
+     * @return Unixtimestamp at which offering gets start.
+     * @return Unixtimestamp at which offering ends.
+     * @return Number of token base units this STO will be allowed to sell to investors.
+     * @return Token units a buyer gets(multiplied by 10^18) per wei / base unit of POLY
+     * @return Amount of funds raised
+     * @return Number of individual investors this STO have.
+     * @return Amount of tokens get sold.
+     * @return Boolean value to justify whether the fund raise type is POLY or not, i.e true for POLY.
+     */
+    function getSTODetails() public view returns(uint256, uint256, uint256, uint256, uint256, uint256, uint256, bool) {
+        return (startTime, endTime, cap, rate, (fundRaiseTypes[uint8(FundRaiseType.POLY)]) ? fundsRaised[uint8(
+            FundRaiseType.POLY
+        )] : fundsRaised[uint8(FundRaiseType.ETH)], investorCount, totalTokensSold, (fundRaiseTypes[uint8(FundRaiseType.POLY)]));
+    }
+&nbsp;
+    // -----------------------------------------
+    // Internal interface (extensible)
+    // -----------------------------------------
+    /**
+      * Processing the purchase as well as verify the required validations
+      * @param _beneficiary Address performing the token purchase
+      * @param _investedAmount Value in wei involved in the purchase
+    */
+    function _processTx(address _beneficiary, uint256 _investedAmount) internal returns(uint256 refund) {
+        _preValidatePurchase(_beneficiary, _investedAmount);
+        // calculate token amount to be created
+        uint256 tokens;
+        (tokens, refund) = _getTokenAmount(_investedAmount);
+        _investedAmount = _investedAmount.sub(refund);
+&nbsp;
+        // update state
+        if (fundRaiseTypes[uint8(FundRaiseType.POLY)]) {
+            fundsRaised[uint8(FundRaiseType.POLY)] = fundsRaised[uint8(FundRaiseType.POLY)].add(_investedAmount);
+        } else {
+            fundsRaised[uint8(FundRaiseType.ETH)] = fundsRaised[uint8(FundRaiseType.ETH)].add(_investedAmount);
+        }
+        totalTokensSold = totalTokensSold.add(tokens);
+&nbsp;
+        _processPurchase(_beneficiary, tokens);
+        emit TokenPurchase(msg.sender, _beneficiary, _investedAmount, tokens);
+&nbsp;
+    }
+&nbsp;
+    /**
+    * @notice Validation of an incoming purchase.
+      Use require statements to revert state when conditions are not met. Use super to concatenate validations.
+    * @param _beneficiary Address performing the token purchase
+    * @param _investedAmount Value in wei involved in the purchase
+    */
+    function _preValidatePurchase(address _beneficiary, uint256 _investedAmount) internal view {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_beneficiary != address(0), "Beneficiary address should not be 0x");
+        require(_investedAmount != 0, "Amount invested should not be equal to 0");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_canBuy(_beneficiary), "Unauthorized");
+        /*solium-disable-next-line security/no-block-members*/
+        require(now &gt;= startTime &amp;&amp; now &lt;= endTime, "Offering is closed/Not yet started");
+    }
+&nbsp;
+    /**
+    * @notice Source of tokens.
+      Override this method to modify the way in which the crowdsale ultimately gets and sends its tokens.
+    * @param _beneficiary Address performing the token purchase
+    * @param _tokenAmount Number of tokens to be emitted
+    */
+    function _deliverTokens(address _beneficiary, uint256 _tokenAmount) internal {
+        ISecurityToken(securityToken).issue(_beneficiary, _tokenAmount, "");
+    }
+&nbsp;
+    /**
+    * @notice Executed when a purchase has been validated and is ready to be executed. Not necessarily emits/sends tokens.
+    * @param _beneficiary Address receiving the tokens
+    * @param _tokenAmount Number of tokens to be purchased
+    */
+    function _processPurchase(address _beneficiary, uint256 _tokenAmount) internal {
+        if (investors[_beneficiary] == 0) {
+            investorCount = investorCount + 1;
+        }
+        investors[_beneficiary] = investors[_beneficiary].add(_tokenAmount);
+&nbsp;
+        _deliverTokens(_beneficiary, _tokenAmount);
+    }
+&nbsp;
+    /**
+    * @notice Overrides to extend the way in which ether is converted to tokens.
+    * @param _investedAmount Value in wei to be converted into tokens
+    * @return Number of tokens that can be purchased with the specified _investedAmount
+    * @return Remaining amount that should be refunded to the investor
+    */
+    function _getTokenAmount(uint256 _investedAmount) internal view returns(uint256 tokens, uint256 refund) {
+        tokens = _investedAmount.mul(rate);
+        tokens = tokens.div(uint256(10) ** 18);
+        if (totalTokensSold.add(tokens) &gt; cap) {
+            tokens = cap.sub(totalTokensSold);
+        }
+        uint256 granularity = ISecurityToken(securityToken).granularity();
+        tokens = tokens.div(granularity);
+        tokens = tokens.mul(granularity);
+        require(tokens &gt; 0, "Cap reached");
+        refund = _investedAmount.sub((tokens.mul(uint256(10) ** 18)).div(rate));
+    }
+&nbsp;
+    /**
+    * @notice Determines how ETH is stored/forwarded on purchases.
+    */
+    function _forwardFunds(uint256 _refund) internal {
+        wallet.transfer(msg.value.sub(_refund));
+        msg.sender.transfer(_refund);
+    }
+&nbsp;
+    /**
+     * @notice Internal function used to forward the POLY raised to beneficiary address
+     * @param _beneficiary Address of the funds reciever
+     * @param _to Address who wants to ST-20 tokens
+     * @param _fundsAmount Amount invested by _to
+     */
+    function _forwardPoly(address _beneficiary, address _to, uint256 _fundsAmount) internal {
+        polyToken.transferFrom(_beneficiary, _to, _fundsAmount);
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 24 2019 01:30:03 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

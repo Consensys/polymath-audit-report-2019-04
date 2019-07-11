@@ -1,0 +1,1087 @@
+digraph G {
+  graph [ ratio = "auto", page = "100", compound =true, bgcolor = "#2e3e56" ];
+  node [ style = "filled", fillcolor = "#edad56", color = "#edad56", penwidth =3 ];
+  edge [ color = "#fcfcfc", penwidth =2, fontname = "helvetica Neue Ultra Light" ];
+subgraph "clusterBlacklistTransferManager" {
+  graph [ label = "BlacklistTransferManager", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "BlacklistTransferManager.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager.executeTransfer" [ label = "executeTransfer", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "BlacklistTransferManager.verifyTransfer" [ label = "verifyTransfer", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager._verifyTransfer" [ label = "_verifyTransfer" ];
+  "BlacklistTransferManager.addBlacklistType" [ label = "addBlacklistType", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager._addBlacklistType" [ label = "_addBlacklistType" ];
+  "BlacklistTransferManager._addBlacklistTypeDetails" [ label = "_addBlacklistTypeDetails" ];
+  "BlacklistTransferManager.addBlacklistTypeMulti" [ label = "addBlacklistTypeMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager.modifyBlacklistType" [ label = "modifyBlacklistType", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager._modifyBlacklistType" [ label = "_modifyBlacklistType" ];
+  "BlacklistTransferManager.modifyBlacklistTypeMulti" [ label = "modifyBlacklistTypeMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager.deleteBlacklistType" [ label = "deleteBlacklistType", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager._deleteBlacklistType" [ label = "_deleteBlacklistType" ];
+  "BlacklistTransferManager.deleteBlacklistTypeMulti" [ label = "deleteBlacklistTypeMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager.addInvestorToBlacklist" [ label = "addInvestorToBlacklist", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager._addInvestorToBlacklist" [ label = "_addInvestorToBlacklist" ];
+  "BlacklistTransferManager.addInvestorToBlacklistMulti" [ label = "addInvestorToBlacklistMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager.addMultiInvestorToBlacklistMulti" [ label = "addMultiInvestorToBlacklistMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager.addInvestorToNewBlacklist" [ label = "addInvestorToNewBlacklist", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager.deleteInvestorFromBlacklist" [ label = "deleteInvestorFromBlacklist", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager._deleteInvestorFromBlacklist" [ label = "_deleteInvestorFromBlacklist" ];
+  "BlacklistTransferManager.deleteInvestorFromAllBlacklist" [ label = "deleteInvestorFromAllBlacklist", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager._deleteInvestorFromAllBlacklist" [ label = "_deleteInvestorFromAllBlacklist" ];
+  "BlacklistTransferManager.deleteInvestorFromAllBlacklistMulti" [ label = "deleteInvestorFromAllBlacklistMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager.deleteMultiInvestorsFromBlacklistMulti" [ label = "deleteMultiInvestorsFromBlacklistMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManager._validParams" [ label = "_validParams" ];
+  "BlacklistTransferManager.getListOfAddresses" [ label = "getListOfAddresses", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "BlacklistTransferManager.getBlacklistNamesToUser" [ label = "getBlacklistNamesToUser", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "BlacklistTransferManager.getAllBlacklists" [ label = "getAllBlacklists", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "BlacklistTransferManager.getTokensByPartition" [ label = "getTokensByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "BlacklistTransferManager.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterBlacklistTransferManagerFactory" {
+  graph [ label = "BlacklistTransferManagerFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "BlacklistTransferManagerFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManagerFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "BlacklistTransferManagerFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterBlacklistTransferManagerProxy" {
+  graph [ label = "BlacklistTransferManagerProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "BlacklistTransferManagerProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "BlacklistTransferManagerProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterBlacklistTransferManagerStorage" {
+  graph [ label = "BlacklistTransferManagerStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterCountTransferManager" {
+  graph [ label = "CountTransferManager", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "CountTransferManager.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CountTransferManager.executeTransfer" [ label = "executeTransfer", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "CountTransferManager.verifyTransfer" [ label = "verifyTransfer", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CountTransferManager._verifyTransfer" [ label = "_verifyTransfer" ];
+  "CountTransferManager.configure" [ label = "configure", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CountTransferManager.changeHolderCount" [ label = "changeHolderCount", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CountTransferManager.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CountTransferManager.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterCountTransferManagerFactory" {
+  graph [ label = "CountTransferManagerFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "CountTransferManagerFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CountTransferManagerFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "CountTransferManagerFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterCountTransferManagerProxy" {
+  graph [ label = "CountTransferManagerProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "CountTransferManagerProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CountTransferManagerProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterCountTransferManagerStorage" {
+  graph [ label = "CountTransferManagerStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterGeneralTransferManager" {
+  graph [ label = "GeneralTransferManager", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "GeneralTransferManager.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.changeDefaults" [ label = "changeDefaults", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.changeIssuanceAddress" [ label = "changeIssuanceAddress", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.executeTransfer" [ label = "executeTransfer", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralTransferManager._processTransferSignature" [ label = "_processTransferSignature" ];
+  "GeneralTransferManager.verifyTransfer" [ label = "verifyTransfer", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager._verifyTransfer" [ label = "_verifyTransfer" ];
+  "GeneralTransferManager.modifyTransferRequirements" [ label = "modifyTransferRequirements", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.modifyTransferRequirementsMulti" [ label = "modifyTransferRequirementsMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager._modifyTransferRequirements" [ label = "_modifyTransferRequirements" ];
+  "GeneralTransferManager.modifyKYCData" [ label = "modifyKYCData", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager._modifyKYCData" [ label = "_modifyKYCData" ];
+  "GeneralTransferManager.modifyKYCDataMulti" [ label = "modifyKYCDataMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.modifyInvestorFlag" [ label = "modifyInvestorFlag", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager._modifyInvestorFlag" [ label = "_modifyInvestorFlag" ];
+  "GeneralTransferManager.modifyInvestorFlagMulti" [ label = "modifyInvestorFlagMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.modifyKYCDataSigned" [ label = "modifyKYCDataSigned", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager._modifyKYCDataSigned" [ label = "_modifyKYCDataSigned" ];
+  "GeneralTransferManager.modifyKYCDataSignedMulti" [ label = "modifyKYCDataSignedMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager._modifyKYCDataSignedMulti" [ label = "_modifyKYCDataSignedMulti" ];
+  "GeneralTransferManager._checkSig" [ label = "_checkSig" ];
+  "GeneralTransferManager._validExpiry" [ label = "_validExpiry" ];
+  "GeneralTransferManager._validLockTime" [ label = "_validLockTime" ];
+  "GeneralTransferManager._adjustTimes" [ label = "_adjustTimes" ];
+  "GeneralTransferManager._getKey" [ label = "_getKey" ];
+  "GeneralTransferManager._getKYCValues" [ label = "_getKYCValues", color = "#f2c383", fillcolor = "#f2c383" ];
+  "GeneralTransferManager._isExistingInvestor" [ label = "_isExistingInvestor" ];
+  "GeneralTransferManager._getValuesForTransfer" [ label = "_getValuesForTransfer" ];
+  "GeneralTransferManager.getAllInvestors" [ label = "getAllInvestors", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.getInvestors" [ label = "getInvestors", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.getAllInvestorFlags" [ label = "getAllInvestorFlags", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.getInvestorFlag" [ label = "getInvestorFlag", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.getInvestorFlags" [ label = "getInvestorFlags", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager._getInvestorFlags" [ label = "_getInvestorFlags" ];
+  "GeneralTransferManager.getAllKYCData" [ label = "getAllKYCData", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralTransferManager.getKYCData" [ label = "getKYCData", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralTransferManager._kycData" [ label = "_kycData" ];
+  "GeneralTransferManager.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManager.getTokensByPartition" [ label = "getTokensByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralTransferManager.getAddressBytes32" [ label = "getAddressBytes32" ];
+  "GeneralTransferManager.getDataStore" [ label = "getDataStore" ];
+  "GeneralTransferManager._checkPerm" [ label = "_checkPerm" ];
+}
+
+subgraph "clusterGeneralTransferManagerFactory" {
+  graph [ label = "GeneralTransferManagerFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "GeneralTransferManagerFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManagerFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "GeneralTransferManagerFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterGeneralTransferManagerProxy" {
+  graph [ label = "GeneralTransferManagerProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "GeneralTransferManagerProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "GeneralTransferManagerProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterGeneralTransferManagerStorage" {
+  graph [ label = "GeneralTransferManagerStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterLockUpTransferManager" {
+  graph [ label = "LockUpTransferManager", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "LockUpTransferManager.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager.executeTransfer" [ label = "executeTransfer", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.verifyTransfer" [ label = "verifyTransfer", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager._verifyTransfer" [ label = "_verifyTransfer" ];
+  "LockUpTransferManager.addNewLockUpType" [ label = "addNewLockUpType", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.addNewLockUpTypeMulti" [ label = "addNewLockUpTypeMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager.addLockUpByName" [ label = "addLockUpByName", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.addLockUpByNameMulti" [ label = "addLockUpByNameMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager.addNewLockUpToUser" [ label = "addNewLockUpToUser", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.addNewLockUpToUserMulti" [ label = "addNewLockUpToUserMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager.removeLockUpFromUser" [ label = "removeLockUpFromUser", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.removeLockupType" [ label = "removeLockupType", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.removeLockupTypeMulti" [ label = "removeLockupTypeMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager.removeLockUpFromUserMulti" [ label = "removeLockUpFromUserMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager.modifyLockUpType" [ label = "modifyLockUpType", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.modifyLockUpTypeMulti" [ label = "modifyLockUpTypeMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager.getLockUp" [ label = "getLockUp", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager.getAllLockupData" [ label = "getAllLockupData", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.getListOfAddresses" [ label = "getListOfAddresses", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.getAllLockups" [ label = "getAllLockups", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.getLockupsNamesToUser" [ label = "getLockupsNamesToUser", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.getLockedTokenToUser" [ label = "getLockedTokenToUser", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager._checkIfValidTransfer" [ label = "_checkIfValidTransfer" ];
+  "LockUpTransferManager._getUnlockedAmountForLockup" [ label = "_getUnlockedAmountForLockup" ];
+  "LockUpTransferManager._removeLockupType" [ label = "_removeLockupType" ];
+  "LockUpTransferManager._modifyLockUpType" [ label = "_modifyLockUpType" ];
+  "LockUpTransferManager._removeLockUpFromUser" [ label = "_removeLockUpFromUser" ];
+  "LockUpTransferManager._addNewLockUpToUser" [ label = "_addNewLockUpToUser" ];
+  "LockUpTransferManager._addLockUpByName" [ label = "_addLockUpByName" ];
+  "LockUpTransferManager._addNewLockUpType" [ label = "_addNewLockUpType" ];
+  "LockUpTransferManager._checkLockUpParams" [ label = "_checkLockUpParams" ];
+  "LockUpTransferManager._checkValidStartTime" [ label = "_checkValidStartTime" ];
+  "LockUpTransferManager._checkZeroAddress" [ label = "_checkZeroAddress" ];
+  "LockUpTransferManager._validLockUpCheck" [ label = "_validLockUpCheck" ];
+  "LockUpTransferManager._checkValidName" [ label = "_checkValidName" ];
+  "LockUpTransferManager._checkLengthOfArray" [ label = "_checkLengthOfArray" ];
+  "LockUpTransferManager.getTokensByPartition" [ label = "getTokensByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManager.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManager.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterLockUpTransferManagerFactory" {
+  graph [ label = "LockUpTransferManagerFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "LockUpTransferManagerFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManagerFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "LockUpTransferManagerFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterLockUpTransferManagerProxy" {
+  graph [ label = "LockUpTransferManagerProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "LockUpTransferManagerProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "LockUpTransferManagerProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterLockUpTransferManagerStorage" {
+  graph [ label = "LockUpTransferManagerStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterManualApprovalTransferManager" {
+  graph [ label = "ManualApprovalTransferManager", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "ManualApprovalTransferManager.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ManualApprovalTransferManager.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ManualApprovalTransferManager.executeTransfer" [ label = "executeTransfer", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManager.verifyTransfer" [ label = "verifyTransfer", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ManualApprovalTransferManager._verifyTransfer" [ label = "_verifyTransfer" ];
+  "ManualApprovalTransferManager.addManualApproval" [ label = "addManualApproval", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManager._addManualApproval" [ label = "_addManualApproval" ];
+  "ManualApprovalTransferManager.addManualApprovalMulti" [ label = "addManualApprovalMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ManualApprovalTransferManager.modifyManualApproval" [ label = "modifyManualApproval", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManager._modifyManualApproval" [ label = "_modifyManualApproval" ];
+  "ManualApprovalTransferManager.modifyManualApprovalMulti" [ label = "modifyManualApprovalMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ManualApprovalTransferManager.revokeManualApproval" [ label = "revokeManualApproval", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManager._revokeManualApproval" [ label = "_revokeManualApproval" ];
+  "ManualApprovalTransferManager.revokeManualApprovalMulti" [ label = "revokeManualApprovalMulti", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManager._checkInputLengthArray" [ label = "_checkInputLengthArray" ];
+  "ManualApprovalTransferManager.getActiveApprovalsToUser" [ label = "getActiveApprovalsToUser", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManager.getApprovalDetails" [ label = "getApprovalDetails", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManager.getTotalApprovalsLength" [ label = "getTotalApprovalsLength", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManager.getAllApprovals" [ label = "getAllApprovals", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManager.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterManualApprovalTransferManagerFactory" {
+  graph [ label = "ManualApprovalTransferManagerFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "ManualApprovalTransferManagerFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ManualApprovalTransferManagerFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ManualApprovalTransferManagerFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterManualApprovalTransferManagerProxy" {
+  graph [ label = "ManualApprovalTransferManagerProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "ManualApprovalTransferManagerProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ManualApprovalTransferManagerProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterManualApprovalTransferManagerStorage" {
+  graph [ label = "ManualApprovalTransferManagerStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterPercentageTransferManager" {
+  graph [ label = "PercentageTransferManager", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PercentageTransferManager.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PercentageTransferManager.executeTransfer" [ label = "executeTransfer", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PercentageTransferManager.verifyTransfer" [ label = "verifyTransfer", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PercentageTransferManager._verifyTransfer" [ label = "_verifyTransfer" ];
+  "PercentageTransferManager.configure" [ label = "configure", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PercentageTransferManager.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PercentageTransferManager.changeHolderPercentage" [ label = "changeHolderPercentage", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PercentageTransferManager.modifyWhitelist" [ label = "modifyWhitelist" ];
+  "PercentageTransferManager.modifyWhitelistMulti" [ label = "modifyWhitelistMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PercentageTransferManager.setAllowPrimaryIssuance" [ label = "setAllowPrimaryIssuance", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PercentageTransferManager.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterPercentageTransferManagerFactory" {
+  graph [ label = "PercentageTransferManagerFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PercentageTransferManagerFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PercentageTransferManagerFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PercentageTransferManagerFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterPercentageTransferManagerProxy" {
+  graph [ label = "PercentageTransferManagerProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PercentageTransferManagerProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PercentageTransferManagerProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterPercentageTransferManagerStorage" {
+  graph [ label = "PercentageTransferManagerStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterTransferManager" {
+  graph [ label = "TransferManager", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "TransferManager.onlySecurityToken" [ label = "onlySecurityToken", color = "#1bc6a6", shape =doubleoctagon ];
+  "TransferManager.unpause" [ label = "unpause", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TransferManager.pause" [ label = "pause", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TransferManager.getTokensByPartition" [ label = "getTokensByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "TransferManager.getPartitions" [ label = "getPartitions", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "TransferManager._onlySecurityTokenOwner" [ label = "_onlySecurityTokenOwner" ];
+}
+
+subgraph "clusterVolumeRestrictionTM" {
+  graph [ label = "VolumeRestrictionTM", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "VolumeRestrictionTM.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.executeTransfer" [ label = "executeTransfer", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.verifyTransfer" [ label = "verifyTransfer", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM._verifyTransfer" [ label = "_verifyTransfer" ];
+  "VolumeRestrictionTM.changeExemptWalletList" [ label = "changeExemptWalletList", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.addIndividualRestriction" [ label = "addIndividualRestriction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.addIndividualDailyRestriction" [ label = "addIndividualDailyRestriction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.addIndividualDailyRestrictionMulti" [ label = "addIndividualDailyRestrictionMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.addIndividualRestrictionMulti" [ label = "addIndividualRestrictionMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.addDefaultRestriction" [ label = "addDefaultRestriction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.addDefaultDailyRestriction" [ label = "addDefaultDailyRestriction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.removeIndividualRestriction" [ label = "removeIndividualRestriction" ];
+  "VolumeRestrictionTM._removeIndividualRestriction" [ label = "_removeIndividualRestriction" ];
+  "VolumeRestrictionTM.removeIndividualRestrictionMulti" [ label = "removeIndividualRestrictionMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.removeIndividualDailyRestriction" [ label = "removeIndividualDailyRestriction" ];
+  "VolumeRestrictionTM._removeIndividualDailyRestriction" [ label = "_removeIndividualDailyRestriction" ];
+  "VolumeRestrictionTM.removeIndividualDailyRestrictionMulti" [ label = "removeIndividualDailyRestrictionMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.removeDefaultRestriction" [ label = "removeDefaultRestriction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.removeDefaultDailyRestriction" [ label = "removeDefaultDailyRestriction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.modifyIndividualRestriction" [ label = "modifyIndividualRestriction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.modifyIndividualDailyRestriction" [ label = "modifyIndividualDailyRestriction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.modifyIndividualDailyRestrictionMulti" [ label = "modifyIndividualDailyRestrictionMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.modifyIndividualRestrictionMulti" [ label = "modifyIndividualRestrictionMulti", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.modifyDefaultRestriction" [ label = "modifyDefaultRestriction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.modifyDefaultDailyRestriction" [ label = "modifyDefaultDailyRestriction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM._restrictionCheck" [ label = "_restrictionCheck" ];
+  "VolumeRestrictionTM._validAllowedAmount" [ label = "_validAllowedAmount" ];
+  "VolumeRestrictionTM._isValidAmountAfterRestrictionChanges" [ label = "_isValidAmountAfterRestrictionChanges", color = "#f2c383", fillcolor = "#f2c383" ];
+  "VolumeRestrictionTM._dailyTxCheck" [ label = "_dailyTxCheck" ];
+  "VolumeRestrictionTM._bucketCheck" [ label = "_bucketCheck" ];
+  "VolumeRestrictionTM._checkValidAmountToTransact" [ label = "_checkValidAmountToTransact" ];
+  "VolumeRestrictionTM._allowedAmountToTransact" [ label = "_allowedAmountToTransact" ];
+  "VolumeRestrictionTM._updateStorage" [ label = "_updateStorage" ];
+  "VolumeRestrictionTM._updateStorageActual" [ label = "_updateStorageActual" ];
+  "VolumeRestrictionTM._checkInputParams" [ label = "_checkInputParams" ];
+  "VolumeRestrictionTM._isAllowedToModify" [ label = "_isAllowedToModify" ];
+  "VolumeRestrictionTM._getValidStartTime" [ label = "_getValidStartTime" ];
+  "VolumeRestrictionTM.getTokensByPartition" [ label = "getTokensByPartition", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.getIndividualBucketDetailsToUser" [ label = "getIndividualBucketDetailsToUser", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.getDefaultBucketDetailsToUser" [ label = "getDefaultBucketDetailsToUser", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM._getBucketDetails" [ label = "_getBucketDetails" ];
+  "VolumeRestrictionTM.getTotalTradedByUser" [ label = "getTotalTradedByUser", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.getExemptAddress" [ label = "getExemptAddress", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.getIndividualRestriction" [ label = "getIndividualRestriction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.getIndividualDailyRestriction" [ label = "getIndividualDailyRestriction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.getDefaultRestriction" [ label = "getDefaultRestriction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM.getDefaultDailyRestriction" [ label = "getDefaultDailyRestriction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM._volumeRestrictionSplay" [ label = "_volumeRestrictionSplay" ];
+  "VolumeRestrictionTM.getRestrictionData" [ label = "getRestrictionData", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTM._checkLengthOfArray" [ label = "_checkLengthOfArray" ];
+  "VolumeRestrictionTM.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTM.getDataStore" [ label = "getDataStore" ];
+}
+
+subgraph "clusterVolumeRestrictionTMFactory" {
+  graph [ label = "VolumeRestrictionTMFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "VolumeRestrictionTMFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTMFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VolumeRestrictionTMFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterVolumeRestrictionTMProxy" {
+  graph [ label = "VolumeRestrictionTMProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "VolumeRestrictionTMProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "VolumeRestrictionTMProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterVolumeRestrictionTMStorage" {
+  graph [ label = "VolumeRestrictionTMStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusternow" {
+  graph [ label = "now", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "now.sub" [ label = "sub" ];
+}
+
+subgraph "clusterendTimeTemp" {
+  graph [ label = "endTimeTemp", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "endTimeTemp.add" [ label = "add" ];
+}
+
+subgraph "clusterrepeatPeriodTimeTemp" {
+  graph [ label = "repeatPeriodTimeTemp", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "repeatPeriodTimeTemp.mul" [ label = "mul" ];
+}
+
+subgraph "cluster_repeatPeriodTime" {
+  graph [ label = "_repeatPeriodTime", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_repeatPeriodTime.mul" [ label = "mul" ];
+}
+
+subgraph "cluster_endTime" {
+  graph [ label = "_endTime", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_endTime.sub" [ label = "sub" ];
+}
+
+subgraph "clusterIERC20" {
+  graph [ label = "IERC20", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IERC20.balanceOf" [ label = "balanceOf" ];
+  "IERC20.totalSupply" [ label = "totalSupply" ];
+}
+
+subgraph "clusterVersionUtils" {
+  graph [ label = "VersionUtils", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "VersionUtils.pack" [ label = "pack" ];
+  "VersionUtils.packKYC" [ label = "packKYC" ];
+  "VersionUtils.unpackKYC" [ label = "unpackKYC" ];
+}
+
+subgraph "clusterIPolymathRegistry" {
+  graph [ label = "IPolymathRegistry", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IPolymathRegistry.getAddress" [ label = "getAddress" ];
+}
+
+subgraph "clusterISecurityToken" {
+  graph [ label = "ISecurityToken", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "ISecurityToken.holderCount" [ label = "holderCount" ];
+  "ISecurityToken.balanceOf" [ label = "balanceOf" ];
+}
+
+subgraph "clusterabi" {
+  graph [ label = "abi", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "abi.decode" [ label = "decode" ];
+}
+
+subgraph "clusterIDataStore" {
+  graph [ label = "IDataStore", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IDataStore.insertAddress" [ label = "insertAddress" ];
+  "IDataStore.setUint256" [ label = "setUint256" ];
+  "IDataStore.getUint256" [ label = "getUint256" ];
+  "IDataStore.getAddressArray" [ label = "getAddressArray" ];
+  "IDataStore.getAddressArrayElements" [ label = "getAddressArrayElements" ];
+}
+
+subgraph "cluster_hash" {
+  graph [ label = "_hash", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_hash.toEthSignedMessageHash" [ label = "toEthSignedMessageHash" ];
+}
+
+subgraph "clustertotalRemainingLockedAmount" {
+  graph [ label = "totalRemainingLockedAmount", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "totalRemainingLockedAmount.add" [ label = "add" ];
+}
+
+subgraph "clustercurrentBalance" {
+  graph [ label = "currentBalance", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "currentBalance.sub" [ label = "sub" ];
+}
+
+subgraph "clusterMath" {
+  graph [ label = "Math", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "Math.min" [ label = "min" ];
+}
+
+subgraph "clusterallowance" {
+  graph [ label = "allowance", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "allowance.add" [ label = "add" ];
+}
+
+subgraph "clusternewBalance" {
+  graph [ label = "newBalance", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "newBalance.mul" [ label = "mul" ];
+}
+
+subgraph "clusterModule" {
+  graph [ label = "Module", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "Module._unpause" [ label = "_unpause" ];
+  "Module._pause" [ label = "_pause" ];
+}
+
+subgraph "clusterVolumeRestrictionLib" {
+  graph [ label = "VolumeRestrictionLib", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "VolumeRestrictionLib.addRestrictionData" [ label = "addRestrictionData" ];
+  "VolumeRestrictionLib.deleteHolderFromList" [ label = "deleteHolderFromList" ];
+  "VolumeRestrictionLib.isValidAmountAfterRestrictionChanges" [ label = "isValidAmountAfterRestrictionChanges" ];
+  "VolumeRestrictionLib.getRestrictionData" [ label = "getRestrictionData" ];
+}
+
+subgraph "clusterBokkyPooBahsDateTimeLibrary" {
+  graph [ label = "BokkyPooBahsDateTimeLibrary", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "BokkyPooBahsDateTimeLibrary.diffDays" [ label = "diffDays" ];
+}
+
+subgraph "cluster_dailyLastTradedDayTime" {
+  graph [ label = "_dailyLastTradedDayTime", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_dailyLastTradedDayTime.add" [ label = "add" ];
+}
+
+subgraph "clustercounter" {
+  graph [ label = "counter", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "counter.add" [ label = "add" ];
+  "counter.sub" [ label = "sub" ];
+}
+
+subgraph "clustertemp" {
+  graph [ label = "temp", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "temp.mul" [ label = "mul" ];
+}
+
+subgraph "clustersumOfLastPeriod" {
+  graph [ label = "sumOfLastPeriod", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "sumOfLastPeriod.sub" [ label = "sub" ];
+}
+
+subgraph "cluster_fromTime" {
+  graph [ label = "_fromTime", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_fromTime.add" [ label = "add" ];
+}
+
+subgraph "cluster_diffDays" {
+  graph [ label = "_diffDays", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_diffDays.mul" [ label = "mul" ];
+}
+
+subgraph "cluster_allowedAmount" {
+  graph [ label = "_allowedAmount", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_allowedAmount.sub" [ label = "sub" ];
+}
+
+subgraph "cluster_sumOfLastPeriod" {
+  graph [ label = "_sumOfLastPeriod", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_sumOfLastPeriod.add" [ label = "add" ];
+}
+
+  "BlacklistTransferManager.executeTransfer";
+  "BlacklistTransferManager._verifyTransfer";
+  "BlacklistTransferManager.verifyTransfer";
+  "now.sub";
+  "endTimeTemp.add";
+  "repeatPeriodTimeTemp.mul";
+  "BlacklistTransferManager.addBlacklistType";
+  "BlacklistTransferManager._addBlacklistType";
+  "BlacklistTransferManager._addBlacklistTypeDetails";
+  "BlacklistTransferManager._validParams";
+  "BlacklistTransferManager.addBlacklistTypeMulti";
+  "BlacklistTransferManager.modifyBlacklistType";
+  "BlacklistTransferManager._modifyBlacklistType";
+  "BlacklistTransferManager.modifyBlacklistTypeMulti";
+  "BlacklistTransferManager.deleteBlacklistType";
+  "BlacklistTransferManager._deleteBlacklistType";
+  "BlacklistTransferManager.deleteBlacklistTypeMulti";
+  "BlacklistTransferManager.addInvestorToBlacklist";
+  "BlacklistTransferManager._addInvestorToBlacklist";
+  "BlacklistTransferManager.addInvestorToBlacklistMulti";
+  "BlacklistTransferManager.addMultiInvestorToBlacklistMulti";
+  "BlacklistTransferManager.addInvestorToNewBlacklist";
+  "BlacklistTransferManager.deleteInvestorFromBlacklist";
+  "BlacklistTransferManager._deleteInvestorFromBlacklist";
+  "BlacklistTransferManager.deleteInvestorFromAllBlacklist";
+  "BlacklistTransferManager._deleteInvestorFromAllBlacklist";
+  "BlacklistTransferManager.deleteInvestorFromAllBlacklistMulti";
+  "BlacklistTransferManager.deleteMultiInvestorsFromBlacklistMulti";
+  "_repeatPeriodTime.mul";
+  "_endTime.sub";
+  "BlacklistTransferManager.getTokensByPartition";
+  "IERC20.balanceOf";
+  "BlacklistTransferManagerFactory.null";
+  "VersionUtils.pack";
+  "BlacklistTransferManagerFactory.deploy";
+  "IPolymathRegistry.getAddress";
+  "BlacklistTransferManagerFactory._initializeModule";
+  "BlacklistTransferManagerProxy.null";
+  "BlacklistTransferManagerProxy._upgradeTo";
+  "CountTransferManager.executeTransfer";
+  "CountTransferManager._verifyTransfer";
+  "CountTransferManager.verifyTransfer";
+  "ISecurityToken.holderCount";
+  "ISecurityToken.balanceOf";
+  "CountTransferManagerFactory.null";
+  "CountTransferManagerFactory.deploy";
+  "CountTransferManagerFactory._initializeModule";
+  "CountTransferManagerProxy.null";
+  "CountTransferManagerProxy._upgradeTo";
+  "GeneralTransferManager.executeTransfer";
+  "abi.decode";
+  "GeneralTransferManager._processTransferSignature";
+  "GeneralTransferManager._verifyTransfer";
+  "GeneralTransferManager._modifyKYCDataSignedMulti";
+  "GeneralTransferManager.verifyTransfer";
+  "GeneralTransferManager._getValuesForTransfer";
+  "GeneralTransferManager._validExpiry";
+  "GeneralTransferManager._adjustTimes";
+  "GeneralTransferManager._validLockTime";
+  "GeneralTransferManager.getAddressBytes32";
+  "GeneralTransferManager.modifyTransferRequirements";
+  "GeneralTransferManager._modifyTransferRequirements";
+  "GeneralTransferManager.modifyTransferRequirementsMulti";
+  "GeneralTransferManager.modifyKYCData";
+  "GeneralTransferManager._modifyKYCData";
+  "GeneralTransferManager.getDataStore";
+  "GeneralTransferManager._isExistingInvestor";
+  "IDataStore.insertAddress";
+  "VersionUtils.packKYC";
+  "IDataStore.setUint256";
+  "GeneralTransferManager._getKey";
+  "GeneralTransferManager.modifyKYCDataMulti";
+  "GeneralTransferManager.modifyInvestorFlag";
+  "GeneralTransferManager._modifyInvestorFlag";
+  "IDataStore.getUint256";
+  "GeneralTransferManager.modifyInvestorFlagMulti";
+  "GeneralTransferManager.modifyKYCDataSigned";
+  "GeneralTransferManager._modifyKYCDataSigned";
+  "GeneralTransferManager._checkSig";
+  "GeneralTransferManager.modifyKYCDataSignedMulti";
+  "_hash.toEthSignedMessageHash";
+  "GeneralTransferManager._checkPerm";
+  "GeneralTransferManager._getKYCValues";
+  "VersionUtils.unpackKYC";
+  "GeneralTransferManager.getAllInvestors";
+  "IDataStore.getAddressArray";
+  "GeneralTransferManager.getInvestors";
+  "IDataStore.getAddressArrayElements";
+  "GeneralTransferManager.getAllInvestorFlags";
+  "GeneralTransferManager._getInvestorFlags";
+  "GeneralTransferManager.getInvestorFlag";
+  "GeneralTransferManager.getInvestorFlags";
+  "GeneralTransferManager.getAllKYCData";
+  "GeneralTransferManager._kycData";
+  "GeneralTransferManager.getKYCData";
+  "GeneralTransferManager.getTokensByPartition";
+  "GeneralTransferManagerFactory.null";
+  "GeneralTransferManagerFactory.deploy";
+  "GeneralTransferManagerFactory._initializeModule";
+  "GeneralTransferManagerProxy.null";
+  "GeneralTransferManagerProxy._upgradeTo";
+  "LockUpTransferManager.executeTransfer";
+  "LockUpTransferManager._verifyTransfer";
+  "LockUpTransferManager.verifyTransfer";
+  "LockUpTransferManager._checkIfValidTransfer";
+  "LockUpTransferManager.addNewLockUpType";
+  "LockUpTransferManager._addNewLockUpType";
+  "LockUpTransferManager.addNewLockUpTypeMulti";
+  "LockUpTransferManager.addLockUpByName";
+  "LockUpTransferManager._addLockUpByName";
+  "LockUpTransferManager.addLockUpByNameMulti";
+  "LockUpTransferManager._checkLengthOfArray";
+  "LockUpTransferManager.addNewLockUpToUser";
+  "LockUpTransferManager._addNewLockUpToUser";
+  "LockUpTransferManager.addNewLockUpToUserMulti";
+  "LockUpTransferManager.removeLockUpFromUser";
+  "LockUpTransferManager._removeLockUpFromUser";
+  "LockUpTransferManager.removeLockupType";
+  "LockUpTransferManager._removeLockupType";
+  "LockUpTransferManager.removeLockupTypeMulti";
+  "LockUpTransferManager.removeLockUpFromUserMulti";
+  "LockUpTransferManager.modifyLockUpType";
+  "LockUpTransferManager._modifyLockUpType";
+  "LockUpTransferManager.modifyLockUpTypeMulti";
+  "LockUpTransferManager.getLockUp";
+  "LockUpTransferManager._getUnlockedAmountForLockup";
+  "LockUpTransferManager.getAllLockupData";
+  "LockUpTransferManager.getListOfAddresses";
+  "LockUpTransferManager._validLockUpCheck";
+  "LockUpTransferManager.getLockedTokenToUser";
+  "LockUpTransferManager._checkZeroAddress";
+  "totalRemainingLockedAmount.add";
+  "currentBalance.sub";
+  "LockUpTransferManager._checkValidStartTime";
+  "LockUpTransferManager._checkLockUpParams";
+  "LockUpTransferManager._checkValidName";
+  "LockUpTransferManager.getTokensByPartition";
+  "Math.min";
+  "LockUpTransferManagerFactory.null";
+  "LockUpTransferManagerFactory.deploy";
+  "LockUpTransferManagerFactory._initializeModule";
+  "LockUpTransferManagerProxy.null";
+  "LockUpTransferManagerProxy._upgradeTo";
+  "ManualApprovalTransferManager.executeTransfer";
+  "ManualApprovalTransferManager._verifyTransfer";
+  "ManualApprovalTransferManager.verifyTransfer";
+  "ManualApprovalTransferManager.addManualApproval";
+  "ManualApprovalTransferManager._addManualApproval";
+  "ManualApprovalTransferManager._revokeManualApproval";
+  "ManualApprovalTransferManager.addManualApprovalMulti";
+  "ManualApprovalTransferManager._checkInputLengthArray";
+  "ManualApprovalTransferManager.modifyManualApproval";
+  "ManualApprovalTransferManager._modifyManualApproval";
+  "allowance.add";
+  "ManualApprovalTransferManager.modifyManualApprovalMulti";
+  "ManualApprovalTransferManager.revokeManualApproval";
+  "ManualApprovalTransferManager.revokeManualApprovalMulti";
+  "ManualApprovalTransferManagerFactory.null";
+  "ManualApprovalTransferManagerFactory.deploy";
+  "ManualApprovalTransferManagerFactory._initializeModule";
+  "ManualApprovalTransferManagerProxy.null";
+  "ManualApprovalTransferManagerProxy._upgradeTo";
+  "PercentageTransferManager.executeTransfer";
+  "PercentageTransferManager._verifyTransfer";
+  "PercentageTransferManager.verifyTransfer";
+  "newBalance.mul";
+  "IERC20.totalSupply";
+  "PercentageTransferManager.modifyWhitelistMulti";
+  "PercentageTransferManager.modifyWhitelist";
+  "PercentageTransferManagerFactory.null";
+  "PercentageTransferManagerFactory.deploy";
+  "PercentageTransferManagerFactory._initializeModule";
+  "PercentageTransferManagerProxy.null";
+  "PercentageTransferManagerProxy._upgradeTo";
+  "TransferManager.unpause";
+  "TransferManager._onlySecurityTokenOwner";
+  "Module._unpause";
+  "TransferManager.pause";
+  "Module._pause";
+  "VolumeRestrictionTM.executeTransfer";
+  "VolumeRestrictionTM._verifyTransfer";
+  "VolumeRestrictionTM._updateStorage";
+  "VolumeRestrictionTM.verifyTransfer";
+  "VolumeRestrictionTM._restrictionCheck";
+  "VolumeRestrictionTM.addIndividualRestriction";
+  "VolumeRestrictionTM._getValidStartTime";
+  "VolumeRestrictionTM._checkInputParams";
+  "VolumeRestrictionTM.removeIndividualRestriction";
+  "VolumeRestrictionLib.addRestrictionData";
+  "VolumeRestrictionTM.getDataStore";
+  "VolumeRestrictionTM.addIndividualDailyRestriction";
+  "VolumeRestrictionTM.removeIndividualDailyRestriction";
+  "VolumeRestrictionTM.addIndividualDailyRestrictionMulti";
+  "VolumeRestrictionTM._checkLengthOfArray";
+  "VolumeRestrictionTM.addIndividualRestrictionMulti";
+  "VolumeRestrictionTM.addDefaultRestriction";
+  "VolumeRestrictionTM.addDefaultDailyRestriction";
+  "VolumeRestrictionTM._removeIndividualRestriction";
+  "VolumeRestrictionLib.deleteHolderFromList";
+  "VolumeRestrictionTM.removeIndividualRestrictionMulti";
+  "VolumeRestrictionTM._removeIndividualDailyRestriction";
+  "VolumeRestrictionTM.removeIndividualDailyRestrictionMulti";
+  "VolumeRestrictionTM.modifyIndividualRestriction";
+  "VolumeRestrictionTM._isAllowedToModify";
+  "VolumeRestrictionTM.modifyIndividualDailyRestriction";
+  "VolumeRestrictionTM.modifyIndividualDailyRestrictionMulti";
+  "VolumeRestrictionTM.modifyIndividualRestrictionMulti";
+  "VolumeRestrictionTM.modifyDefaultRestriction";
+  "VolumeRestrictionTM.modifyDefaultDailyRestriction";
+  "VolumeRestrictionTM._bucketCheck";
+  "BokkyPooBahsDateTimeLibrary.diffDays";
+  "VolumeRestrictionTM._checkValidAmountToTransact";
+  "VolumeRestrictionTM._dailyTxCheck";
+  "VolumeRestrictionTM._validAllowedAmount";
+  "VolumeRestrictionTM._isValidAmountAfterRestrictionChanges";
+  "VolumeRestrictionLib.isValidAmountAfterRestrictionChanges";
+  "_dailyLastTradedDayTime.add";
+  "counter.add";
+  "counter.sub";
+  "temp.mul";
+  "sumOfLastPeriod.sub";
+  "_fromTime.add";
+  "_diffDays.mul";
+  "VolumeRestrictionTM._allowedAmountToTransact";
+  "_allowedAmount.sub";
+  "VolumeRestrictionTM._updateStorageActual";
+  "_sumOfLastPeriod.add";
+  "VolumeRestrictionTM.getTokensByPartition";
+  "VolumeRestrictionTM.getIndividualBucketDetailsToUser";
+  "VolumeRestrictionTM._getBucketDetails";
+  "VolumeRestrictionTM.getDefaultBucketDetailsToUser";
+  "VolumeRestrictionTM.getIndividualRestriction";
+  "VolumeRestrictionTM._volumeRestrictionSplay";
+  "VolumeRestrictionTM.getIndividualDailyRestriction";
+  "VolumeRestrictionTM.getDefaultRestriction";
+  "VolumeRestrictionTM.getDefaultDailyRestriction";
+  "VolumeRestrictionTM.getRestrictionData";
+  "VolumeRestrictionLib.getRestrictionData";
+  "VolumeRestrictionTMFactory.null";
+  "VolumeRestrictionTMFactory.deploy";
+  "VolumeRestrictionTMFactory._initializeModule";
+  "VolumeRestrictionTMProxy.null";
+  "VolumeRestrictionTMProxy._upgradeTo";
+  "BlacklistTransferManager.executeTransfer" -> "BlacklistTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.verifyTransfer" -> "BlacklistTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager._verifyTransfer" -> "now.sub" [ color = "white" ];
+  "BlacklistTransferManager._verifyTransfer" -> "endTimeTemp.add" [ color = "white" ];
+  "BlacklistTransferManager._verifyTransfer" -> "repeatPeriodTimeTemp.mul" [ color = "white" ];
+  "BlacklistTransferManager.addBlacklistType" -> "BlacklistTransferManager._addBlacklistType" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager._addBlacklistType" -> "BlacklistTransferManager._addBlacklistTypeDetails" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager._addBlacklistTypeDetails" -> "BlacklistTransferManager._validParams" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.addBlacklistTypeMulti" -> "BlacklistTransferManager._addBlacklistType" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.modifyBlacklistType" -> "BlacklistTransferManager._modifyBlacklistType" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager._modifyBlacklistType" -> "BlacklistTransferManager._addBlacklistTypeDetails" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.modifyBlacklistTypeMulti" -> "BlacklistTransferManager._modifyBlacklistType" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.deleteBlacklistType" -> "BlacklistTransferManager._deleteBlacklistType" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.deleteBlacklistTypeMulti" -> "BlacklistTransferManager._deleteBlacklistType" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.addInvestorToBlacklist" -> "BlacklistTransferManager._addInvestorToBlacklist" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.addInvestorToBlacklistMulti" -> "BlacklistTransferManager._addInvestorToBlacklist" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.addMultiInvestorToBlacklistMulti" -> "BlacklistTransferManager._addInvestorToBlacklist" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.addInvestorToNewBlacklist" -> "BlacklistTransferManager._addBlacklistType" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.addInvestorToNewBlacklist" -> "BlacklistTransferManager._addInvestorToBlacklist" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.deleteInvestorFromBlacklist" -> "BlacklistTransferManager._deleteInvestorFromBlacklist" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.deleteInvestorFromAllBlacklist" -> "BlacklistTransferManager._deleteInvestorFromAllBlacklist" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager._deleteInvestorFromAllBlacklist" -> "BlacklistTransferManager._deleteInvestorFromBlacklist" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.deleteInvestorFromAllBlacklistMulti" -> "BlacklistTransferManager._deleteInvestorFromAllBlacklist" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager.deleteMultiInvestorsFromBlacklistMulti" -> "BlacklistTransferManager._deleteInvestorFromBlacklist" [ color = "#1bc6a6" ];
+  "BlacklistTransferManager._validParams" -> "_repeatPeriodTime.mul" [ color = "white" ];
+  "BlacklistTransferManager._validParams" -> "_endTime.sub" [ color = "white" ];
+  "BlacklistTransferManager.getTokensByPartition" -> "IERC20.balanceOf" [ color = "white" ];
+  "BlacklistTransferManager.getTokensByPartition" -> "IERC20.balanceOf" [ color = "white" ];
+  "BlacklistTransferManager.getTokensByPartition" -> "BlacklistTransferManager.verifyTransfer" [ color = "#1bc6a6" ];
+  "BlacklistTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "BlacklistTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "BlacklistTransferManagerFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "BlacklistTransferManagerFactory.deploy" -> "BlacklistTransferManagerFactory._initializeModule" [ color = "#1bc6a6" ];
+  "BlacklistTransferManagerProxy.null" -> "BlacklistTransferManagerProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "CountTransferManager.executeTransfer" -> "CountTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "CountTransferManager.verifyTransfer" -> "CountTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "CountTransferManager._verifyTransfer" -> "ISecurityToken.holderCount" [ color = "white" ];
+  "CountTransferManager._verifyTransfer" -> "ISecurityToken.balanceOf" [ color = "white" ];
+  "CountTransferManager._verifyTransfer" -> "ISecurityToken.balanceOf" [ color = "white" ];
+  "CountTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "CountTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "CountTransferManagerFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "CountTransferManagerFactory.deploy" -> "CountTransferManagerFactory._initializeModule" [ color = "#1bc6a6" ];
+  "CountTransferManagerProxy.null" -> "CountTransferManagerProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.executeTransfer" -> "abi.decode" [ color = "white" ];
+  "GeneralTransferManager.executeTransfer" -> "GeneralTransferManager._processTransferSignature" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.executeTransfer" -> "GeneralTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._processTransferSignature" -> "abi.decode" [ color = "white" ];
+  "GeneralTransferManager._processTransferSignature" -> "GeneralTransferManager._modifyKYCDataSignedMulti" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.verifyTransfer" -> "GeneralTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._verifyTransfer" -> "GeneralTransferManager._getValuesForTransfer" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._verifyTransfer" -> "GeneralTransferManager._validExpiry" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._verifyTransfer" -> "GeneralTransferManager._validExpiry" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._verifyTransfer" -> "GeneralTransferManager._adjustTimes" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._verifyTransfer" -> "GeneralTransferManager._validLockTime" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._verifyTransfer" -> "GeneralTransferManager._validLockTime" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._verifyTransfer" -> "GeneralTransferManager.getAddressBytes32" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.modifyTransferRequirements" -> "GeneralTransferManager._modifyTransferRequirements" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.modifyTransferRequirementsMulti" -> "GeneralTransferManager._modifyTransferRequirements" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.modifyKYCData" -> "GeneralTransferManager._modifyKYCData" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyKYCData" -> "GeneralTransferManager.getDataStore" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyKYCData" -> "GeneralTransferManager._isExistingInvestor" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyKYCData" -> "IDataStore.insertAddress" [ color = "white" ];
+  "GeneralTransferManager._modifyKYCData" -> "VersionUtils.packKYC" [ color = "white" ];
+  "GeneralTransferManager._modifyKYCData" -> "IDataStore.setUint256" [ color = "white" ];
+  "GeneralTransferManager._modifyKYCData" -> "GeneralTransferManager._getKey" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.modifyKYCDataMulti" -> "GeneralTransferManager._modifyKYCData" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.modifyInvestorFlag" -> "GeneralTransferManager._modifyInvestorFlag" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyInvestorFlag" -> "GeneralTransferManager.getDataStore" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyInvestorFlag" -> "GeneralTransferManager._isExistingInvestor" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyInvestorFlag" -> "IDataStore.insertAddress" [ color = "white" ];
+  "GeneralTransferManager._modifyInvestorFlag" -> "IDataStore.setUint256" [ color = "white" ];
+  "GeneralTransferManager._modifyInvestorFlag" -> "GeneralTransferManager._getKey" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyInvestorFlag" -> "IDataStore.getUint256" [ color = "white" ];
+  "GeneralTransferManager._modifyInvestorFlag" -> "GeneralTransferManager._getKey" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyInvestorFlag" -> "IDataStore.setUint256" [ color = "white" ];
+  "GeneralTransferManager._modifyInvestorFlag" -> "GeneralTransferManager._getKey" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.modifyInvestorFlagMulti" -> "GeneralTransferManager._modifyInvestorFlag" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.modifyKYCDataSigned" -> "GeneralTransferManager._modifyKYCDataSigned" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyKYCDataSigned" -> "GeneralTransferManager._checkSig" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyKYCDataSigned" -> "GeneralTransferManager._modifyKYCData" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.modifyKYCDataSignedMulti" -> "GeneralTransferManager._modifyKYCDataSignedMulti" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyKYCDataSignedMulti" -> "GeneralTransferManager._checkSig" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._modifyKYCDataSignedMulti" -> "GeneralTransferManager._modifyKYCData" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._checkSig" -> "_hash.toEthSignedMessageHash" [ color = "white" ];
+  "GeneralTransferManager._checkSig" -> "GeneralTransferManager._checkPerm" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._getKYCValues" -> "IDataStore.getUint256" [ color = "white" ];
+  "GeneralTransferManager._getKYCValues" -> "GeneralTransferManager._getKey" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._getKYCValues" -> "VersionUtils.unpackKYC" [ color = "white" ];
+  "GeneralTransferManager._isExistingInvestor" -> "IDataStore.getUint256" [ color = "white" ];
+  "GeneralTransferManager._isExistingInvestor" -> "GeneralTransferManager._getKey" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._getValuesForTransfer" -> "GeneralTransferManager.getDataStore" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._getValuesForTransfer" -> "GeneralTransferManager._getKYCValues" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._getValuesForTransfer" -> "GeneralTransferManager._getKYCValues" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getAllInvestors" -> "GeneralTransferManager.getDataStore" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getAllInvestors" -> "IDataStore.getAddressArray" [ color = "white" ];
+  "GeneralTransferManager.getInvestors" -> "GeneralTransferManager.getDataStore" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getInvestors" -> "IDataStore.getAddressArrayElements" [ color = "white" ];
+  "GeneralTransferManager.getAllInvestorFlags" -> "GeneralTransferManager.getAllInvestors" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getAllInvestorFlags" -> "GeneralTransferManager._getInvestorFlags" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getInvestorFlag" -> "GeneralTransferManager._getInvestorFlags" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getInvestorFlags" -> "GeneralTransferManager._getInvestorFlags" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._getInvestorFlags" -> "GeneralTransferManager.getDataStore" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._getInvestorFlags" -> "IDataStore.getUint256" [ color = "white" ];
+  "GeneralTransferManager._getInvestorFlags" -> "GeneralTransferManager._getKey" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getAllKYCData" -> "GeneralTransferManager.getAllInvestors" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getAllKYCData" -> "GeneralTransferManager._kycData" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getKYCData" -> "GeneralTransferManager._kycData" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._kycData" -> "GeneralTransferManager._getKYCValues" [ color = "#1bc6a6" ];
+  "GeneralTransferManager._kycData" -> "GeneralTransferManager.getDataStore" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getTokensByPartition" -> "IERC20.balanceOf" [ color = "white" ];
+  "GeneralTransferManager.getTokensByPartition" -> "IERC20.balanceOf" [ color = "white" ];
+  "GeneralTransferManager.getTokensByPartition" -> "GeneralTransferManager._getKYCValues" [ color = "#1bc6a6" ];
+  "GeneralTransferManager.getTokensByPartition" -> "GeneralTransferManager.getDataStore" [ color = "#1bc6a6" ];
+  "GeneralTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "GeneralTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "GeneralTransferManagerFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "GeneralTransferManagerFactory.deploy" -> "GeneralTransferManagerFactory._initializeModule" [ color = "#1bc6a6" ];
+  "GeneralTransferManagerProxy.null" -> "GeneralTransferManagerProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.executeTransfer" -> "LockUpTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.verifyTransfer" -> "LockUpTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._verifyTransfer" -> "LockUpTransferManager._checkIfValidTransfer" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.addNewLockUpType" -> "LockUpTransferManager._addNewLockUpType" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.addNewLockUpTypeMulti" -> "LockUpTransferManager._addNewLockUpType" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.addLockUpByName" -> "LockUpTransferManager._addLockUpByName" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.addLockUpByNameMulti" -> "LockUpTransferManager._checkLengthOfArray" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.addLockUpByNameMulti" -> "LockUpTransferManager._addLockUpByName" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.addNewLockUpToUser" -> "LockUpTransferManager._addNewLockUpToUser" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.addNewLockUpToUserMulti" -> "LockUpTransferManager._addNewLockUpToUser" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.removeLockUpFromUser" -> "LockUpTransferManager._removeLockUpFromUser" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.removeLockupType" -> "LockUpTransferManager._removeLockupType" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.removeLockupTypeMulti" -> "LockUpTransferManager._removeLockupType" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.removeLockUpFromUserMulti" -> "LockUpTransferManager._checkLengthOfArray" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.removeLockUpFromUserMulti" -> "LockUpTransferManager._removeLockUpFromUser" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.modifyLockUpType" -> "LockUpTransferManager._modifyLockUpType" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.modifyLockUpTypeMulti" -> "LockUpTransferManager._modifyLockUpType" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.getLockUp" -> "LockUpTransferManager._getUnlockedAmountForLockup" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.getAllLockupData" -> "LockUpTransferManager.getLockUp" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.getListOfAddresses" -> "LockUpTransferManager._validLockUpCheck" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.getLockedTokenToUser" -> "LockUpTransferManager._checkZeroAddress" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.getLockedTokenToUser" -> "LockUpTransferManager._getUnlockedAmountForLockup" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.getLockedTokenToUser" -> "totalRemainingLockedAmount.add" [ color = "white" ];
+  "LockUpTransferManager._checkIfValidTransfer" -> "LockUpTransferManager.getLockedTokenToUser" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._checkIfValidTransfer" -> "IERC20.balanceOf" [ color = "white" ];
+  "LockUpTransferManager._checkIfValidTransfer" -> "currentBalance.sub" [ color = "white" ];
+  "LockUpTransferManager._getUnlockedAmountForLockup" -> "now.sub" [ color = "white" ];
+  "LockUpTransferManager._removeLockupType" -> "LockUpTransferManager._validLockUpCheck" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._modifyLockUpType" -> "LockUpTransferManager._checkValidStartTime" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._modifyLockUpType" -> "LockUpTransferManager._validLockUpCheck" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._modifyLockUpType" -> "LockUpTransferManager._checkLockUpParams" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._removeLockUpFromUser" -> "LockUpTransferManager._checkZeroAddress" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._removeLockUpFromUser" -> "LockUpTransferManager._checkValidName" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._addNewLockUpToUser" -> "LockUpTransferManager._checkZeroAddress" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._addNewLockUpToUser" -> "LockUpTransferManager._addNewLockUpType" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._addNewLockUpToUser" -> "LockUpTransferManager._addLockUpByName" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._addLockUpByName" -> "LockUpTransferManager._checkZeroAddress" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._addLockUpByName" -> "LockUpTransferManager._checkValidStartTime" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._addNewLockUpType" -> "LockUpTransferManager._checkValidName" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._addNewLockUpType" -> "LockUpTransferManager._checkValidStartTime" [ color = "#1bc6a6" ];
+  "LockUpTransferManager._addNewLockUpType" -> "LockUpTransferManager._checkLockUpParams" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.getTokensByPartition" -> "IERC20.balanceOf" [ color = "white" ];
+  "LockUpTransferManager.getTokensByPartition" -> "IERC20.balanceOf" [ color = "white" ];
+  "LockUpTransferManager.getTokensByPartition" -> "Math.min" [ color = "white" ];
+  "LockUpTransferManager.getTokensByPartition" -> "LockUpTransferManager.getLockedTokenToUser" [ color = "#1bc6a6" ];
+  "LockUpTransferManager.getTokensByPartition" -> "currentBalance.sub" [ color = "white" ];
+  "LockUpTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "LockUpTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "LockUpTransferManagerFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "LockUpTransferManagerFactory.deploy" -> "LockUpTransferManagerFactory._initializeModule" [ color = "#1bc6a6" ];
+  "LockUpTransferManagerProxy.null" -> "LockUpTransferManagerProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager.executeTransfer" -> "ManualApprovalTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager.verifyTransfer" -> "ManualApprovalTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager.addManualApproval" -> "ManualApprovalTransferManager._addManualApproval" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager._addManualApproval" -> "ManualApprovalTransferManager._revokeManualApproval" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager.addManualApprovalMulti" -> "ManualApprovalTransferManager._checkInputLengthArray" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager.addManualApprovalMulti" -> "ManualApprovalTransferManager._addManualApproval" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager.modifyManualApproval" -> "ManualApprovalTransferManager._modifyManualApproval" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager._modifyManualApproval" -> "allowance.add" [ color = "white" ];
+  "ManualApprovalTransferManager.modifyManualApprovalMulti" -> "ManualApprovalTransferManager._checkInputLengthArray" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager.modifyManualApprovalMulti" -> "ManualApprovalTransferManager._modifyManualApproval" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager.revokeManualApproval" -> "ManualApprovalTransferManager._revokeManualApproval" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManager.revokeManualApprovalMulti" -> "ManualApprovalTransferManager._revokeManualApproval" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "ManualApprovalTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "ManualApprovalTransferManagerFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "ManualApprovalTransferManagerFactory.deploy" -> "ManualApprovalTransferManagerFactory._initializeModule" [ color = "#1bc6a6" ];
+  "ManualApprovalTransferManagerProxy.null" -> "ManualApprovalTransferManagerProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "PercentageTransferManager.executeTransfer" -> "PercentageTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "PercentageTransferManager.verifyTransfer" -> "PercentageTransferManager._verifyTransfer" [ color = "#1bc6a6" ];
+  "PercentageTransferManager._verifyTransfer" -> "IERC20.balanceOf" [ color = "white" ];
+  "PercentageTransferManager._verifyTransfer" -> "newBalance.mul" [ color = "white" ];
+  "PercentageTransferManager._verifyTransfer" -> "IERC20.totalSupply" [ color = "white" ];
+  "PercentageTransferManager.modifyWhitelistMulti" -> "PercentageTransferManager.modifyWhitelist" [ color = "#1bc6a6" ];
+  "PercentageTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "PercentageTransferManagerFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "PercentageTransferManagerFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "PercentageTransferManagerFactory.deploy" -> "PercentageTransferManagerFactory._initializeModule" [ color = "#1bc6a6" ];
+  "PercentageTransferManagerProxy.null" -> "PercentageTransferManagerProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "TransferManager.unpause" -> "TransferManager._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "TransferManager.unpause" -> "Module._unpause" [ color = "white" ];
+  "TransferManager.pause" -> "TransferManager._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "TransferManager.pause" -> "Module._pause" [ color = "white" ];
+  "VolumeRestrictionTM.executeTransfer" -> "VolumeRestrictionTM._verifyTransfer" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.executeTransfer" -> "VolumeRestrictionTM._updateStorage" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.verifyTransfer" -> "VolumeRestrictionTM._verifyTransfer" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._verifyTransfer" -> "VolumeRestrictionTM._restrictionCheck" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._verifyTransfer" -> "VolumeRestrictionTM._restrictionCheck" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualRestriction" -> "VolumeRestrictionTM._getValidStartTime" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualRestriction" -> "VolumeRestrictionTM._checkInputParams" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualRestriction" -> "VolumeRestrictionTM.removeIndividualRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualRestriction" -> "VolumeRestrictionLib.addRestrictionData" [ color = "white" ];
+  "VolumeRestrictionTM.addIndividualRestriction" -> "VolumeRestrictionTM.getDataStore" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualDailyRestriction" -> "VolumeRestrictionTM._getValidStartTime" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualDailyRestriction" -> "VolumeRestrictionTM._checkInputParams" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualDailyRestriction" -> "VolumeRestrictionTM.removeIndividualDailyRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualDailyRestriction" -> "VolumeRestrictionLib.addRestrictionData" [ color = "white" ];
+  "VolumeRestrictionTM.addIndividualDailyRestriction" -> "VolumeRestrictionTM.getDataStore" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualDailyRestrictionMulti" -> "VolumeRestrictionTM._checkLengthOfArray" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualDailyRestrictionMulti" -> "VolumeRestrictionTM.addIndividualDailyRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualRestrictionMulti" -> "VolumeRestrictionTM._checkLengthOfArray" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addIndividualRestrictionMulti" -> "VolumeRestrictionTM.addIndividualRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addDefaultRestriction" -> "VolumeRestrictionTM._getValidStartTime" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addDefaultRestriction" -> "VolumeRestrictionTM._checkInputParams" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addDefaultDailyRestriction" -> "VolumeRestrictionTM._getValidStartTime" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.addDefaultDailyRestriction" -> "VolumeRestrictionTM._checkInputParams" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.removeIndividualRestriction" -> "VolumeRestrictionTM._removeIndividualRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._removeIndividualRestriction" -> "VolumeRestrictionLib.deleteHolderFromList" [ color = "white" ];
+  "VolumeRestrictionTM._removeIndividualRestriction" -> "VolumeRestrictionTM.getDataStore" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.removeIndividualRestrictionMulti" -> "VolumeRestrictionTM._removeIndividualRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.removeIndividualDailyRestriction" -> "VolumeRestrictionTM._removeIndividualDailyRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._removeIndividualDailyRestriction" -> "VolumeRestrictionLib.deleteHolderFromList" [ color = "white" ];
+  "VolumeRestrictionTM._removeIndividualDailyRestriction" -> "VolumeRestrictionTM.getDataStore" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.removeIndividualDailyRestrictionMulti" -> "VolumeRestrictionTM._removeIndividualDailyRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyIndividualRestriction" -> "VolumeRestrictionTM._isAllowedToModify" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyIndividualRestriction" -> "VolumeRestrictionTM._getValidStartTime" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyIndividualRestriction" -> "VolumeRestrictionTM._checkInputParams" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyIndividualDailyRestriction" -> "VolumeRestrictionTM._getValidStartTime" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyIndividualDailyRestriction" -> "VolumeRestrictionTM._checkInputParams" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyIndividualDailyRestrictionMulti" -> "VolumeRestrictionTM._checkLengthOfArray" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyIndividualDailyRestrictionMulti" -> "VolumeRestrictionTM.modifyIndividualDailyRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyIndividualRestrictionMulti" -> "VolumeRestrictionTM._checkLengthOfArray" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyIndividualRestrictionMulti" -> "VolumeRestrictionTM.modifyIndividualRestriction" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyDefaultRestriction" -> "VolumeRestrictionTM._isAllowedToModify" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyDefaultRestriction" -> "VolumeRestrictionTM._getValidStartTime" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyDefaultRestriction" -> "VolumeRestrictionTM._checkInputParams" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyDefaultDailyRestriction" -> "VolumeRestrictionTM._getValidStartTime" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.modifyDefaultDailyRestriction" -> "VolumeRestrictionTM._checkInputParams" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._restrictionCheck" -> "VolumeRestrictionTM._bucketCheck" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._restrictionCheck" -> "BokkyPooBahsDateTimeLibrary.diffDays" [ color = "white" ];
+  "VolumeRestrictionTM._restrictionCheck" -> "VolumeRestrictionTM._checkValidAmountToTransact" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._restrictionCheck" -> "VolumeRestrictionTM._dailyTxCheck" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._restrictionCheck" -> "VolumeRestrictionTM._validAllowedAmount" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._validAllowedAmount" -> "Math.min" [ color = "white" ];
+  "VolumeRestrictionTM._isValidAmountAfterRestrictionChanges" -> "VolumeRestrictionLib.isValidAmountAfterRestrictionChanges" [ color = "white" ];
+  "VolumeRestrictionTM._dailyTxCheck" -> "BokkyPooBahsDateTimeLibrary.diffDays" [ color = "white" ];
+  "VolumeRestrictionTM._dailyTxCheck" -> "now.sub" [ color = "white" ];
+  "VolumeRestrictionTM._dailyTxCheck" -> "_dailyLastTradedDayTime.add" [ color = "white" ];
+  "VolumeRestrictionTM._dailyTxCheck" -> "BokkyPooBahsDateTimeLibrary.diffDays" [ color = "white" ];
+  "VolumeRestrictionTM._dailyTxCheck" -> "VolumeRestrictionTM._checkValidAmountToTransact" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._bucketCheck" -> "counter.add" [ color = "white" ];
+  "VolumeRestrictionTM._bucketCheck" -> "counter.sub" [ color = "white" ];
+  "VolumeRestrictionTM._bucketCheck" -> "temp.mul" [ color = "white" ];
+  "VolumeRestrictionTM._bucketCheck" -> "sumOfLastPeriod.sub" [ color = "white" ];
+  "VolumeRestrictionTM._bucketCheck" -> "sumOfLastPeriod.sub" [ color = "white" ];
+  "VolumeRestrictionTM._bucketCheck" -> "_fromTime.add" [ color = "white" ];
+  "VolumeRestrictionTM._bucketCheck" -> "_diffDays.mul" [ color = "white" ];
+  "VolumeRestrictionTM._checkValidAmountToTransact" -> "VolumeRestrictionTM._allowedAmountToTransact" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._checkValidAmountToTransact" -> "VolumeRestrictionTM._isValidAmountAfterRestrictionChanges" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._allowedAmountToTransact" -> "IERC20.totalSupply" [ color = "white" ];
+  "VolumeRestrictionTM._allowedAmountToTransact" -> "_allowedAmount.sub" [ color = "white" ];
+  "VolumeRestrictionTM._updateStorage" -> "VolumeRestrictionTM._updateStorageActual" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._updateStorage" -> "VolumeRestrictionTM._updateStorageActual" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM._updateStorageActual" -> "_sumOfLastPeriod.add" [ color = "white" ];
+  "VolumeRestrictionTM._checkInputParams" -> "BokkyPooBahsDateTimeLibrary.diffDays" [ color = "white" ];
+  "VolumeRestrictionTM.getTokensByPartition" -> "IERC20.balanceOf" [ color = "white" ];
+  "VolumeRestrictionTM.getTokensByPartition" -> "IERC20.balanceOf" [ color = "white" ];
+  "VolumeRestrictionTM.getTokensByPartition" -> "VolumeRestrictionTM._verifyTransfer" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.getTokensByPartition" -> "currentBalance.sub" [ color = "white" ];
+  "VolumeRestrictionTM.getIndividualBucketDetailsToUser" -> "VolumeRestrictionTM._getBucketDetails" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.getDefaultBucketDetailsToUser" -> "VolumeRestrictionTM._getBucketDetails" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.getIndividualRestriction" -> "VolumeRestrictionTM._volumeRestrictionSplay" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.getIndividualDailyRestriction" -> "VolumeRestrictionTM._volumeRestrictionSplay" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.getDefaultRestriction" -> "VolumeRestrictionTM._volumeRestrictionSplay" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.getDefaultDailyRestriction" -> "VolumeRestrictionTM._volumeRestrictionSplay" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTM.getRestrictionData" -> "VolumeRestrictionLib.getRestrictionData" [ color = "white" ];
+  "VolumeRestrictionTM.getRestrictionData" -> "VolumeRestrictionTM.getDataStore" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTMFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "VolumeRestrictionTMFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "VolumeRestrictionTMFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "VolumeRestrictionTMFactory.deploy" -> "VolumeRestrictionTMFactory._initializeModule" [ color = "#1bc6a6" ];
+  "VolumeRestrictionTMProxy.null" -> "VolumeRestrictionTMProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "TransferManager.unpause" -> "TransferManager._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "TransferManager.unpause" -> "Module._unpause" [ color = "white" ];
+  "TransferManager.pause" -> "TransferManager._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "TransferManager.pause" -> "Module._pause" [ color = "white" ];
+
+
+rankdir=LR
+node [shape=plaintext]
+subgraph cluster_01 {
+label = "Legend";
+key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td align="right" port="i1">Internal Call</td></tr>
+  <tr><td align="right" port="i2">External Call</td></tr>
+  <tr><td align="right" port="i3">Defined Contract</td></tr>
+  <tr><td align="right" port="i4">Undefined Contract</td></tr>
+  </table>>]
+key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i3" bgcolor="#445773">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i4">
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
+      <tr>
+       <td></td>
+      </tr>
+     </table>
+  </td></tr>
+  </table>>]
+key:i1:e -> key2:i1:w [color="#1bc6a6"]
+key:i2:e -> key2:i2:w [color="white"]
+}
+}
+

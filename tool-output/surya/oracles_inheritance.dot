@@ -1,0 +1,17 @@
+digraph G {
+  graph [ ratio = "auto", page = "40" ];
+  "MakerDAOOracle";
+  "IOracle";
+  "Ownable";
+  "PolyOracle";
+  "usingOraclize";
+  "StableOracle";
+  "MakerDAOOracle" -> "IOracle";
+  "MakerDAOOracle" -> "Ownable";
+  "PolyOracle" -> "usingOraclize";
+  "PolyOracle" -> "IOracle";
+  "PolyOracle" -> "Ownable";
+  "StableOracle" -> "IOracle";
+  "StableOracle" -> "Ownable";
+}
+

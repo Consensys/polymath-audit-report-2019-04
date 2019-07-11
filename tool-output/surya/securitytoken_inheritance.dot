@@ -1,0 +1,39 @@
+digraph G {
+  graph [ ratio = "auto", page = "40" ];
+  "SecurityTokenRegistry";
+  "EternalStorage";
+  "Proxy";
+  "OZStorage";
+  "STFactory";
+  "ISTFactory";
+  "Ownable";
+  "STGetter";
+  "SecurityTokenStorage";
+  "SecurityToken";
+  "ERC20";
+  "ReentrancyGuard";
+  "IERC1594";
+  "IERC1643";
+  "IERC1644";
+  "IERC1410";
+  "SecurityTokenProxy";
+  "OwnedUpgradeabilityProxy";
+  "SecurityTokenRegistry" -> "EternalStorage";
+  "SecurityTokenRegistry" -> "Proxy";
+  "STFactory" -> "ISTFactory";
+  "STFactory" -> "Ownable";
+  "STGetter" -> "OZStorage";
+  "STGetter" -> "SecurityTokenStorage";
+  "SecurityToken" -> "ERC20";
+  "SecurityToken" -> "ReentrancyGuard";
+  "SecurityToken" -> "SecurityTokenStorage";
+  "SecurityToken" -> "IERC1594";
+  "SecurityToken" -> "IERC1643";
+  "SecurityToken" -> "IERC1644";
+  "SecurityToken" -> "IERC1410";
+  "SecurityToken" -> "Proxy";
+  "SecurityTokenProxy" -> "OZStorage";
+  "SecurityTokenProxy" -> "SecurityTokenStorage";
+  "SecurityTokenProxy" -> "OwnedUpgradeabilityProxy";
+}
+

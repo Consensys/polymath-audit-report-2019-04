@@ -1,0 +1,513 @@
+digraph G {
+  graph [ ratio = "auto", page = "100", compound =true, bgcolor = "#2e3e56" ];
+  node [ style = "filled", fillcolor = "#edad56", color = "#edad56", penwidth =3 ];
+  edge [ color = "#fcfcfc", penwidth =2, fontname = "helvetica Neue Ultra Light" ];
+subgraph "clusterDividendCheckpoint" {
+  graph [ label = "DividendCheckpoint", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "DividendCheckpoint._validDividendIndex" [ label = "_validDividendIndex" ];
+  "DividendCheckpoint.configure" [ label = "configure", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.getInitFunction" [ label = "getInitFunction", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.changeWallet" [ label = "changeWallet", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint._setWallet" [ label = "_setWallet" ];
+  "DividendCheckpoint.getDefaultExcluded" [ label = "getDefaultExcluded", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint.getTreasuryWallet" [ label = "getTreasuryWallet", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.createCheckpoint" [ label = "createCheckpoint", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.setDefaultExcluded" [ label = "setDefaultExcluded", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.setWithholding" [ label = "setWithholding", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.setWithholdingFixed" [ label = "setWithholdingFixed", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.pushDividendPaymentToAddresses" [ label = "pushDividendPaymentToAddresses", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.pushDividendPayment" [ label = "pushDividendPayment", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.pullDividendPayment" [ label = "pullDividendPayment", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint._payDividend" [ label = "_payDividend" ];
+  "DividendCheckpoint.reclaimDividend" [ label = "reclaimDividend", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint.calculateDividend" [ label = "calculateDividend", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.getDividendIndex" [ label = "getDividendIndex", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint.withdrawWithholding" [ label = "withdrawWithholding", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint.updateDividendDates" [ label = "updateDividendDates", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint.getDividendsData" [ label = "getDividendsData", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint.getDividendData" [ label = "getDividendData" ];
+  "DividendCheckpoint.getDividendProgress" [ label = "getDividendProgress", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint.getCheckpointData" [ label = "getCheckpointData", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint.isExcluded" [ label = "isExcluded", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint.isClaimed" [ label = "isClaimed", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "DividendCheckpoint.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "DividendCheckpoint._onlySecurityTokenOwner" [ label = "_onlySecurityTokenOwner" ];
+  "DividendCheckpoint.getDataStore" [ label = "getDataStore" ];
+}
+
+subgraph "clusterERC20DividendCheckpoint" {
+  graph [ label = "ERC20DividendCheckpoint", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "ERC20DividendCheckpoint.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20DividendCheckpoint.createDividend" [ label = "createDividend", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ERC20DividendCheckpoint.createDividendWithCheckpoint" [ label = "createDividendWithCheckpoint", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ERC20DividendCheckpoint.createDividendWithExclusions" [ label = "createDividendWithExclusions" ];
+  "ERC20DividendCheckpoint.createDividendWithCheckpointAndExclusions" [ label = "createDividendWithCheckpointAndExclusions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" [ label = "_createDividendWithCheckpointAndExclusions" ];
+  "ERC20DividendCheckpoint._emitERC20DividendDepositedEvent" [ label = "_emitERC20DividendDepositedEvent" ];
+  "DividendCheckpoint._payDividend" [ label = "_payDividend", color = "#f2c383", fillcolor = "#f2c383" ];
+  "ERC20DividendCheckpoint.reclaimDividend" [ label = "reclaimDividend", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ERC20DividendCheckpoint.withdrawWithholding" [ label = "withdrawWithholding", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+}
+
+subgraph "clusterERC20DividendCheckpointFactory" {
+  graph [ label = "ERC20DividendCheckpointFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "ERC20DividendCheckpointFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20DividendCheckpointFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ERC20DividendCheckpointFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterERC20DividendCheckpointProxy" {
+  graph [ label = "ERC20DividendCheckpointProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "ERC20DividendCheckpointProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20DividendCheckpointProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterERC20DividendCheckpointStorage" {
+  graph [ label = "ERC20DividendCheckpointStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterEtherDividendCheckpoint" {
+  graph [ label = "EtherDividendCheckpoint", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "EtherDividendCheckpoint.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "EtherDividendCheckpoint.createDividend" [ label = "createDividend", color = "brown", fillcolor = "#ffbdb9" ];
+  "EtherDividendCheckpoint.createDividendWithCheckpoint" [ label = "createDividendWithCheckpoint", color = "brown", fillcolor = "#ffbdb9" ];
+  "EtherDividendCheckpoint.createDividendWithExclusions" [ label = "createDividendWithExclusions" ];
+  "EtherDividendCheckpoint.createDividendWithCheckpointAndExclusions" [ label = "createDividendWithCheckpointAndExclusions", color = "brown", fillcolor = "#FF9797" ];
+  "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions" [ label = "_createDividendWithCheckpointAndExclusions" ];
+  "DividendCheckpoint._payDividend" [ label = "_payDividend", color = "#f2c383", fillcolor = "#f2c383" ];
+  "EtherDividendCheckpoint.reclaimDividend" [ label = "reclaimDividend", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "EtherDividendCheckpoint.withdrawWithholding" [ label = "withdrawWithholding", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+}
+
+subgraph "clusterEtherDividendCheckpointFactory" {
+  graph [ label = "EtherDividendCheckpointFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "EtherDividendCheckpointFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "EtherDividendCheckpointFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "EtherDividendCheckpointFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterEtherDividendCheckpointProxy" {
+  graph [ label = "EtherDividendCheckpointProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "EtherDividendCheckpointProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "EtherDividendCheckpointProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterICheckpoint" {
+  graph [ label = "ICheckpoint  (iface)", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterPLCRVotingCheckpoint" {
+  graph [ label = "PLCRVotingCheckpoint", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PLCRVotingCheckpoint.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PLCRVotingCheckpoint.createBallot" [ label = "createBallot", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.createCustomBallot" [ label = "createCustomBallot", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint._createBallotWithCheckpoint" [ label = "_createBallotWithCheckpoint" ];
+  "PLCRVotingCheckpoint.commitVote" [ label = "commitVote", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.revealVote" [ label = "revealVote", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.changeBallotExemptedVotersList" [ label = "changeBallotExemptedVotersList", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.changeBallotExemptedVotersListMulti" [ label = "changeBallotExemptedVotersListMulti", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint._changeBallotExemptedVotersList" [ label = "_changeBallotExemptedVotersList" ];
+  "PLCRVotingCheckpoint.isVoterAllowed" [ label = "isVoterAllowed" ];
+  "PLCRVotingCheckpoint.changeBallotStatus" [ label = "changeBallotStatus", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.getCurrentBallotStage" [ label = "getCurrentBallotStage" ];
+  "PLCRVotingCheckpoint.getBallotResults" [ label = "getBallotResults", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.getSelectedProposal" [ label = "getSelectedProposal", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.getBallotDetails" [ label = "getBallotDetails", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.getBallotCommitRevealDuration" [ label = "getBallotCommitRevealDuration", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.getInitFunction" [ label = "getInitFunction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint.getPermissions" [ label = "getPermissions", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpoint._validValueCheck" [ label = "_validValueCheck" ];
+  "PLCRVotingCheckpoint._validBallotId" [ label = "_validBallotId" ];
+}
+
+subgraph "clusterPLCRVotingCheckpointFactory" {
+  graph [ label = "PLCRVotingCheckpointFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PLCRVotingCheckpointFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PLCRVotingCheckpointFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "PLCRVotingCheckpointFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterPLCRVotingCheckpointProxy" {
+  graph [ label = "PLCRVotingCheckpointProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PLCRVotingCheckpointProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PLCRVotingCheckpointProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterPLCRVotingCheckpointStorage" {
+  graph [ label = "PLCRVotingCheckpointStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterWeightedVoteCheckpoint" {
+  graph [ label = "WeightedVoteCheckpoint", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "WeightedVoteCheckpoint.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "WeightedVoteCheckpoint.getInitFunction" [ label = "getInitFunction", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint.createBallot" [ label = "createBallot", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint._createCustomBallot" [ label = "_createCustomBallot" ];
+  "WeightedVoteCheckpoint.createCustomBallot" [ label = "createCustomBallot", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint.castVote" [ label = "castVote", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint.changeBallotExemptedVotersList" [ label = "changeBallotExemptedVotersList", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint.changeBallotExemptedVotersListMulti" [ label = "changeBallotExemptedVotersListMulti", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint._changeBallotExemptedVotersList" [ label = "_changeBallotExemptedVotersList" ];
+  "WeightedVoteCheckpoint.isVoterAllowed" [ label = "isVoterAllowed" ];
+  "WeightedVoteCheckpoint.changeBallotStatus" [ label = "changeBallotStatus", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint.getBallotResults" [ label = "getBallotResults", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint.getSelectedProposal" [ label = "getSelectedProposal", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint.getBallotDetails" [ label = "getBallotDetails", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpoint.getPermissions" [ label = "getPermissions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "WeightedVoteCheckpoint._validBallotId" [ label = "_validBallotId" ];
+}
+
+subgraph "clusterWeightedVoteCheckpointFactory" {
+  graph [ label = "WeightedVoteCheckpointFactory", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "WeightedVoteCheckpointFactory.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "WeightedVoteCheckpointFactory.deploy" [ label = "deploy", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "WeightedVoteCheckpointFactory._initializeModule" [ label = "_initializeModule" ];
+}
+
+subgraph "clusterWeightedVoteCheckpointProxy" {
+  graph [ label = "WeightedVoteCheckpointProxy", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "WeightedVoteCheckpointProxy.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "WeightedVoteCheckpointProxy._upgradeTo" [ label = "_upgradeTo" ];
+}
+
+subgraph "clusterWeightedVoteCheckpointStorage" {
+  graph [ label = "WeightedVoteCheckpointStorage", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+}
+
+subgraph "clusterVotingCheckpoint" {
+  graph [ label = "VotingCheckpoint", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "VotingCheckpoint.changeDefaultExemptedVotersList" [ label = "changeDefaultExemptedVotersList", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VotingCheckpoint.changeDefaultExemptedVotersListMulti" [ label = "changeDefaultExemptedVotersListMulti", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "VotingCheckpoint._changeDefaultExemptedVotersList" [ label = "_changeDefaultExemptedVotersList" ];
+  "VotingCheckpoint.getDefaultExemptionVotersList" [ label = "getDefaultExemptionVotersList", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+}
+
+subgraph "clusterIDataStore" {
+  graph [ label = "IDataStore", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IDataStore.getAddress" [ label = "getAddress" ];
+}
+
+subgraph "clusterISecurityToken" {
+  graph [ label = "ISecurityToken", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "ISecurityToken.createCheckpoint" [ label = "createCheckpoint" ];
+  "ISecurityToken.getInvestorsSubsetAt" [ label = "getInvestorsSubsetAt" ];
+  "ISecurityToken.balanceOfAt" [ label = "balanceOfAt" ];
+  "ISecurityToken.getInvestorsAt" [ label = "getInvestorsAt" ];
+  "ISecurityToken.currentCheckpointId" [ label = "currentCheckpointId" ];
+  "ISecurityToken.totalSupplyAt" [ label = "totalSupplyAt" ];
+}
+
+subgraph "clusterbalance" {
+  graph [ label = "balance", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "balance.mul" [ label = "mul" ];
+}
+
+subgraph "clusterclaim" {
+  graph [ label = "claim", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "claim.mul" [ label = "mul" ];
+  "claim.sub" [ label = "sub" ];
+  "claim.add" [ label = "add" ];
+}
+
+subgraph "clusterIERC20" {
+  graph [ label = "IERC20", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IERC20.transferFrom" [ label = "transferFrom" ];
+  "IERC20.transfer" [ label = "transfer" ];
+}
+
+subgraph "clusterexcludedSupply" {
+  graph [ label = "excludedSupply", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "excludedSupply.add" [ label = "add" ];
+}
+
+subgraph "clustercurrentSupply" {
+  graph [ label = "currentSupply", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "currentSupply.sub" [ label = "sub" ];
+}
+
+subgraph "clusterVersionUtils" {
+  graph [ label = "VersionUtils", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "VersionUtils.pack" [ label = "pack" ];
+}
+
+subgraph "clusterIPolymathRegistry" {
+  graph [ label = "IPolymathRegistry", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "IPolymathRegistry.getAddress" [ label = "getAddress" ];
+}
+
+subgraph "cluster_payee" {
+  graph [ label = "_payee", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_payee.send" [ label = "send" ];
+}
+
+subgraph "clusterwallet" {
+  graph [ label = "wallet", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "wallet.transfer" [ label = "transfer" ];
+}
+
+subgraph "clustercommitTimeEnd" {
+  graph [ label = "commitTimeEnd", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "commitTimeEnd.add" [ label = "add" ];
+}
+
+subgraph "clustersupplyAtCheckpoint" {
+  graph [ label = "supplyAtCheckpoint", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "supplyAtCheckpoint.mul" [ label = "mul" ];
+}
+
+subgraph "clusternow" {
+  graph [ label = "now", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "now.add" [ label = "add" ];
+}
+
+  "DividendCheckpoint.configure";
+  "DividendCheckpoint._setWallet";
+  "DividendCheckpoint.changeWallet";
+  "DividendCheckpoint._onlySecurityTokenOwner";
+  "DividendCheckpoint.getTreasuryWallet";
+  "IDataStore.getAddress";
+  "DividendCheckpoint.getDataStore";
+  "DividendCheckpoint.createCheckpoint";
+  "ISecurityToken.createCheckpoint";
+  "DividendCheckpoint.pushDividendPaymentToAddresses";
+  "DividendCheckpoint._validDividendIndex";
+  "DividendCheckpoint._payDividend";
+  "DividendCheckpoint.pushDividendPayment";
+  "ISecurityToken.getInvestorsSubsetAt";
+  "DividendCheckpoint.pullDividendPayment";
+  "DividendCheckpoint.calculateDividend";
+  "ISecurityToken.balanceOfAt";
+  "balance.mul";
+  "claim.mul";
+  "DividendCheckpoint.getDividendsData";
+  "DividendCheckpoint.getDividendData";
+  "DividendCheckpoint.getDividendProgress";
+  "ISecurityToken.getInvestorsAt";
+  "claim.sub";
+  "DividendCheckpoint.getCheckpointData";
+  "ISecurityToken.currentCheckpointId";
+  "ERC20DividendCheckpoint.createDividend";
+  "ERC20DividendCheckpoint.createDividendWithExclusions";
+  "ERC20DividendCheckpoint.createDividendWithCheckpoint";
+  "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions";
+  "ERC20DividendCheckpoint.createDividendWithCheckpointAndExclusions";
+  "IERC20.transferFrom";
+  "ISecurityToken.totalSupplyAt";
+  "excludedSupply.add";
+  "currentSupply.sub";
+  "ERC20DividendCheckpoint._emitERC20DividendDepositedEvent";
+  "claim.add";
+  "IERC20.transfer";
+  "ERC20DividendCheckpoint.reclaimDividend";
+  "ERC20DividendCheckpoint.withdrawWithholding";
+  "ERC20DividendCheckpointFactory.null";
+  "VersionUtils.pack";
+  "ERC20DividendCheckpointFactory.deploy";
+  "IPolymathRegistry.getAddress";
+  "ERC20DividendCheckpointFactory._initializeModule";
+  "ERC20DividendCheckpointProxy.null";
+  "ERC20DividendCheckpointProxy._upgradeTo";
+  "EtherDividendCheckpoint.createDividend";
+  "EtherDividendCheckpoint.createDividendWithExclusions";
+  "EtherDividendCheckpoint.createDividendWithCheckpoint";
+  "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions";
+  "EtherDividendCheckpoint.createDividendWithCheckpointAndExclusions";
+  "_payee.send";
+  "EtherDividendCheckpoint.reclaimDividend";
+  "wallet.transfer";
+  "EtherDividendCheckpoint.withdrawWithholding";
+  "EtherDividendCheckpointFactory.null";
+  "EtherDividendCheckpointFactory.deploy";
+  "EtherDividendCheckpointFactory._initializeModule";
+  "EtherDividendCheckpointProxy.null";
+  "EtherDividendCheckpointProxy._upgradeTo";
+  "PLCRVotingCheckpoint.createBallot";
+  "PLCRVotingCheckpoint._createBallotWithCheckpoint";
+  "PLCRVotingCheckpoint.createCustomBallot";
+  "PLCRVotingCheckpoint._validValueCheck";
+  "PLCRVotingCheckpoint.commitVote";
+  "PLCRVotingCheckpoint._validBallotId";
+  "PLCRVotingCheckpoint.isVoterAllowed";
+  "PLCRVotingCheckpoint.getCurrentBallotStage";
+  "PLCRVotingCheckpoint.revealVote";
+  "PLCRVotingCheckpoint.changeBallotExemptedVotersList";
+  "PLCRVotingCheckpoint._changeBallotExemptedVotersList";
+  "PLCRVotingCheckpoint.changeBallotExemptedVotersListMulti";
+  "PLCRVotingCheckpoint.changeBallotStatus";
+  "commitTimeEnd.add";
+  "PLCRVotingCheckpoint.getBallotResults";
+  "supplyAtCheckpoint.mul";
+  "PLCRVotingCheckpoint.getBallotDetails";
+  "PLCRVotingCheckpointFactory.null";
+  "PLCRVotingCheckpointFactory.deploy";
+  "PLCRVotingCheckpointFactory._initializeModule";
+  "PLCRVotingCheckpointProxy.null";
+  "PLCRVotingCheckpointProxy._upgradeTo";
+  "WeightedVoteCheckpoint.createBallot";
+  "now.add";
+  "WeightedVoteCheckpoint._createCustomBallot";
+  "WeightedVoteCheckpoint.createCustomBallot";
+  "WeightedVoteCheckpoint.castVote";
+  "WeightedVoteCheckpoint._validBallotId";
+  "WeightedVoteCheckpoint.isVoterAllowed";
+  "WeightedVoteCheckpoint.changeBallotExemptedVotersList";
+  "WeightedVoteCheckpoint._changeBallotExemptedVotersList";
+  "WeightedVoteCheckpoint.changeBallotExemptedVotersListMulti";
+  "WeightedVoteCheckpoint.getBallotResults";
+  "WeightedVoteCheckpoint.getBallotDetails";
+  "WeightedVoteCheckpointFactory.null";
+  "WeightedVoteCheckpointFactory.deploy";
+  "WeightedVoteCheckpointFactory._initializeModule";
+  "WeightedVoteCheckpointProxy.null";
+  "WeightedVoteCheckpointProxy._upgradeTo";
+  "VotingCheckpoint.changeDefaultExemptedVotersList";
+  "VotingCheckpoint._changeDefaultExemptedVotersList";
+  "VotingCheckpoint.changeDefaultExemptedVotersListMulti";
+  "DividendCheckpoint.configure" -> "DividendCheckpoint._setWallet" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.changeWallet" -> "DividendCheckpoint._onlySecurityTokenOwner" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.changeWallet" -> "DividendCheckpoint._setWallet" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.getTreasuryWallet" -> "IDataStore.getAddress" [ color = "white" ];
+  "DividendCheckpoint.getTreasuryWallet" -> "DividendCheckpoint.getDataStore" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.createCheckpoint" -> "ISecurityToken.createCheckpoint" [ color = "white" ];
+  "DividendCheckpoint.pushDividendPaymentToAddresses" -> "DividendCheckpoint._validDividendIndex" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.pushDividendPaymentToAddresses" -> "DividendCheckpoint._payDividend" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.pushDividendPayment" -> "DividendCheckpoint._validDividendIndex" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.pushDividendPayment" -> "ISecurityToken.getInvestorsSubsetAt" [ color = "white" ];
+  "DividendCheckpoint.pushDividendPayment" -> "DividendCheckpoint._payDividend" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.pullDividendPayment" -> "DividendCheckpoint._validDividendIndex" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.pullDividendPayment" -> "DividendCheckpoint._payDividend" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.calculateDividend" -> "ISecurityToken.balanceOfAt" [ color = "white" ];
+  "DividendCheckpoint.calculateDividend" -> "balance.mul" [ color = "white" ];
+  "DividendCheckpoint.calculateDividend" -> "claim.mul" [ color = "white" ];
+  "DividendCheckpoint.getDividendsData" -> "DividendCheckpoint.getDividendData" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.getDividendProgress" -> "ISecurityToken.getInvestorsAt" [ color = "white" ];
+  "DividendCheckpoint.getDividendProgress" -> "ISecurityToken.balanceOfAt" [ color = "white" ];
+  "DividendCheckpoint.getDividendProgress" -> "DividendCheckpoint.calculateDividend" [ color = "#1bc6a6" ];
+  "DividendCheckpoint.getDividendProgress" -> "claim.sub" [ color = "white" ];
+  "DividendCheckpoint.getCheckpointData" -> "ISecurityToken.currentCheckpointId" [ color = "white" ];
+  "DividendCheckpoint.getCheckpointData" -> "ISecurityToken.getInvestorsAt" [ color = "white" ];
+  "DividendCheckpoint.getCheckpointData" -> "ISecurityToken.balanceOfAt" [ color = "white" ];
+  "ERC20DividendCheckpoint.createDividend" -> "ERC20DividendCheckpoint.createDividendWithExclusions" [ color = "#1bc6a6" ];
+  "ERC20DividendCheckpoint.createDividendWithCheckpoint" -> "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" [ color = "#1bc6a6" ];
+  "ERC20DividendCheckpoint.createDividendWithExclusions" -> "ISecurityToken.createCheckpoint" [ color = "white" ];
+  "ERC20DividendCheckpoint.createDividendWithExclusions" -> "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" [ color = "#1bc6a6" ];
+  "ERC20DividendCheckpoint.createDividendWithCheckpointAndExclusions" -> "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" [ color = "#1bc6a6" ];
+  "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "ISecurityToken.currentCheckpointId" [ color = "white" ];
+  "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "IERC20.transferFrom" [ color = "white" ];
+  "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "ISecurityToken.totalSupplyAt" [ color = "white" ];
+  "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "excludedSupply.add" [ color = "white" ];
+  "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "ISecurityToken.balanceOfAt" [ color = "white" ];
+  "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "currentSupply.sub" [ color = "white" ];
+  "ERC20DividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "ERC20DividendCheckpoint._emitERC20DividendDepositedEvent" [ color = "#1bc6a6" ];
+  "DividendCheckpoint._payDividend" -> "DividendCheckpoint.calculateDividend" [ color = "#1bc6a6" ];
+  "DividendCheckpoint._payDividend" -> "claim.add" [ color = "white" ];
+  "DividendCheckpoint._payDividend" -> "claim.sub" [ color = "white" ];
+  "DividendCheckpoint._payDividend" -> "IERC20.transfer" [ color = "white" ];
+  "ERC20DividendCheckpoint.reclaimDividend" -> "IERC20.transfer" [ color = "white" ];
+  "ERC20DividendCheckpoint.reclaimDividend" -> "DividendCheckpoint.getTreasuryWallet" [ color = "#1bc6a6" ];
+  "ERC20DividendCheckpoint.withdrawWithholding" -> "IERC20.transfer" [ color = "white" ];
+  "ERC20DividendCheckpoint.withdrawWithholding" -> "DividendCheckpoint.getTreasuryWallet" [ color = "#1bc6a6" ];
+  "ERC20DividendCheckpointFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "ERC20DividendCheckpointFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "ERC20DividendCheckpointFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "ERC20DividendCheckpointFactory.deploy" -> "ERC20DividendCheckpointFactory._initializeModule" [ color = "#1bc6a6" ];
+  "ERC20DividendCheckpointProxy.null" -> "ERC20DividendCheckpointProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "EtherDividendCheckpoint.createDividend" -> "EtherDividendCheckpoint.createDividendWithExclusions" [ color = "#1bc6a6" ];
+  "EtherDividendCheckpoint.createDividendWithCheckpoint" -> "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions" [ color = "#1bc6a6" ];
+  "EtherDividendCheckpoint.createDividendWithExclusions" -> "ISecurityToken.createCheckpoint" [ color = "white" ];
+  "EtherDividendCheckpoint.createDividendWithExclusions" -> "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions" [ color = "#1bc6a6" ];
+  "EtherDividendCheckpoint.createDividendWithCheckpointAndExclusions" -> "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions" [ color = "#1bc6a6" ];
+  "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "ISecurityToken.currentCheckpointId" [ color = "white" ];
+  "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "ISecurityToken.totalSupplyAt" [ color = "white" ];
+  "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "excludedSupply.add" [ color = "white" ];
+  "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "ISecurityToken.balanceOfAt" [ color = "white" ];
+  "EtherDividendCheckpoint._createDividendWithCheckpointAndExclusions" -> "currentSupply.sub" [ color = "white" ];
+  "DividendCheckpoint._payDividend" -> "DividendCheckpoint.calculateDividend" [ color = "#1bc6a6" ];
+  "DividendCheckpoint._payDividend" -> "claim.sub" [ color = "white" ];
+  "DividendCheckpoint._payDividend" -> "_payee.send" [ color = "white" ];
+  "EtherDividendCheckpoint.reclaimDividend" -> "DividendCheckpoint.getTreasuryWallet" [ color = "#1bc6a6" ];
+  "EtherDividendCheckpoint.reclaimDividend" -> "wallet.transfer" [ color = "white" ];
+  "EtherDividendCheckpoint.withdrawWithholding" -> "DividendCheckpoint.getTreasuryWallet" [ color = "#1bc6a6" ];
+  "EtherDividendCheckpoint.withdrawWithholding" -> "wallet.transfer" [ color = "white" ];
+  "EtherDividendCheckpointFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "EtherDividendCheckpointFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "EtherDividendCheckpointFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "EtherDividendCheckpointFactory.deploy" -> "EtherDividendCheckpointFactory._initializeModule" [ color = "#1bc6a6" ];
+  "EtherDividendCheckpointProxy.null" -> "EtherDividendCheckpointProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.createBallot" -> "ISecurityToken.createCheckpoint" [ color = "white" ];
+  "PLCRVotingCheckpoint.createBallot" -> "PLCRVotingCheckpoint._createBallotWithCheckpoint" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.createCustomBallot" -> "ISecurityToken.currentCheckpointId" [ color = "white" ];
+  "PLCRVotingCheckpoint.createCustomBallot" -> "PLCRVotingCheckpoint._createBallotWithCheckpoint" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint._createBallotWithCheckpoint" -> "PLCRVotingCheckpoint._validValueCheck" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint._createBallotWithCheckpoint" -> "PLCRVotingCheckpoint._validValueCheck" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint._createBallotWithCheckpoint" -> "PLCRVotingCheckpoint._validValueCheck" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.commitVote" -> "PLCRVotingCheckpoint._validBallotId" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.commitVote" -> "PLCRVotingCheckpoint.isVoterAllowed" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.commitVote" -> "PLCRVotingCheckpoint.getCurrentBallotStage" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.commitVote" -> "ISecurityToken.balanceOfAt" [ color = "white" ];
+  "PLCRVotingCheckpoint.revealVote" -> "PLCRVotingCheckpoint._validBallotId" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.revealVote" -> "PLCRVotingCheckpoint.getCurrentBallotStage" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.revealVote" -> "ISecurityToken.balanceOfAt" [ color = "white" ];
+  "PLCRVotingCheckpoint.changeBallotExemptedVotersList" -> "PLCRVotingCheckpoint._changeBallotExemptedVotersList" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.changeBallotExemptedVotersListMulti" -> "PLCRVotingCheckpoint._changeBallotExemptedVotersList" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint._changeBallotExemptedVotersList" -> "PLCRVotingCheckpoint._validBallotId" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.changeBallotStatus" -> "PLCRVotingCheckpoint._validBallotId" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpoint.getCurrentBallotStage" -> "commitTimeEnd.add" [ color = "white" ];
+  "PLCRVotingCheckpoint.getBallotResults" -> "ISecurityToken.totalSupplyAt" [ color = "white" ];
+  "PLCRVotingCheckpoint.getBallotResults" -> "supplyAtCheckpoint.mul" [ color = "white" ];
+  "PLCRVotingCheckpoint.getBallotDetails" -> "ISecurityToken.totalSupplyAt" [ color = "white" ];
+  "PLCRVotingCheckpointFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "PLCRVotingCheckpointFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "PLCRVotingCheckpointFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "PLCRVotingCheckpointFactory.deploy" -> "PLCRVotingCheckpointFactory._initializeModule" [ color = "#1bc6a6" ];
+  "PLCRVotingCheckpointProxy.null" -> "PLCRVotingCheckpointProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "WeightedVoteCheckpoint.createBallot" -> "ISecurityToken.createCheckpoint" [ color = "white" ];
+  "WeightedVoteCheckpoint.createBallot" -> "now.add" [ color = "white" ];
+  "WeightedVoteCheckpoint.createBallot" -> "WeightedVoteCheckpoint._createCustomBallot" [ color = "#1bc6a6" ];
+  "WeightedVoteCheckpoint.createCustomBallot" -> "ISecurityToken.currentCheckpointId" [ color = "white" ];
+  "WeightedVoteCheckpoint.createCustomBallot" -> "WeightedVoteCheckpoint._createCustomBallot" [ color = "#1bc6a6" ];
+  "WeightedVoteCheckpoint.castVote" -> "WeightedVoteCheckpoint._validBallotId" [ color = "#1bc6a6" ];
+  "WeightedVoteCheckpoint.castVote" -> "WeightedVoteCheckpoint.isVoterAllowed" [ color = "#1bc6a6" ];
+  "WeightedVoteCheckpoint.castVote" -> "ISecurityToken.balanceOfAt" [ color = "white" ];
+  "WeightedVoteCheckpoint.changeBallotExemptedVotersList" -> "WeightedVoteCheckpoint._changeBallotExemptedVotersList" [ color = "#1bc6a6" ];
+  "WeightedVoteCheckpoint.changeBallotExemptedVotersListMulti" -> "WeightedVoteCheckpoint._changeBallotExemptedVotersList" [ color = "#1bc6a6" ];
+  "WeightedVoteCheckpoint._changeBallotExemptedVotersList" -> "WeightedVoteCheckpoint._validBallotId" [ color = "#1bc6a6" ];
+  "WeightedVoteCheckpoint.getBallotResults" -> "ISecurityToken.totalSupplyAt" [ color = "white" ];
+  "WeightedVoteCheckpoint.getBallotResults" -> "supplyAtCheckpoint.mul" [ color = "white" ];
+  "WeightedVoteCheckpoint.getBallotDetails" -> "ISecurityToken.totalSupplyAt" [ color = "white" ];
+  "WeightedVoteCheckpointFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "WeightedVoteCheckpointFactory.null" -> "VersionUtils.pack" [ color = "white" ];
+  "WeightedVoteCheckpointFactory.deploy" -> "IPolymathRegistry.getAddress" [ color = "white" ];
+  "WeightedVoteCheckpointFactory.deploy" -> "WeightedVoteCheckpointFactory._initializeModule" [ color = "#1bc6a6" ];
+  "WeightedVoteCheckpointProxy.null" -> "WeightedVoteCheckpointProxy._upgradeTo" [ color = "#1bc6a6" ];
+  "VotingCheckpoint.changeDefaultExemptedVotersList" -> "VotingCheckpoint._changeDefaultExemptedVotersList" [ color = "#1bc6a6" ];
+  "VotingCheckpoint.changeDefaultExemptedVotersListMulti" -> "VotingCheckpoint._changeDefaultExemptedVotersList" [ color = "#1bc6a6" ];
+
+
+rankdir=LR
+node [shape=plaintext]
+subgraph cluster_01 {
+label = "Legend";
+key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td align="right" port="i1">Internal Call</td></tr>
+  <tr><td align="right" port="i2">External Call</td></tr>
+  <tr><td align="right" port="i3">Defined Contract</td></tr>
+  <tr><td align="right" port="i4">Undefined Contract</td></tr>
+  </table>>]
+key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i3" bgcolor="#445773">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i4">
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
+      <tr>
+       <td></td>
+      </tr>
+     </table>
+  </td></tr>
+  </table>>]
+key:i1:e -> key2:i1:w [color="#1bc6a6"]
+key:i2:e -> key2:i2:w [color="white"]
+}
+}
+

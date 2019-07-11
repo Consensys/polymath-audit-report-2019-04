@@ -1,0 +1,17 @@
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: GeneralPermissionManagerStorage
+Function name: allDelegates(uint256)
+PC address: 474
+Estimated Gas Usage: 645 - 740
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/GeneralPermissionManagerStorage.sol:13
+
+address[] public allDelegates
+
+--------------------
+
+

@@ -1,0 +1,177 @@
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: GeneralPermissionManagerStorage
+Function name: [allDelegates(uint256), allDelegates(uint256)] (ambiguous)
+PC address: 474
+Estimated Gas Usage: 645 - 740
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/GeneralPermissionManager.sol:1278
+
+address[] public allDelegates
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: GeneralPermissionManager
+Function name: [changePermissionMulti(address,address[],bytes32[],bool[]), changePermissionMulti(address,address[],bytes32[],bool[])] (ambiguous)
+PC address: 1046
+Estimated Gas Usage: 13528 - 114714
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 11736
+Offset: 12162
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/GeneralPermissionManager.sol:1383
+
+function changePermissionMulti(
+        address _delegate,
+        address[] memory _modules,
+        bytes32[] memory _perms,
+        bool[] memory _valids
+    )
+        public
+        withPerm(ADMIN)
+    {
+        require(_delegate != address(0), "invalid address");
+        require(_modules.length > 0, "0 length is not allowed");
+        require(_modules.length == _perms.length && _valids.length == _perms.length, "Array length mismatch");
+        for (uint256 i = 0; i < _perms.length; i++) {
+            _changePermission(_delegate, _modules[i], _perms[i], _valids[i]);
+        }
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: GeneralPermissionManager
+Function name: [addDelegate(address,bytes32), addDelegate(address,bytes32)] (ambiguous)
+PC address: 2456
+Estimated Gas Usage: 23072 - 154718
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 11736
+Offset: 12162
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/GeneralPermissionManager.sol:1323
+
+function addDelegate(address _delegate, bytes32 _details) external withPerm(ADMIN) {
+        require(_delegate != address(0), "Invalid address");
+        require(_details != bytes32(0), "0 value not allowed");
+        require(delegateDetails[_delegate] == bytes32(0), "Already present");
+        delegateDetails[_delegate] = _details;
+        allDelegates.push(_delegate);
+        /*solium-disable-next-line security/no-block-members*/
+        emit AddDelegate(_delegate, _details);
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: GeneralPermissionManager
+Function name: [takeUsageFee(), takeUsageFee(), takeUsageFee()] (ambiguous)
+PC address: 2490
+Estimated Gas Usage: 11748 - 187339
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 11736
+Offset: 12162
+Offset: 10015
+Offset: 10180
+Offset: 10395
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/GeneralPermissionManager.sol:1233
+
+function takeUsageFee() public withPerm(ADMIN) returns(bool) {
+        require(polyToken.transferFrom(securityToken, Ownable(factory).owner(), IModuleFactory(factory).usageCostInPoly()), "Unable to take fee");
+        return true;
+    }
+
+--------------------
+
+==== Multiple Calls in a Single Transaction ====
+SWC ID: 113
+Severity: Medium
+Contract: GeneralPermissionManager
+Function name: [changePermission(address,address,bytes32,bool), changePermission(address,address,bytes32,bool)] (ambiguous)
+PC address: 2855
+Estimated Gas Usage: 12266 - 104197
+Multiple sends are executed in one transaction.
+Consecutive calls are executed at the following bytecode offsets:
+Offset: 11736
+Offset: 12162
+Try to isolate each external call into its own transaction, as external calls can fail accidentally or deliberately.
+
+--------------------
+In file: modules/GeneralPermissionManager.sol:1370
+
+function changePermission(address _delegate, address _module, bytes32 _perm, bool _valid) public withPerm(ADMIN) {
+        require(_delegate != address(0), "invalid address");
+        _changePermission(_delegate, _module, _perm, _valid);
+    }
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: GeneralPermissionManager
+Function name: [allDelegates(uint256), allDelegates(uint256)] (ambiguous)
+PC address: 8691
+Estimated Gas Usage: 734 - 829
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/GeneralPermissionManager.sol:1278
+
+address[] public allDelegates
+
+--------------------
+
+==== External Call To Fixed Address ====
+SWC ID: 107
+Severity: Low
+Contract: GeneralPermissionManager
+Function name: [takeUsageFee(), takeUsageFee(), takeUsageFee()] (ambiguous)
+PC address: 10180
+Estimated Gas Usage: 9158 - 115530
+The contract executes an external message call.
+An external function call to a fixed contract address is executed. Make sure that the callee contract has been reviewed carefully.
+--------------------
+In file: modules/GeneralPermissionManager.sol:1234
+
+IModuleFactory(factory).usageCostInPoly()
+
+--------------------
+
+==== External Call To Fixed Address ====
+SWC ID: 107
+Severity: Low
+Contract: GeneralPermissionManager
+Function name: [takeUsageFee(), takeUsageFee(), takeUsageFee()] (ambiguous)
+PC address: 10395
+Estimated Gas Usage: 10841 - 151965
+The contract executes an external message call.
+An external function call to a fixed contract address is executed. Make sure that the callee contract has been reviewed carefully.
+--------------------
+In file: modules/GeneralPermissionManager.sol:1234
+
+polyToken.transferFrom(securityToken, Ownable(factory).owner(), IModuleFactory(factory).usageCostInPoly())
+
+--------------------
+
+

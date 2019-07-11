@@ -1,0 +1,49 @@
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletStorage
+Function name: schedules(address,uint256)
+PC address: 552
+Estimated Gas Usage: 763 - 1048
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWalletStorage.sol:38
+
+mapping(address => Schedule[]) public schedules
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletStorage
+Function name: templateNames(uint256)
+PC address: 608
+Estimated Gas Usage: 689 - 784
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWalletStorage.sol:53
+
+bytes32[] public templateNames
+
+--------------------
+
+==== Exception State ====
+SWC ID: 110
+Severity: Low
+Contract: VestingEscrowWalletStorage
+Function name: beneficiaries(uint256)
+PC address: 641
+Estimated Gas Usage: 711 - 806
+A reachable exception has been detected.
+It is possible to trigger an exception (opcode 0xfe). Exceptions can be caused by type errors, division by zero, out-of-bounds array access, or assert violations. Note that explicit `assert()` should only be used to check invariants. Use `require()` for regular input checking.
+--------------------
+In file: modules/VestingEscrowWalletStorage.sol:33
+
+address[] public beneficiaries
+
+--------------------
+
+

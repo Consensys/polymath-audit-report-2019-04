@@ -1,0 +1,33 @@
+==== External Call To Fixed Address ====
+SWC ID: 107
+Severity: Low
+Contract: SecurityTokenRegistry
+Function name: getFees(bytes32)
+PC address: 19765
+Estimated Gas Usage: 4818 - 42351
+The contract executes an external message call.
+An external function call to a fixed contract address is executed. Make sure that the callee contract has been reviewed carefully.
+--------------------
+In file: SecurityTokenRegistry.sol:1763
+
+IOracle(IPolymathRegistry(polymathRegistry).getAddress(POLY_ORACLE)).getPrice()
+
+--------------------
+
+==== Delegatecall Proxy ====
+SWC ID: 112
+Severity: Low
+Contract: SecurityTokenRegistry
+Function name: fallback
+PC address: 23200
+Estimated Gas Usage: 898 - 3817
+The contract implements a delegatecall proxy.
+The smart contract forwards the received calldata via delegatecall. Note that callers can execute arbitrary functions in the callee contract and that the callee contract can access the storage of the calling contract. Make sure that the callee contract is audited properly.DELEGATECALL target: 0x0
+--------------------
+In file: SecurityTokenRegistry.sol:1505
+
+delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+--------------------
+
+

@@ -1,0 +1,1196 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/modules/Checkpoint/Voting/PLCR/PLCRVotingCheckpoint.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">contracts/modules/Checkpoint/Voting/PLCR/</a> PLCRVotingCheckpoint.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.15% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>100/104</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">88.57% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>62/70</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>20/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.23% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>98/104</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity ^0.5.0;
+&nbsp;
+import "../VotingCheckpoint.sol";
+import "./PLCRVotingCheckpointStorage.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+&nbsp;
+contract PLCRVotingCheckpoint is PLCRVotingCheckpointStorage, VotingCheckpoint {
+&nbsp;
+    using SafeMath for uint256;
+&nbsp;
+    event VoteCommit(address indexed _voter, uint256 _weight, uint256 indexed _ballotId, bytes32 _secretVote);
+    event VoteRevealed(
+        address indexed _voter,
+        uint256 _weight,
+        uint256 indexed _ballotId,
+        uint256 _choiceOfProposal,
+        uint256 _salt,
+        bytes32 _secretVote
+    );
+    event BallotCreated(
+        uint256 indexed _ballotId,
+        uint256 indexed _checkpointId,
+        uint256 _startTime,
+        uint256 _commitDuration,
+        uint256 _revealDuration,
+        uint256 _noOfProposals,
+        uint256 _proposedQuorum
+    );
+    event BallotStatusChanged(uint256 indexed _ballotId, bool _newStatus);
+    event ChangedBallotExemptedVotersList(uint256 indexed _ballotId, address indexed _voter, bool _change);
+&nbsp;
+    constructor(address _securityToken, address _polyAddress)
+    public
+    Module(_securityToken, _polyAddress)
+    {
+&nbsp;
+    } 
+&nbsp;
+    /**
+     * @notice Use to create the ballot
+     * @param _commitDuration Unix time period till the voters commit there vote
+     * @param _revealDuration Unix time period till the voters reveal there vote starts when commit duration ends
+     * @param _noOfProposals Total number of proposal used in the ballot. In general it is 2 (For &amp; Against)
+     * @param _proposedQuorum Minimum number of weight vote requires to win a election.
+     */
+    function createBallot(
+        uint256 _commitDuration,
+        uint256 _revealDuration,
+        uint256 _noOfProposals,
+        uint256 _proposedQuorum
+    )   
+        external
+        withPerm(ADMIN)
+    {
+        uint256 startTime = now;
+        uint256 checkpointId = ISecurityToken(securityToken).createCheckpoint();
+        _createBallotWithCheckpoint(_commitDuration, _revealDuration, _noOfProposals, _proposedQuorum, checkpointId, startTime);
+    }
+&nbsp;
+    /**
+     * @notice Use to create the ballot
+     * @param _commitDuration Unix time period till the voters commit there vote
+     * @param _revealDuration Unix time period till the voters reveal there vote starts when commit duration ends
+     * @param _noOfProposals Total number of proposal used in the ballot. In general it is 2 (For &amp; Against)
+     * @param _proposedQuorum Minimum number of weight vote requires to win a election.
+     * @param _checkpointId Valid checkpoint Id
+     * @param _startTime startTime of the ballot
+     */
+    function createCustomBallot(
+        uint256 _commitDuration,
+        uint256 _revealDuration,
+        uint256 _noOfProposals,
+        uint256 _proposedQuorum,
+        uint256 _checkpointId,
+        uint256 _startTime
+    )
+        external
+        withPerm(ADMIN)
+    {
+        require(_checkpointId &lt;= ISecurityToken(securityToken).currentCheckpointId(), "Invalid checkpoint Id");
+        _createBallotWithCheckpoint(_commitDuration, _revealDuration, _noOfProposals, _proposedQuorum, _checkpointId, _startTime);
+    }
+&nbsp;
+    function _createBallotWithCheckpoint(
+        uint256 _commitDuration,
+        uint256 _revealDuration,
+        uint256 _totalProposals,
+        uint256 _proposedQuorum,
+        uint256 _checkpointId,
+        uint256 _startTime
+    )
+        internal
+    {
+        // Sanity checks
+        _validValueCheck(_commitDuration);
+        _validValueCheck(_revealDuration);
+        _validValueCheck(_proposedQuorum);
+        require(_proposedQuorum &lt;= 100 * 10 ** 16, "Invalid quorum percentage"); // not more than 100 %
+        // Overflow check
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(
+            uint64(_commitDuration) == _commitDuration &amp;&amp; 
+            uint64(_revealDuration) == _revealDuration &amp;&amp;
+            uint64(_startTime) == _startTime &amp;&amp;
+            uint24(_totalProposals) == _totalProposals,
+            "Parameter values get overflowed"
+        );
+        require(_startTime &gt;= now, "Invalid start time");
+        // Total no of proposals always greater than 2 it means minimum valid
+        // proposal id will be 0 or 1. Proposal Id should be start from 0 instead of 1.
+        require(_totalProposals &gt; 1, "Invalid number of totalProposals");
+        uint256 _ballotId = ballots.length;
+        ballots.push(Ballot(
+            _checkpointId,
+            _proposedQuorum,
+            uint64(_commitDuration),
+            uint64(_revealDuration),
+            uint64(_startTime),
+            uint24(_totalProposals),
+            uint32(0),
+            true
+        ));
+        emit BallotCreated(_ballotId, _checkpointId, _startTime, _commitDuration, _revealDuration, _totalProposals, _proposedQuorum);
+    }
+&nbsp;
+    /**
+     * @notice Used to commit the vote
+     * @param _ballotId Given ballot Id
+     * @param _secretVote It is secret hash value (hashed offchain)
+     */
+    function commitVote(uint256 _ballotId, bytes32 _secretVote) external {
+        _validBallotId(_ballotId);
+        require(isVoterAllowed(_ballotId, msg.sender), "Invalid voter");
+        require(getCurrentBallotStage(_ballotId) == Stage.COMMIT, "Not in commit stage");
+        Ballot storage ballot = ballots[_ballotId];
+        require(ballot.investorToProposal[msg.sender].secretVote == bytes32(0), "Already voted");
+        require(_secretVote != bytes32(0), "Invalid vote");
+        require(ballot.isActive, "Inactive ballot");
+        uint256 weight = ISecurityToken(securityToken).balanceOfAt(msg.sender, ballot.checkpointId);
+        require(weight &gt; 0, "Zero weight is not allowed");
+        ballot.investorToProposal[msg.sender] = Vote(0, _secretVote);
+        emit VoteCommit(msg.sender, weight, _ballotId, _secretVote);
+    }
+&nbsp;
+    /**
+     * @notice Used to reveal the vote
+     * @param _ballotId Given ballot Id
+     * @param _choiceOfProposal Proposal chossed by the voter. It varies from (0 to totalProposals - 1)
+     * @param _salt used salt for hashing (unique for each user)
+     */
+    function revealVote(uint256 _ballotId, uint256 _choiceOfProposal, uint256 _salt) external {
+        _validBallotId(_ballotId);
+        require(getCurrentBallotStage(_ballotId) == Stage.REVEAL, "Not in reveal stage");
+        Ballot storage ballot = ballots[_ballotId];
+        require(ballot.isActive, "Inactive ballot");
+        require(ballot.investorToProposal[msg.sender].secretVote != bytes32(0), "Secret vote not available");
+        require(_choiceOfProposal &lt; ballot.totalProposals &amp;&amp; _choiceOfProposal &gt;= 1, "Invalid proposal choice");
+&nbsp;
+        // validate the secret vote
+        require(
+            bytes32(keccak256(abi.encodePacked(_choiceOfProposal, _salt))) == ballot.investorToProposal[msg.sender].secretVote,
+            "Invalid vote"
+        );
+        uint256 weight = ISecurityToken(securityToken).balanceOfAt(msg.sender, ballot.checkpointId);
+        bytes32 secretVote = ballot.investorToProposal[msg.sender].secretVote;
+        ballot.proposalToVotes[_choiceOfProposal] = ballot.proposalToVotes[_choiceOfProposal].add(weight);
+        ballot.totalVoters = ballot.totalVoters + 1;
+        ballot.investorToProposal[msg.sender] = Vote(_choiceOfProposal, bytes32(0));
+        emit VoteRevealed(msg.sender, weight, _ballotId, _choiceOfProposal, _salt, secretVote);
+    }
+&nbsp;
+    /**
+     * Change the given ballot exempted list
+     * @param _ballotId Given ballot Id
+     * @param _voter Address of the voter
+     * @param _change Whether it is exempted or not
+     */
+    function changeBallotExemptedVotersList(uint256 _ballotId, address _voter, bool _change) external withPerm(ADMIN) {
+        _changeBallotExemptedVotersList(_ballotId, _voter, _change);
+    }
+&nbsp;
+    /**
+     * Change the given ballot exempted list (Multi)
+     * @param _ballotId Given ballot Id
+     * @param _voters Address of the voter
+     * @param _changes Whether it is exempted or not
+     */
+    function changeBallotExemptedVotersListMulti(uint256 _ballotId, address[] calldata _voters, bool[] calldata _changes) external withPerm(ADMIN) {
+        require(_voters.length == _changes.length, "Array length mismatch");
+        for (uint256 i = 0; i &lt; _voters.length; i++) {
+            _changeBallotExemptedVotersList(_ballotId, _voters[i], _changes[i]);
+        }
+    }
+&nbsp;
+    function _changeBallotExemptedVotersList(uint256 _ballotId, address _voter, bool _change) internal {
+        require(_voter != address(0), "Invalid address");
+        _validBallotId(_ballotId);
+        require(ballots[_ballotId].exemptedVoters[_voter] != _change, "No change");
+        ballots[_ballotId].exemptedVoters[_voter] = _change;
+        emit ChangedBallotExemptedVotersList(_ballotId, _voter, _change);
+    }
+&nbsp;
+    /**
+     * Use to check whether the voter is allowed to vote or not
+     * @param _ballotId The index of the target ballot
+     * @param _voter Address of the voter
+     * @return bool 
+     */
+    function isVoterAllowed(uint256 _ballotId, address _voter) public view returns(bool) {
+        bool allowed = (ballots[_ballotId].exemptedVoters[_voter] || (defaultExemptIndex[_voter] != 0));
+        return !allowed;
+    } 
+&nbsp;
+    /**
+     * @notice Allows the token issuer to set the active stats of a ballot
+     * @param _ballotId The index of the target ballot
+     * @param _isActive The bool value of the active stats of the ballot
+     */
+    function changeBallotStatus(uint256 _ballotId, bool _isActive) external withPerm(ADMIN) {
+        _validBallotId(_ballotId);
+        require(
+            now &lt;= uint256(ballots[_ballotId].startTime)
+            .add(uint256(ballots[_ballotId].commitDuration)
+            .add(uint256(ballots[_ballotId].revealDuration))),
+            "Already ended"
+        );
+        require(ballots[_ballotId].isActive != _isActive, "Active state unchanged");
+        ballots[_ballotId].isActive = _isActive;
+        emit BallotStatusChanged(_ballotId, _isActive);
+    }
+&nbsp;
+    /**
+     * @notice Used to get the current stage of the ballot
+     * @param _ballotId Given ballot Id
+     */
+    function getCurrentBallotStage(uint256 _ballotId) public view returns (Stage) {
+        Ballot memory ballot = ballots[_ballotId];
+        uint256 commitTimeEnd = uint256(ballot.startTime).add(uint256(ballot.commitDuration));
+        uint256 revealTimeEnd = commitTimeEnd.add(uint256(ballot.revealDuration));
+&nbsp;
+        if (now &lt; ballot.startTime)
+            return Stage.PREP;
+        else if (now &lt;= commitTimeEnd &amp;&amp; now &gt;= ballot.startTime)
+            return Stage.COMMIT;
+        else if ( now &gt; commitTimeEnd &amp;&amp; now &lt;= revealTimeEnd)
+            return Stage.REVEAL;
+        else <span class="missing-if-branch" title="else path not taken" >E</span>if (now &gt; revealTimeEnd)
+            return Stage.RESOLVED;
+    }
+&nbsp;
+    /**
+     * @notice Queries the result of a given ballot
+     * @param _ballotId Id of the target ballot
+     * @return uint256 voteWeighting
+     * @return uint256 tieWith
+     * @return uint256 winningProposal
+     * @return bool isVotingSucceed
+     * @return uint256 totalVoters
+     */
+    function getBallotResults(uint256 _ballotId) external view returns(
+        uint256[] memory voteWeighting,
+        uint256[] memory tieWith,
+        uint256 winningProposal,
+        bool isVotingSucceed,
+        uint256 totalVotes
+    ) {
+        if (_ballotId &gt;= ballots.length)
+            return (new uint256[](0), new uint256[](0), 0, false, 0);
+        
+        Ballot storage ballot = ballots[_ballotId];
+        uint256 i = 0;
+        uint256 counter = 0;
+        uint256 maxWeight = 0;
+        uint256 supplyAtCheckpoint = ISecurityToken(securityToken).totalSupplyAt(ballot.checkpointId);
+        uint256 quorumWeight = (supplyAtCheckpoint.mul(ballot.quorum)).div(10 ** 18);
+        voteWeighting = new uint256[](ballot.totalProposals);
+        for (i = 0; i &lt; ballot.totalProposals; i++) {
+            voteWeighting[i] = ballot.proposalToVotes[i + 1];
+            if (maxWeight &lt; ballot.proposalToVotes[i + 1]) {
+                maxWeight = ballot.proposalToVotes[i + 1];
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (maxWeight &gt;= quorumWeight)
+                    winningProposal = i + 1;
+            }
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (maxWeight &gt;= quorumWeight) {
+            isVotingSucceed = true;
+            for (i = 0; i &lt; ballot.totalProposals; i++) {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (maxWeight == ballot.proposalToVotes[i + 1] &amp;&amp; (i + 1) != winningProposal)
+                    counter ++;
+            }
+        }
+        
+        tieWith = new uint256[](counter);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (counter &gt; 0) {
+<span class="cstat-no" title="statement not covered" >            counter = 0</span>;
+<span class="cstat-no" title="statement not covered" >            for (i = 0; i &lt; ballot.totalProposals; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                if (maxWeight == ballot.proposalToVotes[i + 1] &amp;&amp; (i + 1) != winningProposal) {</span>
+<span class="cstat-no" title="statement not covered" >                    tieWith[counter] = i + 1</span>;
+                    counter ++;
+                }   
+            }
+        }
+        totalVotes = uint256(ballot.totalVoters);
+    }
+&nbsp;
+    /**
+     * @notice Get the voted proposal
+     * @param _ballotId Id of the ballot
+     * @param _voter Address of the voter
+     */
+    function getSelectedProposal(uint256 _ballotId, address _voter) external view returns(uint256 proposalId) {
+        if (_ballotId &gt;= ballots.length)
+            return 0;
+        return (ballots[_ballotId].investorToProposal[_voter].voteOption);
+    }
+&nbsp;
+    /**
+     * @notice Get the details of the ballot
+     * @param _ballotId The index of the target ballot
+     * @return uint256 quorum
+     * @return uint256 totalSupplyAtCheckpoint
+     * @return uint256 checkpointId
+     * @return uint256 startTime
+     * @return uint256 endTime
+     * @return uint256 totalProposals
+     * @return uint256 totalVoters
+     * @return bool isActive 
+     */
+    function getBallotDetails(uint256 _ballotId) external view returns(uint256, uint256, uint256, uint256, uint256, uint256, uint256, bool) {
+        Ballot memory ballot = ballots[_ballotId];
+        return (
+            ballot.quorum,
+            ISecurityToken(securityToken).totalSupplyAt(ballot.checkpointId),
+            ballot.checkpointId,
+            ballot.startTime,
+            (uint256(ballot.startTime).add(uint256(ballot.commitDuration))).add(uint256(ballot.revealDuration)),
+            ballot.totalProposals,
+            ballot.totalVoters,
+            ballot.isActive
+        );
+    }
+&nbsp;
+    /**
+     * Return the commit relveal time duration of ballot
+     * @param _ballotId Id of a ballot
+     */
+    function getBallotCommitRevealDuration(uint256 _ballotId) external view returns(uint256, uint256) {
+        Ballot memory ballot = ballots[_ballotId];
+        return (
+            ballot.commitDuration,
+            ballot.revealDuration
+        );
+    }
+&nbsp;
+    /**
+     * @notice This function returns the signature of configure function
+     */
+    function getInitFunction() external pure returns(bytes4) {
+        return bytes4(0);
+    }
+&nbsp;
+    /**
+     * @notice Return the permissions flag that are associated with CountTransferManager
+     */
+    function getPermissions() external view returns(bytes32[] memory) {
+        bytes32[] memory allPermissions = new bytes32[](1);
+        allPermissions[0] = ADMIN;
+        return allPermissions;
+    }
+&nbsp;
+    function _validValueCheck(uint256 _value) internal pure {
+        require(_value &gt; 0, "Invalid value");
+    }
+&nbsp;
+    function _validBallotId(uint256 _ballotId) internal view {
+        require(ballots.length &gt; _ballotId, "Index out of bound");
+    }
+&nbsp;
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 24 2019 01:30:03 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

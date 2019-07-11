@@ -1,0 +1,1799 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/modules/Wallet/VestingEscrowWallet.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">contracts/modules/Wallet/</a> VestingEscrowWallet.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.08% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>153/156</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>72/84</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>44/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.24% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>167/170</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">52×</span>
+<span class="cline-any cline-yes">52×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity ^0.5.0;
+&nbsp;
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "./Wallet.sol";
+import "./VestingEscrowWalletStorage.sol";
+&nbsp;
+/**
+ * @title Wallet for core vesting escrow functionality
+ */
+contract VestingEscrowWallet is VestingEscrowWalletStorage, Wallet {
+    using SafeMath for uint256;
+&nbsp;
+    // States used to represent the status of the schedule
+    enum State {CREATED, STARTED, COMPLETED}
+&nbsp;
+    // Emit when new schedule is added
+    event AddSchedule(
+        address indexed _beneficiary,
+        bytes32 _templateName,
+        uint256 _startTime
+    );
+    // Emit when schedule is modified
+    event ModifySchedule(
+        address indexed _beneficiary,
+        bytes32 _templateName,
+        uint256 _startTime
+    );
+    // Emit when all schedules are revoked for user
+    event RevokeAllSchedules(address indexed _beneficiary);
+    // Emit when schedule is revoked
+    event RevokeSchedule(address indexed _beneficiary, bytes32 _templateName);
+    // Emit when tokes are deposited to wallet
+    event DepositTokens(uint256 _numberOfTokens, address _sender);
+    // Emit when all unassigned tokens are sent to treasury
+    event SendToTreasury(uint256 _numberOfTokens, address _sender);
+    // Emit when is sent tokes to user
+    event SendTokens(address indexed _beneficiary, uint256 _numberOfTokens);
+    // Emit when template is added
+    event AddTemplate(bytes32 _name, uint256 _numberOfTokens, uint256 _duration, uint256 _frequency);
+    // Emit when template is removed
+    event RemoveTemplate(bytes32 _name);
+    // Emit when the treasury wallet gets changed
+    event TreasuryWalletChanged(address _newWallet, address _oldWallet);
+&nbsp;
+    /**
+     * @notice Constructor
+     * @param _securityToken Address of the security token
+     * @param _polyAddress Address of the polytoken
+     */
+    constructor (address _securityToken, address _polyAddress)
+    public
+    Module(_securityToken, _polyAddress)
+    {
+    }
+&nbsp;
+    /**
+     * @notice This function returns the signature of the configure function
+     */
+    function getInitFunction() public pure returns (bytes4) {
+        return this.configure.selector;
+    }
+&nbsp;
+    /**
+     * @notice Used to initialize the treasury wallet address
+     * @param _treasuryWallet Address of the treasury wallet
+     */
+    function configure(address _treasuryWallet) public onlyFactory {
+        _setWallet(_treasuryWallet);
+    }
+&nbsp;
+    /**
+     * @notice Used to change the treasury wallet address
+     * @param _newTreasuryWallet Address of the treasury wallet
+     */
+    function changeTreasuryWallet(address _newTreasuryWallet) public {
+        _onlySecurityTokenOwner();
+        _setWallet(_newTreasuryWallet);
+    }
+&nbsp;
+    function _setWallet(address _newTreasuryWallet) internal {
+        emit TreasuryWalletChanged(_newTreasuryWallet, treasuryWallet);
+        treasuryWallet = _newTreasuryWallet;
+    }
+&nbsp;
+    /**
+     * @notice Used to deposit tokens from treasury wallet to the vesting escrow wallet
+     * @param _numberOfTokens Number of tokens that should be deposited
+     */
+    function depositTokens(uint256 _numberOfTokens) external withPerm(ADMIN) {
+        _depositTokens(_numberOfTokens);
+    }
+&nbsp;
+    function _depositTokens(uint256 _numberOfTokens) internal {
+        require(_numberOfTokens &gt; 0, "Should be &gt; 0");
+        require(
+            ISecurityToken(securityToken).transferFrom(msg.sender, address(this), _numberOfTokens),
+            "Failed transferFrom"
+        );
+        unassignedTokens = unassignedTokens.add(_numberOfTokens);
+        emit DepositTokens(_numberOfTokens, msg.sender);
+    }
+&nbsp;
+    /**
+     * @notice Sends unassigned tokens to the treasury wallet
+     * @param _amount Amount of tokens that should be send to the treasury wallet
+     */
+    function sendToTreasury(uint256 _amount) public withPerm(OPERATOR) {
+        require(_amount &gt; 0, "Amount cannot be zero");
+        require(_amount &lt;= unassignedTokens, "Amount is greater than unassigned tokens");
+        unassignedTokens = unassignedTokens - _amount;
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(ISecurityToken(securityToken).transfer(getTreasuryWallet(), _amount), "Transfer failed");
+        emit SendToTreasury(_amount, msg.sender);
+    }
+&nbsp;
+    /**
+     * @notice Returns the treasury wallet address
+     */
+    function getTreasuryWallet() public view returns(address) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (treasuryWallet == address(0)) {
+<span class="cstat-no" title="statement not covered" >            address wallet = IDataStore(getDataStore()).getAddress(TREASURY)</span>;
+<span class="cstat-no" title="statement not covered" >            require(wallet != address(0), "Invalid address")</span>;
+<span class="cstat-no" title="statement not covered" >            return wallet;</span>
+        } else
+            return treasuryWallet;
+    }
+&nbsp;
+    /**
+     * @notice Pushes available tokens to the beneficiary's address
+     * @param _beneficiary Address of the beneficiary who will receive tokens
+     */
+    function pushAvailableTokens(address _beneficiary) public withPerm(OPERATOR) {
+        _sendTokens(_beneficiary);
+    }
+&nbsp;
+    /**
+     * @notice Used to withdraw available tokens by beneficiary
+     */
+    function pullAvailableTokens() external whenNotPaused {
+        _sendTokens(msg.sender);
+    }
+&nbsp;
+    /**
+     * @notice Adds template that can be used for creating schedule
+     * @param _name Name of the template will be created
+     * @param _numberOfTokens Number of tokens that should be assigned to schedule
+     * @param _duration Duration of the vesting schedule
+     * @param _frequency Frequency of the vesting schedule
+     */
+    function addTemplate(bytes32 _name, uint256 _numberOfTokens, uint256 _duration, uint256 _frequency) external withPerm(ADMIN) {
+        _addTemplate(_name, _numberOfTokens, _duration, _frequency);
+    }
+&nbsp;
+    function _addTemplate(bytes32 _name, uint256 _numberOfTokens, uint256 _duration, uint256 _frequency) internal {
+        require(_name != bytes32(0), "Invalid name");
+        require(!_isTemplateExists(_name), "Already exists");
+        _validateTemplate(_numberOfTokens, _duration, _frequency);
+        templateNames.push(_name);
+        templates[_name] = Template(_numberOfTokens, _duration, _frequency, templateNames.length - 1);
+        emit AddTemplate(_name, _numberOfTokens, _duration, _frequency);
+    }
+&nbsp;
+    /**
+     * @notice Removes template with a given name
+     * @param _name Name of the template that will be removed
+     */
+    function removeTemplate(bytes32 _name) external withPerm(ADMIN) {
+        require(_isTemplateExists(_name), "Template not found");
+        require(templateToUsers[_name].length == 0, "Template is used");
+        uint256 index = templates[_name].index;
+        if (index != templateNames.length - 1) {
+            templateNames[index] = templateNames[templateNames.length - 1];
+            templates[templateNames[index]].index = index;
+        }
+        templateNames.length--;
+        // delete template data
+        delete templates[_name];
+        emit RemoveTemplate(_name);
+    }
+&nbsp;
+    /**
+     * @notice Returns count of the templates those can be used for creating schedule
+     * @return Count of the templates
+     */
+    function getTemplateCount() external view returns(uint256) {
+        return templateNames.length;
+    }
+&nbsp;
+    /**
+     * @notice Gets the list of the template names those can be used for creating schedule
+     * @return bytes32 Array of all template names were created
+     */
+    function getAllTemplateNames() external view returns(bytes32[] memory) {
+        return templateNames;
+    }
+&nbsp;
+    /**
+     * @notice Adds vesting schedules for each of the beneficiary's address
+     * @param _beneficiary Address of the beneficiary for whom it is scheduled
+     * @param _templateName Name of the template that will be created
+     * @param _numberOfTokens Total number of tokens for created schedule
+     * @param _duration Duration of the created vesting schedule
+     * @param _frequency Frequency of the created vesting schedule
+     * @param _startTime Start time of the created vesting schedule
+     */
+    function addSchedule(
+        address _beneficiary,
+        bytes32 _templateName,
+        uint256 _numberOfTokens,
+        uint256 _duration,
+        uint256 _frequency,
+        uint256 _startTime
+    )
+        external
+        withPerm(ADMIN)
+    {
+        _addSchedule(_beneficiary, _templateName, _numberOfTokens, _duration, _frequency, _startTime);
+    }
+&nbsp;
+    function _addSchedule(
+        address _beneficiary,
+        bytes32 _templateName,
+        uint256 _numberOfTokens,
+        uint256 _duration,
+        uint256 _frequency,
+        uint256 _startTime
+    )
+        internal
+    {
+        _addTemplate(_templateName, _numberOfTokens, _duration, _frequency);
+        _addScheduleFromTemplate(_beneficiary, _templateName, _startTime);
+    }
+&nbsp;
+    /**
+     * @notice Adds vesting schedules from template for the beneficiary
+     * @param _beneficiary Address of the beneficiary for whom it is scheduled
+     * @param _templateName Name of the exists template
+     * @param _startTime Start time of the created vesting schedule
+     */
+    function addScheduleFromTemplate(address _beneficiary, bytes32 _templateName, uint256 _startTime) external withPerm(ADMIN) {
+        _addScheduleFromTemplate(_beneficiary, _templateName, _startTime);
+    }
+&nbsp;
+    function _addScheduleFromTemplate(address _beneficiary, bytes32 _templateName, uint256 _startTime) internal {
+        require(_beneficiary != address(0), "Invalid address");
+        require(_isTemplateExists(_templateName), "Template not found");
+        uint256 index = userToTemplateIndex[_beneficiary][_templateName];
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(
+            schedules[_beneficiary].length == 0 ||
+            schedules[_beneficiary][index].templateName != _templateName,
+            "Already added"
+        );
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_startTime &gt;= now, "Date in the past");
+        uint256 numberOfTokens = templates[_templateName].numberOfTokens;
+        if (numberOfTokens &gt; unassignedTokens) {
+            _depositTokens(numberOfTokens.sub(unassignedTokens));
+        }
+        unassignedTokens = unassignedTokens.sub(numberOfTokens);
+        if (!beneficiaryAdded[_beneficiary]) {
+            beneficiaries.push(_beneficiary);
+            beneficiaryAdded[_beneficiary] = true;
+        }
+        schedules[_beneficiary].push(Schedule(_templateName, 0, _startTime));
+        userToTemplates[_beneficiary].push(_templateName);
+        userToTemplateIndex[_beneficiary][_templateName] = schedules[_beneficiary].length - 1;
+        templateToUsers[_templateName].push(_beneficiary);
+        templateToUserIndex[_templateName][_beneficiary] = templateToUsers[_templateName].length - 1;
+        emit AddSchedule(_beneficiary, _templateName, _startTime);
+    }
+&nbsp;
+    /**
+     * @notice Modifies vesting schedules for each of the beneficiary
+     * @param _beneficiary Address of the beneficiary for whom it is modified
+     * @param _templateName Name of the template was used for schedule creation
+     * @param _startTime Start time of the created vesting schedule
+     */
+    function modifySchedule(address _beneficiary, bytes32 _templateName, uint256 _startTime) external withPerm(ADMIN) {
+        _modifySchedule(_beneficiary, _templateName, _startTime);
+    }
+&nbsp;
+    function _modifySchedule(address _beneficiary, bytes32 _templateName, uint256 _startTime) internal {
+        _checkSchedule(_beneficiary, _templateName);
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_startTime &gt; now, "Date in the past");
+        uint256 index = userToTemplateIndex[_beneficiary][_templateName];
+        Schedule storage schedule = schedules[_beneficiary][index];
+        /*solium-disable-next-line security/no-block-members*/
+        require(now &lt; schedule.startTime, "Schedule started");
+        schedule.startTime = _startTime;
+        emit ModifySchedule(_beneficiary, _templateName, _startTime);
+    }
+&nbsp;
+    /**
+     * @notice Revokes vesting schedule with given template name for given beneficiary
+     * @param _beneficiary Address of the beneficiary for whom it is revoked
+     * @param _templateName Name of the template was used for schedule creation
+     */
+    function revokeSchedule(address _beneficiary, bytes32 _templateName) external withPerm(ADMIN) {
+        _checkSchedule(_beneficiary, _templateName);
+        uint256 index = userToTemplateIndex[_beneficiary][_templateName];
+        _sendTokensPerSchedule(_beneficiary, index);
+        uint256 releasedTokens = _getReleasedTokens(_beneficiary, index);
+        unassignedTokens = unassignedTokens.add(templates[_templateName].numberOfTokens.sub(releasedTokens));
+        _deleteUserToTemplates(_beneficiary, _templateName);
+        _deleteTemplateToUsers(_beneficiary, _templateName);
+        emit RevokeSchedule(_beneficiary, _templateName);
+    }
+&nbsp;
+    function _deleteUserToTemplates(address _beneficiary, bytes32 _templateName) internal {
+        uint256 index = userToTemplateIndex[_beneficiary][_templateName];
+        Schedule[] storage userSchedules = schedules[_beneficiary];
+        if (index != userSchedules.length - 1) {
+            userSchedules[index] = userSchedules[userSchedules.length - 1];
+            userToTemplates[_beneficiary][index] = userToTemplates[_beneficiary][userToTemplates[_beneficiary].length - 1];
+            userToTemplateIndex[_beneficiary][userSchedules[index].templateName] = index;
+        }
+        userSchedules.length--;
+        userToTemplates[_beneficiary].length--;
+        delete userToTemplateIndex[_beneficiary][_templateName];
+    }
+&nbsp;
+    function _deleteTemplateToUsers(address _beneficiary, bytes32 _templateName) internal {
+        uint256 templateIndex = templateToUserIndex[_templateName][_beneficiary];
+        if (templateIndex != templateToUsers[_templateName].length - 1) {
+            templateToUsers[_templateName][templateIndex] = templateToUsers[_templateName][templateToUsers[_templateName].length - 1];
+            templateToUserIndex[_templateName][templateToUsers[_templateName][templateIndex]] = templateIndex;
+        }
+        templateToUsers[_templateName].length--;
+        delete templateToUserIndex[_templateName][_beneficiary];
+    }
+&nbsp;
+    /**
+     * @notice Revokes all vesting schedules for given beneficiary's address
+     * @param _beneficiary Address of the beneficiary for whom all schedules will be revoked
+     */
+    function revokeAllSchedules(address _beneficiary) public withPerm(ADMIN) {
+        _revokeAllSchedules(_beneficiary);
+    }
+&nbsp;
+    function _revokeAllSchedules(address _beneficiary) internal {
+        require(_beneficiary != address(0), "Invalid address");
+        _sendTokens(_beneficiary);
+        Schedule[] storage userSchedules = schedules[_beneficiary];
+        for (uint256 i = 0; i &lt; userSchedules.length; i++) {
+            uint256 releasedTokens = _getReleasedTokens(_beneficiary, i);
+            Template memory template = templates[userSchedules[i].templateName];
+            unassignedTokens = unassignedTokens.add(template.numberOfTokens.sub(releasedTokens));
+            delete userToTemplateIndex[_beneficiary][userSchedules[i].templateName];
+            _deleteTemplateToUsers(_beneficiary, userSchedules[i].templateName);
+        }
+        delete schedules[_beneficiary];
+        delete userToTemplates[_beneficiary];
+        emit RevokeAllSchedules(_beneficiary);
+    }
+&nbsp;
+    /**
+     * @notice Returns beneficiary's schedule created using template name
+     * @param _beneficiary Address of the beneficiary who will receive tokens
+     * @param _templateName Name of the template was used for schedule creation
+     * @return beneficiary's schedule data (numberOfTokens, duration, frequency, startTime, claimedTokens, State)
+     */
+    function getSchedule(address _beneficiary, bytes32 _templateName) external view returns(uint256, uint256, uint256, uint256, uint256, State) {
+        _checkSchedule(_beneficiary, _templateName);
+        uint256 index = userToTemplateIndex[_beneficiary][_templateName];
+        Schedule memory schedule = schedules[_beneficiary][index];
+        return (
+            templates[schedule.templateName].numberOfTokens,
+            templates[schedule.templateName].duration,
+            templates[schedule.templateName].frequency,
+            schedule.startTime,
+            schedule.claimedTokens,
+            _getScheduleState(_beneficiary, _templateName)
+        );
+    }
+&nbsp;
+    function _getScheduleState(address _beneficiary, bytes32 _templateName) internal view returns(State) {
+        _checkSchedule(_beneficiary, _templateName);
+        uint256 index = userToTemplateIndex[_beneficiary][_templateName];
+        Schedule memory schedule = schedules[_beneficiary][index];
+        if (now &lt; schedule.startTime) {
+            return State.CREATED;
+        } else if (now &gt; schedule.startTime &amp;&amp; now &lt; schedule.startTime.add(templates[_templateName].duration)) {
+            return State.STARTED;
+        } else {
+            return State.COMPLETED;
+        }
+    }
+&nbsp;
+    /**
+     * @notice Returns list of the template names for given beneficiary's address
+     * @param _beneficiary Address of the beneficiary
+     * @return List of the template names that were used for schedule creation
+     */
+    function getTemplateNames(address _beneficiary) external view returns(bytes32[] memory) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_beneficiary != address(0), "Invalid address");
+        return userToTemplates[_beneficiary];
+    }
+&nbsp;
+    /**
+     * @notice Returns count of the schedules were created for given beneficiary
+     * @param _beneficiary Address of the beneficiary
+     * @return Count of beneficiary's schedules
+     */
+    function getScheduleCount(address _beneficiary) external view returns(uint256) {
+        require(_beneficiary != address(0), "Invalid address");
+        return schedules[_beneficiary].length;
+    }
+&nbsp;
+    function _getAvailableTokens(address _beneficiary, uint256 _index) internal view returns(uint256) {
+        Schedule memory schedule = schedules[_beneficiary][_index];
+        uint256 releasedTokens = _getReleasedTokens(_beneficiary, _index);
+        return releasedTokens.sub(schedule.claimedTokens);
+    }
+&nbsp;
+    function _getReleasedTokens(address _beneficiary, uint256 _index) internal view returns(uint256) {
+        Schedule memory schedule = schedules[_beneficiary][_index];
+        Template memory template = templates[schedule.templateName];
+        /*solium-disable-next-line security/no-block-members*/
+        if (now &gt; schedule.startTime) {
+            uint256 periodCount = template.duration.div(template.frequency);
+            /*solium-disable-next-line security/no-block-members*/
+            uint256 periodNumber = (now.sub(schedule.startTime)).div(template.frequency);
+            if (periodNumber &gt; periodCount) {
+                periodNumber = periodCount;
+            }
+            return template.numberOfTokens.mul(periodNumber).div(periodCount);
+        } else {
+            return 0;
+        }
+    }
+&nbsp;
+    /**
+     * @notice Used to bulk send available tokens for each of the beneficiaries
+     * @param _fromIndex Start index of array of beneficiary's addresses
+     * @param _toIndex End index of array of beneficiary's addresses
+     */
+    function pushAvailableTokensMulti(uint256 _fromIndex, uint256 _toIndex) public withPerm(OPERATOR) {
+        require(_toIndex &lt;= beneficiaries.length - 1, "Array out of bound");
+        for (uint256 i = _fromIndex; i &lt;= _toIndex; i++) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (schedules[beneficiaries[i]].length !=0)
+                pushAvailableTokens(beneficiaries[i]);
+        }
+    }
+&nbsp;
+    /**
+     * @notice Used to bulk add vesting schedules for each of beneficiary
+     * @param _beneficiaries Array of the beneficiary's addresses
+     * @param _templateNames Array of the template names
+     * @param _numberOfTokens Array of number of tokens should be assigned to schedules
+     * @param _durations Array of the vesting duration
+     * @param _frequencies Array of the vesting frequency
+     * @param _startTimes Array of the vesting start time
+     */
+    function addScheduleMulti(
+        address[] memory _beneficiaries,
+        bytes32[] memory _templateNames,
+        uint256[] memory _numberOfTokens,
+        uint256[] memory _durations,
+        uint256[] memory _frequencies,
+        uint256[] memory _startTimes
+    )
+        public
+        withPerm(ADMIN)
+    {
+        require(
+            _beneficiaries.length == _templateNames.length &amp;&amp; /*solium-disable-line operator-whitespace*/
+            _beneficiaries.length == _numberOfTokens.length &amp;&amp; /*solium-disable-line operator-whitespace*/
+            _beneficiaries.length == _durations.length &amp;&amp; /*solium-disable-line operator-whitespace*/
+            _beneficiaries.length == _frequencies.length &amp;&amp; /*solium-disable-line operator-whitespace*/
+            _beneficiaries.length == _startTimes.length,
+            "Arrays sizes mismatch"
+        );
+        for (uint256 i = 0; i &lt; _beneficiaries.length; i++) {
+            _addSchedule(_beneficiaries[i], _templateNames[i], _numberOfTokens[i], _durations[i], _frequencies[i], _startTimes[i]);
+        }
+    }
+&nbsp;
+    /**
+     * @notice Used to bulk add vesting schedules from template for each of the beneficiary
+     * @param _beneficiaries Array of beneficiary's addresses
+     * @param _templateNames Array of the template names were used for schedule creation
+     * @param _startTimes Array of the vesting start time
+     */
+    function addScheduleFromTemplateMulti(
+        address[] memory _beneficiaries,
+        bytes32[] memory _templateNames,
+        uint256[] memory _startTimes
+    )
+        public
+        withPerm(ADMIN)
+    {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_beneficiaries.length == _templateNames.length &amp;&amp; _beneficiaries.length == _startTimes.length, "Arrays sizes mismatch");
+        for (uint256 i = 0; i &lt; _beneficiaries.length; i++) {
+            _addScheduleFromTemplate(_beneficiaries[i], _templateNames[i], _startTimes[i]);
+        }
+    }
+&nbsp;
+    /**
+     * @notice Used to bulk revoke vesting schedules for each of the beneficiaries
+     * @param _beneficiaries Array of the beneficiary's addresses
+     */
+    function revokeSchedulesMulti(address[] memory _beneficiaries) public withPerm(ADMIN) {
+        for (uint256 i = 0; i &lt; _beneficiaries.length; i++) {
+            _revokeAllSchedules(_beneficiaries[i]);
+        }
+    }
+&nbsp;
+    /**
+     * @notice Used to bulk modify vesting schedules for each of the beneficiaries
+     * @param _beneficiaries Array of the beneficiary's addresses
+     * @param _templateNames Array of the template names
+     * @param _startTimes Array of the vesting start time
+     */
+    function modifyScheduleMulti(
+        address[] memory _beneficiaries,
+        bytes32[] memory _templateNames,
+        uint256[] memory _startTimes
+    )
+        public
+        withPerm(ADMIN)
+    {
+        require(
+            _beneficiaries.length == _templateNames.length &amp;&amp; /*solium-disable-line operator-whitespace*/
+            _beneficiaries.length == _startTimes.length,
+            "Arrays sizes mismatch"
+        );
+        for (uint256 i = 0; i &lt; _beneficiaries.length; i++) {
+            _modifySchedule(_beneficiaries[i], _templateNames[i], _startTimes[i]);
+        }
+    }
+&nbsp;
+    function _checkSchedule(address _beneficiary, bytes32 _templateName) internal view {
+        require(_beneficiary != address(0), "Invalid address");
+        uint256 index = userToTemplateIndex[_beneficiary][_templateName];
+        require(
+            index &lt; schedules[_beneficiary].length &amp;&amp;
+            schedules[_beneficiary][index].templateName == _templateName,
+            "Schedule not found"
+        );
+    }
+&nbsp;
+    function _isTemplateExists(bytes32 _name) internal view returns(bool) {
+        return templates[_name].numberOfTokens &gt; 0;
+    }
+&nbsp;
+    function _validateTemplate(uint256 _numberOfTokens, uint256 _duration, uint256 _frequency) internal view {
+        require(_numberOfTokens &gt; 0, "Zero amount");
+        require(_duration % _frequency == 0, "Invalid frequency");
+        uint256 periodCount = _duration.div(_frequency);
+        require(_numberOfTokens % periodCount == 0);
+        uint256 amountPerPeriod = _numberOfTokens.div(periodCount);
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(amountPerPeriod % ISecurityToken(securityToken).granularity() == 0, "Invalid granularity");
+    }
+&nbsp;
+    function _sendTokens(address _beneficiary) internal {
+        for (uint256 i = 0; i &lt; schedules[_beneficiary].length; i++) {
+            _sendTokensPerSchedule(_beneficiary, i);
+        }
+    }
+&nbsp;
+    function _sendTokensPerSchedule(address _beneficiary, uint256 _index) internal {
+        uint256 amount = _getAvailableTokens(_beneficiary, _index);
+        if (amount &gt; 0) {
+            schedules[_beneficiary][_index].claimedTokens = schedules[_beneficiary][_index].claimedTokens.add(amount);
+            <span class="missing-if-branch" title="else path not taken" >E</span>require(ISecurityToken(securityToken).transfer(_beneficiary, amount), "Transfer failed");
+            emit SendTokens(_beneficiary, amount);
+        }
+    }
+&nbsp;
+    /**
+     * @notice Return the permissions flag that are associated with VestingEscrowWallet
+     */
+    function getPermissions() public view returns(bytes32[] memory) {
+        bytes32[] memory allPermissions = new bytes32[](2);
+        allPermissions[0] = ADMIN;
+        allPermissions[1] = OPERATOR;
+        return allPermissions;
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 24 2019 01:30:03 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

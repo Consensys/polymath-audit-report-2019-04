@@ -1,0 +1,1376 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/modules/Checkpoint/Dividend/DividendCheckpoint.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">contracts/modules/Checkpoint/Dividend/</a> DividendCheckpoint.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.39% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>122/124</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.21% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>50/58</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">95.83% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>23/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.41% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>124/126</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">43×</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">158×</span>
+<span class="cline-any cline-yes">156×</span>
+<span class="cline-any cline-yes">11179×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * DISCLAIMER: Under certain conditions, the function pushDividendPayment
+ * may fail due to block gas limits.
+ * If the total number of investors that ever held tokens is greater than ~15,000 then
+ * the function may fail. If this happens investors can pull their dividends, or the Issuer
+ * can use pushDividendPaymentToAddresses to provide an explict address list in batches
+ */
+pragma solidity ^0.5.0;
+&nbsp;
+import ".././ICheckpoint.sol";
+import "../../../storage/modules/Checkpoint/Dividend/DividendCheckpointStorage.sol";
+import "../../Module.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "openzeppelin-solidity/contracts/math/Math.sol";
+&nbsp;
+/**
+ * @title Checkpoint module for issuing ether dividends
+ * @dev abstract contract
+ */
+contract DividendCheckpoint is DividendCheckpointStorage, ICheckpoint, Module {
+    using SafeMath for uint256;
+    uint256 internal constant e18 = uint256(10) ** uint256(18);
+&nbsp;
+    event SetDefaultExcludedAddresses(address[] _excluded);
+    event SetWithholding(address[] _investors, uint256[] _withholding);
+    event SetWithholdingFixed(address[] _investors, uint256 _withholding);
+    event SetWallet(address indexed _oldWallet, address indexed _newWallet);
+    event UpdateDividendDates(uint256 indexed _dividendIndex, uint256 _maturity, uint256 _expiry);
+&nbsp;
+    function _validDividendIndex(uint256 _dividendIndex) internal view {
+        require(_dividendIndex &lt; dividends.length, "Invalid dividend");
+        require(!dividends[_dividendIndex].reclaimed, "Dividend reclaimed");
+        /*solium-disable-next-line security/no-block-members*/
+        require(now &gt;= dividends[_dividendIndex].maturity, "Dividend maturity in future");
+        /*solium-disable-next-line security/no-block-members*/
+        require(now &lt; dividends[_dividendIndex].expiry, "Dividend expiry in past");
+    }
+&nbsp;
+    /**
+     * @notice Function used to intialize the contract variables
+     * @param _wallet Ethereum account address to receive reclaimed dividends and tax
+     */
+    function configure(
+        address payable _wallet
+    ) public onlyFactory {
+        _setWallet(_wallet);
+    }
+&nbsp;
+    /**
+    * @notice Init function i.e generalise function to maintain the structure of the module contract
+    * @return bytes4
+    */
+    function getInitFunction() public pure returns(bytes4) {
+        return this.configure.selector;
+    }
+&nbsp;
+    /**
+     * @notice Function used to change wallet address
+     * @param _wallet Ethereum account address to receive reclaimed dividends and tax
+     */
+    function changeWallet(address payable _wallet) external {
+        _onlySecurityTokenOwner();
+        _setWallet(_wallet);
+    }
+&nbsp;
+    function _setWallet(address payable _wallet) internal {
+        emit SetWallet(wallet, _wallet);
+        wallet = _wallet;
+    }
+&nbsp;
+    /**
+     * @notice Return the default excluded addresses
+     * @return List of excluded addresses
+     */
+    function getDefaultExcluded() external view returns(address[] memory) {
+        return excluded;
+    }
+&nbsp;
+    /**
+     * @notice Returns the treasury wallet address
+     */
+    function getTreasuryWallet() public view returns(address payable) {
+        if (wallet == address(0)) {
+            address payable treasuryWallet = address(uint160(IDataStore(getDataStore()).getAddress(TREASURY)));
+            <span class="missing-if-branch" title="else path not taken" >E</span>require(address(treasuryWallet) != address(0), "Invalid address");
+            return treasuryWallet;
+        }
+        else
+            return wallet;
+    }
+&nbsp;
+    /**
+     * @notice Creates a checkpoint on the security token
+     * @return Checkpoint ID
+     */
+    function createCheckpoint() public withPerm(OPERATOR) returns(uint256) {
+        return ISecurityToken(securityToken).createCheckpoint();
+    }
+&nbsp;
+    /**
+     * @notice Function to clear and set list of excluded addresses used for future dividends
+     * @param _excluded Addresses of investors
+     */
+    function setDefaultExcluded(address[] memory _excluded) public withPerm(ADMIN) {
+        require(_excluded.length &lt;= EXCLUDED_ADDRESS_LIMIT, "Too many excluded addresses");
+        for (uint256 j = 0; j &lt; _excluded.length; j++) {
+            require(_excluded[j] != address(0), "Invalid address");
+            for (uint256 i = j + 1; i &lt; _excluded.length; i++) {
+                require(_excluded[j] != _excluded[i], "Duplicate exclude address");
+            }
+        }
+        excluded = _excluded;
+        /*solium-disable-next-line security/no-block-members*/
+        emit SetDefaultExcludedAddresses(excluded);
+    }
+&nbsp;
+    /**
+     * @notice Function to set withholding tax rates for investors
+     * @param _investors Addresses of investors
+     * @param _withholding Withholding tax for individual investors (multiplied by 10**16)
+     */
+    function setWithholding(address[] memory _investors, uint256[] memory _withholding) public withPerm(ADMIN) {
+        require(_investors.length == _withholding.length, "Mismatched input lengths");
+        /*solium-disable-next-line security/no-block-members*/
+        emit SetWithholding(_investors, _withholding);
+        for (uint256 i = 0; i &lt; _investors.length; i++) {
+            require(_withholding[i] &lt;= e18, "Incorrect withholding tax");
+            withholdingTax[_investors[i]] = _withholding[i];
+        }
+    }
+&nbsp;
+    /**
+     * @notice Function to set withholding tax rates for investors
+     * @param _investors Addresses of investor
+     * @param _withholding Withholding tax for all investors (multiplied by 10**16)
+     */
+    function setWithholdingFixed(address[] memory _investors, uint256 _withholding) public withPerm(ADMIN) {
+        require(_withholding &lt;= e18, "Incorrect withholding tax");
+        /*solium-disable-next-line security/no-block-members*/
+        emit SetWithholdingFixed(_investors, _withholding);
+        for (uint256 i = 0; i &lt; _investors.length; i++) {
+            withholdingTax[_investors[i]] = _withholding;
+        }
+    }
+&nbsp;
+    /**
+     * @notice Issuer can push dividends to provided addresses
+     * @param _dividendIndex Dividend to push
+     * @param _payees Addresses to which to push the dividend
+     */
+    function pushDividendPaymentToAddresses(
+        uint256 _dividendIndex,
+        address payable[] memory _payees
+    )
+        public
+        withPerm(OPERATOR)
+    {
+        _validDividendIndex(_dividendIndex);
+        Dividend storage dividend = dividends[_dividendIndex];
+        for (uint256 i = 0; i &lt; _payees.length; i++) {
+            if ((!dividend.claimed[_payees[i]]) &amp;&amp; (!dividend.dividendExcluded[_payees[i]])) {
+                _payDividend(_payees[i], dividend, _dividendIndex);
+            }
+        }
+    }
+&nbsp;
+    /**
+     * @notice Issuer can push dividends using the investor list from the security token
+     * @param _dividendIndex Dividend to push
+     * @param _start Index in investor list at which to start pushing dividends
+     * @param _end Index in investor list at which to stop pushing dividends
+     */
+    function pushDividendPayment(
+        uint256 _dividendIndex,
+        uint256 _start,
+        uint256 _end
+    )
+        public
+        withPerm(OPERATOR)
+    {
+        //NB If possible, please use pushDividendPaymentToAddresses as it is cheaper than this function
+        _validDividendIndex(_dividendIndex);
+        Dividend storage dividend = dividends[_dividendIndex];
+        uint256 checkpointId = dividend.checkpointId;
+        address[] memory investors = ISecurityToken(securityToken).getInvestorsSubsetAt(checkpointId, _start, _end);
+        // The investors list maybe smaller than _end - _start becuase it only contains addresses that had a positive balance
+        // the _start and _end used here are for the address list stored in the dataStore
+        for (uint256 i = 0; i &lt; investors.length; i++) {
+            address payable payee = address(uint160(investors[i]));
+            if ((!dividend.claimed[payee]) &amp;&amp; (!dividend.dividendExcluded[payee])) {
+                _payDividend(payee, dividend, _dividendIndex);
+            }
+        }
+    }
+&nbsp;
+    /**
+     * @notice Investors can pull their own dividends
+     * @param _dividendIndex Dividend to pull
+     */
+    function pullDividendPayment(uint256 _dividendIndex) public whenNotPaused {
+        _validDividendIndex(_dividendIndex);
+        Dividend storage dividend = dividends[_dividendIndex];
+        require(!dividend.claimed[msg.sender], "Dividend already claimed");
+        require(!dividend.dividendExcluded[msg.sender], "msg.sender excluded from Dividend");
+        _payDividend(msg.sender, dividend, _dividendIndex);
+    }
+&nbsp;
+    /**
+     * @notice Internal function for paying dividends
+     * @param _payee Address of investor
+     * @param _dividend Storage with previously issued dividends
+     * @param _dividendIndex Dividend to pay
+     */
+    function _payDividend(address payable _payee, Dividend storage _dividend, uint256 _dividendIndex) internal;
+&nbsp;
+    /**
+     * @notice Issuer can reclaim remaining unclaimed dividend amounts, for expired dividends
+     * @param _dividendIndex Dividend to reclaim
+     */
+    function reclaimDividend(uint256 _dividendIndex) external;
+&nbsp;
+    /**
+     * @notice Calculate amount of dividends claimable
+     * @param _dividendIndex Dividend to calculate
+     * @param _payee Affected investor address
+     * @return claim, withheld amounts
+     */
+    function calculateDividend(uint256 _dividendIndex, address _payee) public view returns(uint256, uint256) {
+        require(_dividendIndex &lt; dividends.length, "Invalid dividend");
+        Dividend storage dividend = dividends[_dividendIndex];
+        if (dividend.claimed[_payee] || dividend.dividendExcluded[_payee]) {
+            return (0, 0);
+        }
+        uint256 balance = ISecurityToken(securityToken).balanceOfAt(_payee, dividend.checkpointId);
+        uint256 claim = balance.mul(dividend.amount).div(dividend.totalSupply);
+        uint256 withheld = claim.mul(withholdingTax[_payee]).div(e18);
+        return (claim, withheld);
+    }
+&nbsp;
+    /**
+     * @notice Get the index according to the checkpoint id
+     * @param _checkpointId Checkpoint id to query
+     * @return uint256[]
+     */
+    function getDividendIndex(uint256 _checkpointId) public view returns(uint256[] memory) {
+        uint256 counter = 0;
+        for (uint256 i = 0; i &lt; dividends.length; i++) {
+            if (dividends[i].checkpointId == _checkpointId) {
+                counter++;
+            }
+        }
+&nbsp;
+        uint256[] memory index = new uint256[](counter);
+        counter = 0;
+        for (uint256 j = 0; j &lt; dividends.length; j++) {
+            if (dividends[j].checkpointId == _checkpointId) {
+                index[counter] = j;
+                counter++;
+            }
+        }
+        return index;
+    }
+&nbsp;
+    /**
+     * @notice Allows issuer to withdraw withheld tax
+     * @param _dividendIndex Dividend to withdraw from
+     */
+    function withdrawWithholding(uint256 _dividendIndex) external;
+&nbsp;
+    /**
+     * @notice Allows issuer to change maturity / expiry dates for dividends
+     * @dev NB - setting the maturity of a currently matured dividend to a future date
+     * @dev will effectively refreeze claims on that dividend until the new maturity date passes
+     * @ dev NB - setting the expiry date to a past date will mean no more payments can be pulled
+     * @dev or pushed out of a dividend
+     * @param _dividendIndex Dividend to withdraw from
+     * @param _maturity updated maturity date
+     * @param _expiry updated expiry date
+     */
+    function updateDividendDates(uint256 _dividendIndex, uint256 _maturity, uint256 _expiry) external withPerm(ADMIN) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_dividendIndex &lt; dividends.length, "Invalid dividend");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_expiry &gt; _maturity, "Expiry before maturity");
+        Dividend storage dividend = dividends[_dividendIndex];
+        require(dividend.expiry &gt; now, "Dividend already expired");
+        dividend.expiry = _expiry;
+        dividend.maturity = _maturity;
+        emit UpdateDividendDates(_dividendIndex, _maturity, _expiry);
+    }
+&nbsp;
+    /**
+     * @notice Get static dividend data
+     * @return uint256[] timestamp of dividends creation
+     * @return uint256[] timestamp of dividends maturity
+     * @return uint256[] timestamp of dividends expiry
+     * @return uint256[] amount of dividends
+     * @return uint256[] claimed amount of dividends
+     * @return bytes32[] name of dividends
+     */
+    function getDividendsData() external view returns (
+        uint256[] memory createds,
+        uint256[] memory maturitys,
+        uint256[] memory expirys,
+        uint256[] memory amounts,
+        uint256[] memory claimedAmounts,
+        bytes32[] memory names)
+    {
+        createds = new uint256[](dividends.length);
+        maturitys = new uint256[](dividends.length);
+        expirys = new uint256[](dividends.length);
+        amounts = new uint256[](dividends.length);
+        claimedAmounts = new uint256[](dividends.length);
+        names = new bytes32[](dividends.length);
+        for (uint256 i = 0; i &lt; dividends.length; i++) {
+            (createds[i], maturitys[i], expirys[i], amounts[i], claimedAmounts[i], names[i]) = getDividendData(i);
+        }
+    }
+&nbsp;
+    /**
+     * @notice Get static dividend data
+     * @return uint256 timestamp of dividend creation
+     * @return uint256 timestamp of dividend maturity
+     * @return uint256 timestamp of dividend expiry
+     * @return uint256 amount of dividend
+     * @return uint256 claimed amount of dividend
+     * @return bytes32 name of dividend
+     */
+    function getDividendData(uint256 _dividendIndex) public view returns (
+        uint256 created,
+        uint256 maturity,
+        uint256 expiry,
+        uint256 amount,
+        uint256 claimedAmount,
+        bytes32 name)
+    {
+        created = dividends[_dividendIndex].created;
+        maturity = dividends[_dividendIndex].maturity;
+        expiry = dividends[_dividendIndex].expiry;
+        amount = dividends[_dividendIndex].amount;
+        claimedAmount = dividends[_dividendIndex].claimedAmount;
+        name = dividends[_dividendIndex].name;
+    }
+&nbsp;
+    /**
+     * @notice Retrieves list of investors, their claim status and whether they are excluded
+     * @param _dividendIndex Dividend to withdraw from
+     * @return address[] list of investors
+     * @return bool[] whether investor has claimed
+     * @return bool[] whether investor is excluded
+     * @return uint256[] amount of withheld tax (estimate if not claimed)
+     * @return uint256[] amount of claim (estimate if not claimeed)
+     * @return uint256[] investor balance
+     */
+    function getDividendProgress(uint256 _dividendIndex) external view returns (
+        address[] memory investors,
+        bool[] memory resultClaimed,
+        bool[] memory resultExcluded,
+        uint256[] memory resultWithheld,
+        uint256[] memory resultAmount,
+        uint256[] memory resultBalance)
+    {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_dividendIndex &lt; dividends.length, "Invalid dividend");
+        //Get list of Investors
+        Dividend storage dividend = dividends[_dividendIndex];
+        uint256 checkpointId = dividend.checkpointId;
+        investors = ISecurityToken(securityToken).getInvestorsAt(checkpointId);
+        resultClaimed = new bool[](investors.length);
+        resultExcluded = new bool[](investors.length);
+        resultWithheld = new uint256[](investors.length);
+        resultAmount = new uint256[](investors.length);
+        resultBalance = new uint256[](investors.length);
+        for (uint256 i; i &lt; investors.length; i++) {
+            resultClaimed[i] = dividend.claimed[investors[i]];
+            resultExcluded[i] = dividend.dividendExcluded[investors[i]];
+            resultBalance[i] = ISecurityToken(securityToken).balanceOfAt(investors[i], dividend.checkpointId);
+            if (!resultExcluded[i]) {
+                if (resultClaimed[i]) {
+                    resultWithheld[i] = dividend.withheld[investors[i]];
+                    resultAmount[i] = resultBalance[i].mul(dividend.amount).div(dividend.totalSupply).sub(resultWithheld[i]);
+                } else {
+                    (uint256 claim, uint256 withheld) = calculateDividend(_dividendIndex, investors[i]);
+                    resultWithheld[i] = withheld;
+                    resultAmount[i] = claim.sub(withheld);
+                }
+            }
+        }
+    }
+&nbsp;
+    /**
+     * @notice Retrieves list of investors, their balances, and their current withholding tax percentage
+     * @param _checkpointId Checkpoint Id to query for
+     * @return address[] list of investors
+     * @return uint256[] investor balances
+     * @return uint256[] investor withheld percentages
+     */
+    function getCheckpointData(uint256 _checkpointId) external view returns (address[] memory investors, uint256[] memory balances, uint256[] memory withholdings) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_checkpointId &lt;= ISecurityToken(securityToken).currentCheckpointId(), "Invalid checkpoint");
+        investors = ISecurityToken(securityToken).getInvestorsAt(_checkpointId);
+        balances = new uint256[](investors.length);
+        withholdings = new uint256[](investors.length);
+        for (uint256 i; i &lt; investors.length; i++) {
+            balances[i] = ISecurityToken(securityToken).balanceOfAt(investors[i], _checkpointId);
+            withholdings[i] = withholdingTax[investors[i]];
+        }
+    }
+&nbsp;
+    /**
+     * @notice Checks whether an address is excluded from claiming a dividend
+     * @param _dividendIndex Dividend to withdraw from
+     * @return bool whether the address is excluded
+     */
+    function isExcluded(address _investor, uint256 _dividendIndex) external view returns (bool) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(_dividendIndex &lt; dividends.length, "Invalid dividend");
+        return dividends[_dividendIndex].dividendExcluded[_investor];
+    }
+&nbsp;
+    /**
+     * @notice Checks whether an address has claimed a dividend
+     * @param _dividendIndex Dividend to withdraw from
+     * @return bool whether the address has claimed
+     */
+<span class="fstat-no" title="function not covered" >    function isClaimed(address _investor, uint256 _dividendIndex) external view returns (bool</span>) {
+<span class="cstat-no" title="statement not covered" >        require(_dividendIndex &lt; dividends.length, "Invalid dividend")</span>;
+<span class="cstat-no" title="statement not covered" >        return dividends[_dividendIndex].claimed[_investor];</span>
+    }
+&nbsp;
+    /**
+     * @notice Return the permissions flag that are associated with this module
+     * @return bytes32 array
+     */
+    function getPermissions() public view returns(bytes32[] memory) {
+        bytes32[] memory allPermissions = new bytes32[](2);
+        allPermissions[0] = ADMIN;
+        allPermissions[1] = OPERATOR;
+        return allPermissions;
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 24 2019 01:30:03 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

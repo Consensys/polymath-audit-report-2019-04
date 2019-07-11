@@ -1,0 +1,17 @@
+==== Delegatecall Proxy ====
+SWC ID: 112
+Severity: Low
+Contract: OwnedUpgradeabilityProxy
+Function name: fallback
+PC address: 2172
+Estimated Gas Usage: 714 - 3443
+The contract implements a delegatecall proxy.
+The smart contract forwards the received calldata via delegatecall. Note that callers can execute arbitrary functions in the callee contract and that the callee contract can access the storage of the calling contract. Make sure that the callee contract is audited properly.DELEGATECALL target: 0x0
+--------------------
+In file: tokens/SecurityTokenProxy.sol:35
+
+delegatecall(gas, implementation, 0, calldatasize, 0, 0)
+
+--------------------
+
+
